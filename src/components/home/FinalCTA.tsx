@@ -29,7 +29,7 @@ export default function FinalCTA() {
           <CTALink href="/contact" variant="solid">
             Start a Conversation
           </CTALink>
-          <CTALink href="#" variant="text" tone="light">
+          <CTALink href="#" variant="outline" tone="light">
             Call Lowell Edwards
           </CTALink>
         </div>

@@ -52,8 +52,8 @@ export default function HomeTheatreSection() {
             ))}
           </ul>
 
-          <CTALink href="/residential#home-theatre" variant="text" className="mt-10">
-            Explore Home Theatre
+          <CTALink href="/residential#home-theatre" variant="outline" className="mt-10 self-start">
+            Explore Home Theater
           </CTALink>
         </Reveal>
 

@@ -48,7 +48,7 @@ export default function FeaturedProjects() {
           </p>
         </Reveal>
         <Reveal delay={0.1} className="lg:col-span-5 lg:justify-self-end">
-          <CTALink href="/projects" variant="text">
+          <CTALink href="/projects" variant="outline">
             View Our Projects
           </CTALink>
         </Reveal>

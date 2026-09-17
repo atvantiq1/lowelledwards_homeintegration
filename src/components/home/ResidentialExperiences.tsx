@@ -22,13 +22,13 @@ const EXPERIENCES = [
   },
   {
     number: "02",
-    title: "Home Theatre",
+    title: "Home Theater",
     description:
       "Bring the cinema home with a dedicated space designed for exceptional picture, immersive sound, comfortable seating, and complete control.",
     tags: "Screens • Audio • Seating • Acoustics • Lighting • Control",
-    href: "/residential#home-theatre",
-    ctaLabel: "Explore Home Theatre",
-    image: homeImages.residentialHomeTheatre,
+    href: "/residential#home-theater",
+    ctaLabel: "Explore Home Theater",
+    image: homeImages.residentialHomeTheater,
   },
 ];
 
@@ -97,7 +97,7 @@ export default function ResidentialExperiences() {
                   </p>
                 )}
                 <div className="pointer-events-auto mt-4">
-                  <CTALink href={experience.href} variant="text" tone="light">
+                  <CTALink href={experience.href} variant="outline" tone="light">
                     {experience.ctaLabel}
                   </CTALink>
                 </div>

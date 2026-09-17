@@ -34,11 +34,11 @@ export default function SmartHomeSection() {
           className="flex flex-col justify-center bg-bg p-10 sm:p-12 lg:col-span-5 lg:p-14"
         >
           <h2 className="font-display text-3xl text-cream sm:text-4xl">
-            Your Home. Connected.
+            One System. Every Room.
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
-            A smart home should make everyday life easier—not more
+            A smart home should make everyday life easier not more
             complicated.
           </p>
           <p className="mt-4 font-body text-sm leading-relaxed text-cream/65">
@@ -64,7 +64,7 @@ export default function SmartHomeSection() {
             ))}
           </ul>
 
-          <CTALink href="/residential#smart-home" variant="text" className="mt-10">
+          <CTALink href="/residential#smart-home" variant="outline" className="mt-10 self-start">
             Explore Smart Home Integration
           </CTALink>
         </Reveal>

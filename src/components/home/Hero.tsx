@@ -19,7 +19,7 @@ export default function Hero() {
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/15 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/45 to-black/10" />
         <div className="absolute inset-x-0 top-0 h-32 bg-linear-to-b from-white/85 to-transparent sm:h-44" />
       </div>
 
@@ -28,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, ease: EASE }}
-          className="max-w-4xl font-display text-[clamp(1.75rem,5.5vw,5.5rem)] leading-[0.95] text-white"
+          className="max-w-4xl font-display text-[clamp(1.75rem,5.5vw,5.5rem)] leading-[0.95] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)]"
         >
           Technology, Designed Around Your Home.
         </motion.h1>

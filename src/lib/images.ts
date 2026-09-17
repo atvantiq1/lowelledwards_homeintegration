@@ -21,7 +21,7 @@ export const homeImages = {
     src: pexels("6580378"),
     alt: "Open-concept luxury living room and kitchen with ambient pendant lighting",
   },
-  residentialHomeTheatre: {
+  residentialHomeTheater: {
     src: pexels("8583821"),
     alt: "Private home theater with leather recliners and a large screen",
   },
@@ -50,27 +50,27 @@ export const homeImages = {
     alt: "Luxury stone villa with a pool beneath a dramatic sunset sky",
   },
   whyExperience: {
-    src: pexels("16079131"),
+    src: pexels("6588599"),
     alt: "Classic home library with built-in wood shelving and a leather chair",
   },
   whyResponse: {
-    src: pexels("2098443"),
-    alt: "Bright entryway with a grand curved staircase and chandelier",
+    src: pexels("19899066"),
+    alt: "Modern living room with a large wall-mounted video display",
   },
   whySupport: {
-    src: pexels("8082233"),
-    alt: "Elegant home office with sophisticated lighting and furnishings",
+    src: pexels("5998120"),
+    alt: "Stylish living room with a statement chandelier and layered ambient lighting",
   },
   whyService: {
-    src: pexels("451832"),
-    alt: "Luxury wine cellar with bottles arranged on wooden shelving",
+    src: pexels("5982764"),
+    alt: "Luxury living room with expansive windows fitted for automated shades",
   },
   whyPricing: {
-    src: pexels("6670657"),
-    alt: "Organized luxury walk-in closet with warm accent lighting",
+    src: pexels("1571458"),
+    alt: "Smart home automation touchscreen control panel built into a kitchen wall",
   },
   whyTechnicians: {
-    src: pexels("8135119"),
-    alt: "Minimalist living room with a seamlessly integrated flat-screen television",
+    src: pexels("6186823"),
+    alt: "Gated modern luxury villa exterior representing integrated home security",
   },
 } as const;

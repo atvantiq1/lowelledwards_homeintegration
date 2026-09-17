@@ -33,7 +33,7 @@ export default function BrandIntroduction() {
           </Reveal>
 
           <Reveal delay={0.2} className="mt-12">
-            <CTALink href="/about" variant="text">
+            <CTALink href="/about" variant="outline">
               About Lowell Edwards
             </CTALink>
           </Reveal>
