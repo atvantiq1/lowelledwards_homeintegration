@@ -18,9 +18,39 @@ const SERVICES = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "Instagram", href: "#" },
-  { label: "Houzz", href: "#" },
-  { label: "LinkedIn", href: "#" },
+  {
+    label: "Instagram",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    ),
+  },
+  {
+    label: "Facebook",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <path d="M14 21v-7h2.4l.4-3H14V9.2c0-.87.24-1.46 1.5-1.46H17V5.14C16.73 5.1 15.8 5 14.72 5 12.46 5 10.9 6.4 10.9 8.94V11H8.5v3h2.4v7Z" />
+      </svg>
+    ),
+  },
+  {
+    label: "LinkedIn",
+    href: "#",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <line x1="7.5" y1="10" x2="7.5" y2="17" />
+        <circle cx="7.5" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
+        <path d="M11 17v-4.5c0-1.4 1-2.5 2.5-2.5s2.5 1.1 2.5 2.5V17" />
+      </svg>
+    ),
+  },
 ];
 
 export default function Footer() {
@@ -109,9 +139,10 @@ export default function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="font-body text-xs uppercase tracking-widest text-cream/50 transition-colors duration-300 hover:text-gold"
+                  aria-label={social.label}
+                  className="text-cream/50 transition-colors duration-300 hover:text-gold"
                 >
-                  {social.label}
+                  <span className="block h-5 w-5">{social.icon}</span>
                 </a>
               ))}
             </li>
