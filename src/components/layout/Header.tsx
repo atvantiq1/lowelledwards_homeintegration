@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
   { label: "Residential", href: "/residential" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
@@ -43,7 +42,7 @@ export default function Header() {
       }`}
     >
       <div className="section-pad flex h-20 items-center justify-between sm:h-[var(--header-h)]">
-        <Link href="/" className="relative block h-12 w-48 shrink-0 sm:h-16 sm:w-64">
+        <Link href="/" className="relative block h-12 w-48 shrink-0 sm:h-18 sm:w-68">
           <Image
             src="/images/logo.png"
             alt="Lowell Edwards Home Integration"
@@ -59,7 +58,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-md tracking-[0.12em] uppercase text-cream/80 transition-colors duration-300 hover:text-gold"
+              className="font-body text-md font-bold tracking-[0.12em] uppercase text-cream/80 transition-colors duration-300 hover:text-gold"
             >
               {link.label}
             </Link>

@@ -14,8 +14,8 @@ export const homeImages = {
     alt: "Bright, airy luxury living room with a white sectional sofa and large sunlit windows",
   },
   brandIntroduction: {
-    src: pexels("7031720"),
-    alt: "Elegant minimalist living room with soft natural light and gallery wall",
+    src: "/images/brand-introduction.png",
+    alt: "Elegant living room with floor-to-ceiling motorized shades and a wall-mounted smart home control panel overlooking a lake and mountains",
   },
   residentialSmartHome: {
     src: pexels("6580378"),
@@ -26,8 +26,8 @@ export const homeImages = {
     alt: "Private home theater with leather recliners and a large screen",
   },
   smartHomeFull: {
-    src: pexels("1571458"),
-    alt: "Bright, elegant living room with an integrated television and ambient lighting",
+    src: "/images/smart-home-full.png",
+    alt: "Luxury living room at dusk with a tablet controlling lighting, shades, comfort, audio/video, and security scenes",
   },
   homeTheatreFull: {
     src: pexels("7031762"),
