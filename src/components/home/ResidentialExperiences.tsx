@@ -15,7 +15,7 @@ const EXPERIENCES = [
     title: "Smart Home Integration",
     description:
       "Technology that works quietly in the background, connecting the systems throughout your home.",
-    tags: "Audio • Video • Lighting • Shades • Automation • Networking • Security",
+    tags: "Audio • Video • Lighting • Shades • Automation • Networking • Security • Thermostats",
     href: "/residential#smart-home",
     ctaLabel: "Explore Smart Home",
     image: homeImages.residentialSmartHome,

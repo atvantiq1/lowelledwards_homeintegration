@@ -10,7 +10,7 @@ const pexels = (id: string, w = 2400) =>
 
 export const homeImages = {
   hero: {
-    src: pexels("8089158"),
+    src: pexels("27164969"),
     alt: "Bright, airy luxury living room with a white sectional sofa and large sunlit windows",
   },
   brandIntroduction: {
@@ -26,11 +26,11 @@ export const homeImages = {
     alt: "Private home theater with leather recliners and a large screen",
   },
   smartHomeFull: {
-    src: pexels("6487954"),
+    src: pexels("1571458"),
     alt: "Bright, elegant living room with an integrated television and ambient lighting",
   },
   homeTheatreFull: {
-    src: pexels("13348768"),
+    src: pexels("7031762"),
     alt: "Wood-paneled home cinema room with a large projection screen",
   },
   projectLarge: {
@@ -58,7 +58,7 @@ export const homeImages = {
     alt: "Modern living room with a large wall-mounted video display",
   },
   whySupport: {
-    src: pexels("5998120"),
+    src: pexels("6782346"),
     alt: "Stylish living room with a statement chandelier and layered ambient lighting",
   },
   whyService: {

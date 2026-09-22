@@ -1,4 +1,4 @@
-import { Volume2, MonitorPlay, Lightbulb, Blinds, Settings2, Wifi, ShieldCheck } from "lucide-react";
+import { Volume2, MonitorPlay, Lightbulb, Blinds, Settings2, Wifi, ShieldCheck, Thermometer } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import CTALink from "@/components/ui/CTALink";
@@ -12,6 +12,7 @@ const CAPABILITIES = [
   { label: "Automation", icon: Settings2 },
   { label: "Networking", icon: Wifi },
   { label: "Security", icon: ShieldCheck },
+  { label: "Thermostats", icon: Thermometer },
 ];
 
 export default function SmartHomeSection() {
@@ -43,8 +44,9 @@ export default function SmartHomeSection() {
           </p>
           <p className="mt-4 font-body text-sm leading-relaxed text-cream/65">
             We integrate the technology throughout your home so lighting,
-            audio, video, shades, climate, networking, and security can work
-            together as one experience. Whether you&rsquo;re relaxing at
+            audio, video, shades, climate, networking, security, and
+            thermostats can work together as one experience. Whether
+            you&rsquo;re relaxing at
             home or preparing for guests, the right systems are ready when
             you need them.
           </p>

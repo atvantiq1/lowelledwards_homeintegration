@@ -41,8 +41,8 @@ export default function Hero() {
         >
           Create a home that feels effortless. Lowell Edwards Home
           Integration brings audio, video, lighting, shades, automation,
-          networking, security, and home theater together into one
-          thoughtfully designed experience.
+          networking, security, thermostats, and home theater together into
+          one thoughtfully designed experience.
         </motion.p>
 
         <motion.div

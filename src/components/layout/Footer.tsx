@@ -15,6 +15,7 @@ const SERVICES = [
   "Home Automation",
   "Networking & Security",
   "Home Theater",
+  "Thermostats",
 ];
 
 const SOCIAL_LINKS = [
