@@ -58,8 +58,8 @@ export default function SmartHomeSystems() {
   const [active, setActive] = useState(0);
 
   return (
-    <section id="systems" className="bg-bg2 py-16 sm:py-20 lg:py-28">
-      <div className="section-pad mb-10 sm:mb-14">
+    <section id="systems" className="bg-bg2 py-12 sm:py-16 lg:py-18">
+      <div className="section-pad mb-6 sm:mb-8">
         <Reveal>
           <p className="eyebrow text-gold">Systems</p>
           <h2 className="mt-4 max-w-2xl font-display text-4xl text-cream sm:text-5xl">
@@ -68,7 +68,7 @@ export default function SmartHomeSystems() {
         </Reveal>
       </div>
 
-      <div className="section-pad grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10">
+      <div className="section-pad grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
         <Reveal className="lg:col-span-7">
           <ul>
             {SYSTEMS.map((system, i) => {
@@ -85,7 +85,7 @@ export default function SmartHomeSystems() {
                     onClick={() => setActive(i)}
                     aria-pressed={isActive}
                     aria-describedby={`system-desc-${i}`}
-                    className="flex w-full items-center gap-4 py-6 text-left sm:gap-8 sm:py-7"
+                    className="flex w-full items-center gap-4 py-6 text-left sm:gap-8 sm:py-5"
                   >
                     <span
                       className={`font-body text-xs tabular-nums transition-colors duration-300 ${
@@ -95,7 +95,7 @@ export default function SmartHomeSystems() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className={`font-display text-2xl transition-colors duration-300 sm:text-3xl lg:text-4xl ${
+                      className={`font-display text-xl transition-colors duration-300 sm:text-2xl lg:text-3xl ${
                         isActive ? "text-gold" : "text-cream"
                       }`}
                     >
@@ -103,7 +103,7 @@ export default function SmartHomeSystems() {
                     </span>
                     <ArrowRight
                       aria-hidden
-                      className={`ml-auto h-5 w-5 shrink-0 transition-all duration-300 ${
+                      className={`ml-auto h-4 w-4 shrink-0 transition-all duration-300 ${
                         isActive
                           ? "translate-x-1 text-gold"
                           : "text-cream/30 group-hover/row:translate-x-1 group-hover/row:text-cream/60"
@@ -120,11 +120,11 @@ export default function SmartHomeSystems() {
                     }}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-md pb-6 font-body text-sm leading-relaxed text-cream/60 sm:pb-7">
+                      <p className="max-w-md pb-6 font-body text-sm leading-relaxed text-cream/60 sm:pb-6 sm:text-sm">
                         {system.description}
                       </p>
 
-                      <div className="relative mb-6 aspect-4/3 overflow-hidden sm:hidden">
+                      <div className="relative mb-3 aspect-video overflow-hidden sm:hidden">
                         <Photo
                           src={system.image.src}
                           alt={system.image.alt}
@@ -152,8 +152,8 @@ export default function SmartHomeSystems() {
           distance={30}
           className="hidden sm:block lg:col-span-5"
         >
-          <div className="sticky top-28">
-            <div className="relative aspect-4/5 overflow-hidden">
+          <div className="sticky top-24">
+            <div className="relative aspect-square overflow-hidden">
               <AnimatePresence>
                 <motion.div
                   key={active}

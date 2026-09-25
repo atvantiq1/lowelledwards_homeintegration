@@ -83,8 +83,8 @@ export const homeImages = {
  */
 export const smartHomeImages = {
   hero: {
-    src: pexels("7851906"),
-    alt: "Warm, softly lit luxury living room in the evening with layered ambient lighting",
+    src: pexels("6487967"),
+    alt: "Moody, modern living room with a wall-mounted screen and ambient lighting, depicting a home's connected devices and audio systems",
   },
   introduction: {
     src: pexels("5179534"),
@@ -92,16 +92,16 @@ export const smartHomeImages = {
   },
   systems: {
     audioVideo: {
-      src: pexels("6020432"),
+      src: pexels("19966811"),
       alt: "Wall-mounted flat-screen television with a soundbar above a live-edge wood console",
     },
     lighting: {
-      src: pexels("9329002"),
+      src: pexels("1668860"),
       alt: "Warm wood-paneled interior with architectural ceiling lighting",
     },
     shades: {
-      src: pexels("7534552"),
-      alt: "Floor-to-ceiling wood blinds filtering warm afternoon light into a living room",
+      src: pexels("6764827"),
+      alt: "Close-up of motorized metal blinds filtering warm sunlight into linear patterns across a room",
     },
     thermostat: {
       src: pexels("36077581"),
@@ -112,12 +112,12 @@ export const smartHomeImages = {
       alt: "Hand adjusting a wall-mounted smart home touchscreen panel set into a tiled kitchen wall",
     },
     networking: {
-      src: pexels("28461040"),
-      alt: "Modern home office with natural light and plants, representing a home's connected infrastructure",
+      src: pexels("38337704"),
+      alt: "Sleek wireless network router on a warm wood surface, representing a home's connected infrastructure",
     },
     security: {
       src: pexels("24503710"),
-      alt: "Elegant home entrance with a stone facade, wood doors, and lantern-style lighting",
+      alt: "Collection of modern smart home security devices, including cameras and sensors, arranged together",
     },
   },
   lifestyle: {
