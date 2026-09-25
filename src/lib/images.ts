@@ -74,3 +74,72 @@ export const homeImages = {
     alt: "Gated modern luxury villa exterior representing integrated home security",
   },
 } as const;
+
+/**
+ * Smart Home Integration page photography. Every shot here is unique to
+ * this page — sourced from Pexels (free to use, no attribution required) —
+ * rather than reused from `homeImages`, so the page reads as its own
+ * gallery instead of a repeat of the homepage.
+ */
+export const smartHomeImages = {
+  hero: {
+    src: pexels("7851906"),
+    alt: "Warm, softly lit luxury living room in the evening with layered ambient lighting",
+  },
+  introduction: {
+    src: pexels("5179534"),
+    alt: "Elegant open-concept living and dining space with wood ceiling beams and a sculptural chandelier",
+  },
+  systems: {
+    audioVideo: {
+      src: pexels("6020432"),
+      alt: "Wall-mounted flat-screen television with a soundbar above a live-edge wood console",
+    },
+    lighting: {
+      src: pexels("9329002"),
+      alt: "Warm wood-paneled interior with architectural ceiling lighting",
+    },
+    shades: {
+      src: pexels("7534552"),
+      alt: "Floor-to-ceiling wood blinds filtering warm afternoon light into a living room",
+    },
+    thermostat: {
+      src: pexels("36077581"),
+      alt: "Sleek digital thermostat with a rotary dial set into a warm wood-paneled wall",
+    },
+    automation: {
+      src: pexels("16423104"),
+      alt: "Hand adjusting a wall-mounted smart home touchscreen panel set into a tiled kitchen wall",
+    },
+    networking: {
+      src: pexels("28461040"),
+      alt: "Modern home office with natural light and plants, representing a home's connected infrastructure",
+    },
+    security: {
+      src: pexels("24503710"),
+      alt: "Elegant home entrance with a stone facade, wood doors, and lantern-style lighting",
+    },
+  },
+  lifestyle: {
+    entertain: {
+      src: pexels("373638"),
+      alt: "Pair of high-end floor-standing speakers in a wood-toned acoustic listening room",
+    },
+    relax: {
+      src: pexels("19096629"),
+      alt: "Cozy armchair beside a window with sheer curtains in a calm, warmly lit room",
+    },
+    protect: {
+      src: pexels("33104381"),
+      alt: "Sleek indoor security camera mounted against a warm wood-paneled wall",
+    },
+  },
+  integration: {
+    src: pexels("31737860"),
+    alt: "Modern luxury home illuminated at night, its lighting, comfort, and security working as one",
+  },
+  cta: {
+    src: pexels("1669799"),
+    alt: "Elegant, minimalist luxury living room with warm gold accents",
+  },
+} as const;
