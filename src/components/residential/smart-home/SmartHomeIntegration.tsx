@@ -32,7 +32,7 @@ export default function SmartHomeIntegration() {
         >
           <p className="eyebrow text-gold">Integration</p>
           <h2 className="mt-4 font-display text-3xl text-cream sm:text-4xl">
-            One Controlled Experience.
+            <span className="cap-o-tight">O</span>ne Controlled Experience.
           </h2>
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
             Audio, video, lighting, shades, climate, and security — every

@@ -83,7 +83,7 @@ export const homeImages = {
  */
 export const smartHomeImages = {
   hero: {
-    src: pexels("6487967"),
+    src: pexels("34549301"),
     alt: "Moody, modern living room with a wall-mounted screen and ambient lighting, depicting a home's connected devices and audio systems",
   },
   introduction: {

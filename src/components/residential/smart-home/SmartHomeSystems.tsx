@@ -63,7 +63,7 @@ export default function SmartHomeSystems() {
         <Reveal>
           <p className="eyebrow text-gold">Systems</p>
           <h2 className="mt-4 max-w-2xl font-display text-4xl text-cream sm:text-5xl">
-            Every System, One Experience.
+            Every System, <span className="cap-o-tight">O</span>ne Experience.
           </h2>
         </Reveal>
       </div>

@@ -69,6 +69,13 @@ h4 {
   line-height: 1.05;
 }
 
+/* Basset (font-display) cuts a wide side-bearing on capital "O", which reads
+   as an oversized gap before the next letter in headings. Wrap just the "O"
+   in this class to pull that gap in without affecting other tracking. */
+.cap-o-tight {
+  margin-right: -0.16em;
+}
+
 a,
 button {
   -webkit-tap-highlight-color: transparent;

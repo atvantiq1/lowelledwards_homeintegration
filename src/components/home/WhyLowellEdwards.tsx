@@ -30,7 +30,7 @@ export default function WhyLowellEdwards() {
         <Reveal>
           <p className="eyebrow text-gold-light">Why Lowell Edwards</p>
           <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">
-            Experience You Can Rely On.
+            Experience You Can Rely <span className="cap-o-tight">O</span>n.
           </h2>
         </Reveal>
       </div>

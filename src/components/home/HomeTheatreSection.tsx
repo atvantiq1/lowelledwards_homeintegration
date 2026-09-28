@@ -23,7 +23,7 @@ export default function HomeTheatreSection() {
           className="order-2 flex flex-col justify-center bg-bg2 p-10 sm:p-12 lg:order-1 lg:col-span-5 lg:p-14"
         >
           <h2 className="font-display text-3xl text-cream sm:text-4xl">
-            Your Own Private Cinema.
+            Your <span className="cap-o-tight">O</span>wn Private Cinema.
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
