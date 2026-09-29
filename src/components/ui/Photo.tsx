@@ -6,6 +6,8 @@ interface PhotoProps {
   sizes?: string;
   priority?: boolean;
   className?: string;
+  /** CSS object-position, e.g. "50% 35%". Defaults to centered. */
+  objectPosition?: string;
 }
 
 export default function Photo({
@@ -14,6 +16,7 @@ export default function Photo({
   sizes = "100vw",
   priority = false,
   className = "",
+  objectPosition,
 }: PhotoProps) {
   return (
     <div className={`relative h-full w-full overflow-hidden bg-bg3 ${className}`}>
@@ -23,7 +26,8 @@ export default function Photo({
         fill
         sizes={sizes}
         priority={priority}
-        className="object-cover"
+        className="object-cover transition-[object-position] duration-700 ease-out"
+        style={objectPosition ? { objectPosition } : undefined}
       />
     </div>
   );

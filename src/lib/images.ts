@@ -8,6 +8,11 @@
 const pexels = (id: string, w = 2400) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
+// Unsplash (free to use under the Unsplash License, no attribution required
+// — https://unsplash.com/license).
+const unsplash = (id: string, w = 2400) =>
+  `https://images.unsplash.com/photo-${id}?q=80&w=${w}&auto=format&fit=crop`;
+
 export const homeImages = {
   hero: {
     src: pexels("27164969"),
@@ -141,5 +146,46 @@ export const smartHomeImages = {
   cta: {
     src: pexels("1669799"),
     alt: "Elegant, minimalist luxury living room with warm gold accents",
+  },
+} as const;
+
+/**
+ * Home Theatre page photography, sourced from Pexels (free to use, no
+ * attribution required) and unique to this page, so it reads as its own
+ * gallery rather than a repeat of the homepage or Smart Home page.
+ */
+export const homeTheatreImages = {
+  hero: {
+    src: pexels("35618217"),
+    alt: "Large drop-down projection screen filling a dark, cozy home theater room beside a lit fireplace",
+  },
+  introduction: {
+    src: pexels("7752771"),
+    alt: "Bright, airy contemporary living room with a round mirror, plush seating, and warm wood flooring",
+  },
+  theatreDesign: {
+    src: unsplash("1665827491321-ce05d75c6a32"),
+    alt: "Dedicated home theater room with a drop-down screen, flanking speakers, acoustic ceiling tiles, and theater seating",
+  },
+  seating: {
+    src: unsplash("1710131459450-7c384b8be18f"),
+    alt: "Row of vibrant red leather reclining theater chairs inside a home theater room",
+  },
+  audio: {
+    src: unsplash("1595432541891-a461100d3054"),
+    alt: "Tall black tower speaker standing in a minimalist room with warm wood flooring",
+  },
+  video: {
+    src: unsplash("1721733258410-35e699661ad6"),
+    alt: "Illuminated drop-down projection screen inside a dedicated home theater room",
+    position: "50% 22%",
+  },
+  lighting: {
+    src: pexels("10482375"),
+    alt: "Close-up of warm red LED accent lighting tracing the ceiling line of a darkened theater room",
+  },
+  cta: {
+    src: pexels("13722886"),
+    alt: "Dark, sophisticated living room with a wall-mounted screen, dramatic architectural lighting, and a backlit bookshelf",
   },
 } as const;

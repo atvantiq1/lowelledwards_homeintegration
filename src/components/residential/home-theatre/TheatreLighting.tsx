@@ -1,0 +1,33 @@
+import Reveal from "@/components/ui/Reveal";
+import Photo from "@/components/ui/Photo";
+import { homeTheatreImages } from "@/lib/images";
+
+export default function TheatreLighting() {
+  return (
+    <section className="bg-bg py-16 sm:py-20 lg:py-28">
+      <Reveal className="section-pad mb-10 sm:mb-14" distance={36}>
+        <div className="relative aspect-4/3 overflow-hidden sm:aspect-video lg:aspect-21/8">
+          <Photo
+            src={homeTheatreImages.lighting.src}
+            alt={homeTheatreImages.lighting.alt}
+            sizes="100vw"
+          />
+        </div>
+      </Reveal>
+
+      <div className="section-pad">
+        <Reveal delay={0.1}>
+          <p className="eyebrow text-gold">Lighting &amp; Atmosphere</p>
+          <h2 className="mt-4 max-w-2xl font-display text-4xl text-cream sm:text-5xl">
+            <span className="cap-o-tight">O</span>ne Touch. Everything Ready.
+          </h2>
+          <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-cream/65">
+            Lighting, shades, and the theater itself, brought together on
+            Lutron and Crestron control — so the room dims, the screen wakes,
+            and the sound is ready, all from a single touch.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

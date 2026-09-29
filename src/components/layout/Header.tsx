@@ -14,7 +14,7 @@ const NAV_LINKS = [
 
 const RESIDENTIAL_LINKS = [
   { label: "Smart Home Integration", href: "/residential/smart-home-integration" },
-  { label: "Home Theater", href: "/residential#home-theatre" },
+  { label: "Home Theater", href: "/residential/home-theatre" },
 ];
 
 export default function Header() {

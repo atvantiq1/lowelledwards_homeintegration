@@ -26,7 +26,7 @@ const EXPERIENCES = [
     description:
       "Bring the cinema home with a dedicated space designed for exceptional picture, immersive sound, comfortable seating, and complete control.",
     tags: "Screens • Audio • Seating • Acoustics • Lighting • Control",
-    href: "/residential#home-theater",
+    href: "/residential/home-theatre",
     ctaLabel: "Explore Home Theater",
     image: homeImages.residentialHomeTheater,
   },
