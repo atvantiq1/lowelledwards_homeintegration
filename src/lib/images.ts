@@ -13,10 +13,21 @@ const pexels = (id: string, w = 2400) =>
 const unsplash = (id: string, w = 2400) =>
   `https://images.unsplash.com/photo-${id}?q=80&w=${w}&auto=format&fit=crop`;
 
+// Control4's official marketing CDN. Lowell Edwards is an authorized Control4
+// and Lutron dealer; these are used only where the client confirmed we have
+// rights to use Control4 dealer/brand imagery. Do not add other brands' sites
+// here without the same confirmation.
+const control4 = (path: string) =>
+  `https://cdn.prod.website-files.com/629926620ba03720384bebb3/${path}`;
+
+// ecobee's Contentful-hosted CDN — genuine ecobee product photography.
+const ecobee = (path: string, w = 1080) =>
+  `https://images.ctfassets.net/a3qyhfznts9y/${path}?w=${w}&h=${w}&q=80&fm=webp`;
+
 export const homeImages = {
   hero: {
-    src: pexels("27164969"),
-    alt: "Bright, airy luxury living room with a white sectional sofa and large sunlit windows",
+    src: pexels("33529500"),
+    alt: "Grand double-height luxury great room with a sculptural crystal chandelier, marble floors, and designer seating",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",
@@ -27,16 +38,20 @@ export const homeImages = {
     alt: "Open-concept luxury living room and kitchen with ambient pendant lighting",
   },
   residentialHomeTheater: {
-    src: pexels("8583821"),
-    alt: "Private home theater with leather recliners and a large screen",
+    src: control4(
+      "67e2e7874942818584cd740f_087_25_Control4.com_VideoandHomeTheater_TrueMagic1.webp"
+    ),
+    alt: "Custom-built private cinema with tiered leather theater seating facing a large projection screen, lit by cool architectural LED coves",
   },
   smartHomeFull: {
     src: "/images/smart-home-full.png",
     alt: "Luxury living room at dusk with a tablet controlling lighting, shades, comfort, audio/video, and security scenes",
   },
   homeTheatreFull: {
-    src: pexels("7031762"),
-    alt: "Wood-paneled home cinema room with a large projection screen",
+    src: control4(
+      "67e2e788a215927321c8d1d7_087_25_Control4.com_VideoandHomeTheater_TrueMagic5.webp"
+    ),
+    alt: "Dedicated home theater with acoustic wall paneling, warm lamp-lit recliners, and a glowing projection screen",
   },
   projectLarge: {
     src: pexels("7045941"),
@@ -88,8 +103,8 @@ export const homeImages = {
  */
 export const smartHomeImages = {
   hero: {
-    src: pexels("34549301"),
-    alt: "Moody, modern living room with a wall-mounted screen and ambient lighting, depicting a home's connected devices and audio systems",
+    src: pexels("8134818"),
+    alt: "Bright, sunlit modern living room with a leather sectional and glass doors opening onto a pool, representing a home's connected comfort and lighting",
   },
   introduction: {
     src: pexels("5179534"),
@@ -109,34 +124,44 @@ export const smartHomeImages = {
       alt: "Close-up of motorized metal blinds filtering warm sunlight into linear patterns across a room",
     },
     thermostat: {
-      src: pexels("36077581"),
-      alt: "Sleek digital thermostat with a rotary dial set into a warm wood-paneled wall",
+      src: ecobee(
+        "2X1B1YoVnr0jj6qBWg3UeN/083196c076d2c2e65421da89103ac2c4/Transforming_the_thermostat.jpg"
+      ),
+      alt: "Ecobee smart thermostat mounted on a wall, showing its indoor air quality dashboard",
     },
     automation: {
-      src: pexels("16423104"),
-      alt: "Hand adjusting a wall-mounted smart home touchscreen panel set into a tiled kitchen wall",
+      src: control4(
+        "697cf2e0106e7276f9fb04ea_798_25_Control4T5_TabletopInWall.png"
+      ),
+      alt: "Wall-mounted Control4 touchscreen displaying the date, time, indoor temperature, and currently playing music",
     },
     networking: {
       src: pexels("38337704"),
       alt: "Sleek wireless network router on a warm wood surface, representing a home's connected infrastructure",
     },
     security: {
-      src: pexels("24503710"),
-      alt: "Collection of modern smart home security devices, including cameras and sensors, arranged together",
+      src: control4(
+        "67f82d25fecf47ade32a7012_087_25_Control4.com_SafetyandSecurity_Surveillance.webp"
+      ),
+      alt: "Person on a stone-walled patio checking live security camera feeds on a smartphone",
     },
   },
   lifestyle: {
     entertain: {
-      src: pexels("373638"),
-      alt: "Pair of high-end floor-standing speakers in a wood-toned acoustic listening room",
+      src: control4(
+        "67e5987d5e482a05a7bcd372_087_25_Control4.com_Audio_Header-1.webp"
+      ),
+      alt: "Wall-mounted TV showing the Control4 entertainment menu, with streaming apps and whole-home scenes above a sleek soundbar and media console",
     },
     relax: {
       src: pexels("19096629"),
       alt: "Cozy armchair beside a window with sheer curtains in a calm, warmly lit room",
     },
     protect: {
-      src: pexels("33104381"),
-      alt: "Sleek indoor security camera mounted against a warm wood-paneled wall",
+      src: control4(
+        "67f82d25b87618e365fef577_087_25_Control4.com_SafetyandSecurity_Products_VideoDoorbells.webp"
+      ),
+      alt: "Control4 Chime video doorbell mounted beside a residential front entrance",
     },
   },
   integration: {
@@ -150,14 +175,51 @@ export const smartHomeImages = {
 } as const;
 
 /**
+ * About page photography, sourced from Pexels (free to use, no attribution
+ * required) and unique to this page, so it reads as its own gallery rather
+ * than a repeat of the homepage, Smart Home, or Home Theatre pages.
+ */
+export const aboutImages = {
+  hero: {
+    src: pexels("31817162"),
+    alt: "Bright, double-height luxury great room with panoramic floor-to-ceiling windows overlooking the ocean",
+  },
+  story: {
+    src: unsplash("1721613887012-097af2aaf042"),
+    alt: "Modern smart living room with a wall-mounted television and integrated ceiling speakers",
+  },
+  storyDetail: {
+    src: unsplash("1758565811176-ccd94357a844"),
+    alt: "Close-up of motorized window shades in a bright, minimalist smart home interior",
+  },
+  philosophy: {
+    src: unsplash("1662454420647-3d20ddcdb8f8"),
+    alt: "Contemporary living room with a large wall-mounted TV and warm ambient lighting",
+  },
+} as const;
+
+/**
+ * Contact page photography, sourced from Pexels (free to use, no
+ * attribution required) and unique to this page, so it reads as its own
+ * gallery rather than a repeat of the homepage, About, Smart Home, or Home
+ * Theatre pages.
+ */
+export const contactImages = {
+  hero: {
+    src: pexels("28652353"),
+    alt: "Elegant dining and kitchen space opening onto a lit pool terrace at dusk",
+  },
+} as const;
+
+/**
  * Home Theatre page photography, sourced from Pexels (free to use, no
  * attribution required) and unique to this page, so it reads as its own
  * gallery rather than a repeat of the homepage or Smart Home page.
  */
 export const homeTheatreImages = {
   hero: {
-    src: pexels("35618217"),
-    alt: "Large drop-down projection screen filling a dark, cozy home theater room beside a lit fireplace",
+    src: "/images/home-theatre-hero.jpg",
+    alt: "Luxury home theater with a sectional sofa facing a large wall-mounted screen, framed by warm cove lighting and wood paneling",
   },
   introduction: {
     src: pexels("7752771"),
@@ -168,8 +230,20 @@ export const homeTheatreImages = {
     alt: "Dedicated home theater room with a drop-down screen, flanking speakers, acoustic ceiling tiles, and theater seating",
   },
   seating: {
-    src: unsplash("1710131459450-7c384b8be18f"),
+    src: unsplash("1746439324737-2c9f9a3e81a6"),
     alt: "Row of vibrant red leather reclining theater chairs inside a home theater room",
+  },
+  seatingClassic: {
+    src: pexels("7991179"),
+    alt: "Rows of empty red velvet theater seats in a dimly lit home cinema",
+  },
+  seatingRecline: {
+    src: unsplash("1710131459450-7c384b8be18f"),
+    alt: "Row of bright red leather power recliners with visible armrest controls in a sunlit home theater",
+  },
+  seatingSignature: {
+    src: "/images/theatre-seating-signature.jpg",
+    alt: "Row of power-recline leather theater seats with built-in cupholders, lit by warm wood-trimmed cove lighting beside a framed movie poster",
   },
   audio: {
     src: unsplash("1595432541891-a461100d3054"),

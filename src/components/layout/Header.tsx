@@ -41,14 +41,10 @@ export default function Header() {
     setResidentialOpen(false);
   };
 
-  const solid = scrolled || menuOpen;
-
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        solid
-          ? "bg-bg/95 backdrop-blur-sm shadow-[0_1px_0_0_var(--bg4)]"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b border-bg4 bg-bg transition-shadow duration-500 ${
+        scrolled || menuOpen ? "shadow-[0_8px_30px_-12px_rgba(26,26,46,0.12)]" : "shadow-none"
       }`}
     >
       <div className="section-pad flex h-20 items-center justify-between sm:h-[var(--header-h)]">
@@ -63,28 +59,29 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-14 md:flex">
           <div className="group relative">
             <button
               type="button"
               aria-haspopup="true"
-              className="flex items-center gap-1.5 font-body text-md font-bold tracking-[0.12em] uppercase text-cream/80 transition-colors duration-300 hover:text-gold group-focus-within:text-gold"
+              className="flex items-center gap-1.5 font-body text-sm font-bold tracking-[0.16em] text-cream/70 uppercase transition-colors duration-300 hover:text-gold group-focus-within:text-gold"
             >
               Residential
               <ChevronDown
                 aria-hidden
                 className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 group-focus-within:rotate-180"
-                strokeWidth={2}
+                strokeWidth={1.75}
               />
             </button>
 
-            <div className="invisible absolute top-full left-0 -translate-y-1 pt-4 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-              <ul className="min-w-64 border border-bg4 bg-bg py-2 shadow-[0_12px_32px_rgba(0,0,0,0.12)]">
+            <div className="invisible absolute top-full left-0 -translate-y-1 pt-5 opacity-0 transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+              <ul className="min-w-64 border-t-2 border-gold bg-bg py-2 shadow-[0_20px_40px_-16px_rgba(26,26,46,0.16)]">
                 {RESIDENTIAL_LINKS.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="block px-5 py-3 font-body text-sm text-cream/75 transition-colors duration-300 hover:text-gold"
+                      onClick={(e) => e.currentTarget.blur()}
+                      className="block px-6 py-3.5 font-body text-sm text-cream/75 transition-colors duration-300 hover:text-gold"
                     >
                       {link.label}
                     </Link>
@@ -98,7 +95,7 @@ export default function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-body text-md font-bold tracking-[0.12em] uppercase text-cream/80 transition-colors duration-300 hover:text-gold"
+              className="relative font-body text-sm font-bold tracking-[0.16em] text-cream/70 uppercase transition-colors duration-300 after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all after:duration-300 hover:text-gold hover:after:w-full"
             >
               {link.label}
             </Link>

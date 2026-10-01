@@ -7,6 +7,7 @@ import FeaturedProjects from "@/components/home/FeaturedProjects";
 import WhyLowellEdwards from "@/components/home/WhyLowellEdwards";
 import Process from "@/components/home/Process";
 import Testimonial from "@/components/home/Testimonial";
+import BrandShowcase from "@/components/home/BrandShowcase";
 import FinalCTA from "@/components/home/FinalCTA";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <WhyLowellEdwards />
       <Process />
       <Testimonial />
+      <BrandShowcase />
       <FinalCTA />
     </>
   );

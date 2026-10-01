@@ -21,7 +21,9 @@ export default function TheatreAudioVideo() {
           <p className="mt-2 max-w-sm font-body text-sm leading-relaxed text-cream/65">
             In-wall and architectural speakers built into the room itself,
             delivering multi-room, high-performance sound without a single
-            visible component.
+            visible component. Dolby Atmos-ready designs add ceiling
+            channels overhead, layered with dual subwoofers for sound you
+            feel as much as hear.
           </p>
         </Reveal>
 
@@ -41,7 +43,9 @@ export default function TheatreAudioVideo() {
           <p className="mt-2 max-w-md font-body text-sm leading-relaxed text-cream/65">
             A dedicated screen or a display concealed within the room until
             it&rsquo;s time to watch — video built into the architecture
-            rather than placed on top of it.
+            rather than placed on top of it. Laser projection and
+            acoustically transparent screens keep the image sharp at true
+            cinema scale, without giving up a seat&rsquo;s worth of sound.
           </p>
         </Reveal>
       </div>
