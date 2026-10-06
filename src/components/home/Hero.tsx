@@ -20,6 +20,7 @@ export default function Hero() {
           priority
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/45 to-black/10" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/70 via-black/20 to-transparent sm:h-44" />
       </div>
 
       <div className="section-pad relative z-10 w-full pb-16 pt-32 sm:pb-50">
@@ -52,9 +53,6 @@ export default function Hero() {
         >
           <CTALink href="/contact" variant="solid">
             Request a Consultation
-          </CTALink>
-          <CTALink href="/residential" variant="outline" tone="light">
-            Explore Our Services
           </CTALink>
         </motion.div>
       </div>

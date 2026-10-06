@@ -52,9 +52,6 @@ export default function HomeTheatreHero() {
           <CTALink href="/contact" variant="solid">
             Request a Consultation
           </CTALink>
-          <CTALink href="#theatre-design" variant="outline" tone="light">
-            Explore the Design
-          </CTALink>
         </motion.div>
       </div>
     </section>

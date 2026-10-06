@@ -12,6 +12,8 @@
   --gold-light: #d6595f;
 
   --cream: #1a1a2e;
+  --mid: #9c9088;
+  --ivory: #f4efe7;
 
   --green: #1a7a45;
   --red: #9a0002;
@@ -32,6 +34,8 @@
   --color-gold-light: var(--gold-light);
 
   --color-cream: var(--cream);
+  --color-mid: var(--mid);
+  --color-ivory: var(--ivory);
 
   --color-green: var(--green);
   --color-red: var(--red);

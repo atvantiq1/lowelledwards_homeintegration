@@ -28,6 +28,13 @@ export default function HomeTheatreIntroduction() {
               considered as part of the architecture of your home, not
               added on top of it.
             </p>
+            <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
+              Like the body of a violin, the room itself shapes the sound.
+              We treat every theater with absorption, reflection, and bass
+              control — tuned for acoustic perfection, hidden from view —
+              then soundproof it, so a late movie never reaches the rest of
+              the house.
+            </p>
           </Reveal>
         </div>
 

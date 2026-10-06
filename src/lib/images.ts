@@ -26,8 +26,8 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    src: pexels("33529500"),
-    alt: "Grand double-height luxury great room with a sculptural crystal chandelier, marble floors, and designer seating",
+    src: pexels("13722886"),
+    alt: "Dark, modern living room with a wall-mounted TV on a slatted wood media wall, an illuminated built-in bookshelf, and a plush sectional",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",
@@ -103,8 +103,8 @@ export const homeImages = {
  */
 export const smartHomeImages = {
   hero: {
-    src: pexels("8134818"),
-    alt: "Bright, sunlit modern living room with a leather sectional and glass doors opening onto a pool, representing a home's connected comfort and lighting",
+    src: unsplash("1650091507687-5ea34d80e674"),
+    alt: "Close-up of a hand adjusting a smart home touchscreen control panel mounted in a dark modern kitchen, representing a home's connected comfort and lighting",
   },
   introduction: {
     src: pexels("5179534"),
@@ -181,8 +181,8 @@ export const smartHomeImages = {
  */
 export const aboutImages = {
   hero: {
-    src: pexels("31817162"),
-    alt: "Bright, double-height luxury great room with panoramic floor-to-ceiling windows overlooking the ocean",
+    src: "/images/about-hero.png",
+    alt: "Luxury living room at dusk with panoramic windows overlooking a sunset coastline, a linear gas fireplace, a plush sectional, and a wall-mounted TV displaying a mountain lake scene",
   },
   story: {
     src: unsplash("1721613887012-097af2aaf042"),
@@ -195,6 +195,17 @@ export const aboutImages = {
   philosophy: {
     src: unsplash("1662454420647-3d20ddcdb8f8"),
     alt: "Contemporary living room with a large wall-mounted TV and warm ambient lighting",
+  },
+} as const;
+
+/**
+ * Projects page photography, unique to this page so it reads as its own
+ * gallery rather than a repeat of the homepage or Home Theatre pages.
+ */
+export const projectsImages = {
+  hero: {
+    src: pexels("13722888"),
+    alt: "Dark, modern living room with a slatted wood media wall, illuminated built-in bookshelf, and low-profile sectional seating",
   },
 } as const;
 
@@ -218,12 +229,12 @@ export const contactImages = {
  */
 export const homeTheatreImages = {
   hero: {
-    src: "/images/home-theatre-hero.jpg",
+    src: "/images/home-theatre-heroimage.jpg",
     alt: "Luxury home theater with a sectional sofa facing a large wall-mounted screen, framed by warm cove lighting and wood paneling",
   },
   introduction: {
-    src: pexels("7752771"),
-    alt: "Bright, airy contemporary living room with a round mirror, plush seating, and warm wood flooring",
+    src: "/images/home-theatre-introduction.png",
+    alt: "Dark modern media room with a wall-mounted screen playing an animated film, framed by a slatted wood accent wall and plush sectional seating",
   },
   theatreDesign: {
     src: unsplash("1665827491321-ce05d75c6a32"),
@@ -255,11 +266,11 @@ export const homeTheatreImages = {
     position: "50% 22%",
   },
   lighting: {
-    src: pexels("10482375"),
-    alt: "Close-up of warm red LED accent lighting tracing the ceiling line of a darkened theater room",
+    src: "/images/home-theatre-lighting.png",
+    alt: "Tiered home theater with leather recliners and warm cove lighting, a wall-mounted touch panel showing a 'Movie' scene, and a large screen displaying a mountain lake sunset",
   },
   cta: {
-    src: pexels("13722886"),
+    src: unsplash("1750994700121-745f310cba34"),
     alt: "Dark, sophisticated living room with a wall-mounted screen, dramatic architectural lighting, and a backlit bookshelf",
   },
 } as const;

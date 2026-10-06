@@ -18,11 +18,11 @@ export default function Home() {
       <ResidentialExperiences />
       <SmartHomeSection />
       <HomeTheatreSection />
+      <BrandShowcase />
       <FeaturedProjects />
       <WhyLowellEdwards />
       <Process />
       <Testimonial />
-      <BrandShowcase />
       <FinalCTA />
     </>
   );
