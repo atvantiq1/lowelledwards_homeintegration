@@ -51,7 +51,7 @@ export default function SmartHomeHero() {
           className="mt-10 flex flex-wrap items-center gap-5"
         >
           <CTALink href="/contact" variant="solid">
-            Request a Consultation
+            Request Consultation
           </CTALink>
         </motion.div>
       </div>

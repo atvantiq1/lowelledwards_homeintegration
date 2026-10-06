@@ -21,7 +21,7 @@ export default function HomeTheatreCTA() {
         </h2>
         <div className="mt-10 flex justify-center">
           <CTALink href="/contact" variant="solid">
-            Start a Conversation
+            Request Consultation
           </CTALink>
         </div>
       </Reveal>

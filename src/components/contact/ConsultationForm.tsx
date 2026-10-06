@@ -103,7 +103,7 @@ export default function ConsultationForm() {
         <Reveal>
           <p className="eyebrow text-gold">Consultation</p>
           <h2 className="mt-6 max-w-2xl font-display text-4xl text-cream sm:text-5xl">
-            Request a Consultation.
+            Request Consultation.
           </h2>
           <p className="mt-6 max-w-xl font-body text-base leading-relaxed text-cream/65">
             Share a few details about your space and your goals. A member of
@@ -287,7 +287,7 @@ export default function ConsultationForm() {
                   type="submit"
                   className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2"
                 >
-                  <span>Request a Consultation</span>
+                  <span>Request Consultation</span>
                   <span
                     className="inline-block transition-transform duration-300 group-hover:translate-x-1"
                     aria-hidden

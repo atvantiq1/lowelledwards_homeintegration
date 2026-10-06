@@ -246,7 +246,7 @@ export default function Header() {
                 : "border-white/60 bg-transparent text-white hover:border-white hover:bg-white/10"
             }`}
           >
-            Request a Consultation
+            Request Consultation
             <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
           </Link>
 
@@ -350,7 +350,7 @@ export default function Header() {
               onClick={closeMenu}
               className="mt-6 flex items-center justify-center gap-2 bg-gold px-6 py-4 font-body text-[12px] font-medium tracking-[0.2em] text-white uppercase transition-colors duration-300 hover:bg-gold2"
             >
-              Request a Consultation
+              Request Consultation
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
             </Link>
           </motion.nav>

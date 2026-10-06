@@ -27,7 +27,7 @@ export default function FinalCTA() {
 
         <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
           <CTALink href="/contact" variant="solid">
-            Start a Conversation
+            Request Consultation
           </CTALink>
           <CTALink href="#" variant="outline" tone="light">
             Call Lowell Edwards
