@@ -66,7 +66,7 @@ export default function SmartHomeSection() {
             ))}
           </ul>
 
-          <CTALink href="/residential#smart-home" variant="outline" className="mt-10 self-start">
+          <CTALink href="/residential/smart-home-integration" variant="outline" className="mt-10 self-start">
             Explore Smart Home Integration
           </CTALink>
         </Reveal>

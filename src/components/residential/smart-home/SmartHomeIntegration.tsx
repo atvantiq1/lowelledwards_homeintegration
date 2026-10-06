@@ -66,7 +66,7 @@ export default function SmartHomeIntegration() {
           </ul>
 
           <CTALink href="/contact" variant="outline" className="mt-10 self-start">
-            Schedule a Consultation
+            Request Consultation
           </CTALink>
         </Reveal>
       </div>
