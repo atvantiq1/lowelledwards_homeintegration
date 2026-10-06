@@ -34,7 +34,7 @@ const EXPERIENCES = [
 
 export default function ResidentialExperiences() {
   return (
-    <section className="bg-bg2 py-14 sm:py-18 lg:py-20">
+    <section className="bg-white py-14 sm:py-18 lg:py-20">
       <div className="section-pad mb-10 sm:mb-14">
         <Reveal>
           <p className="eyebrow text-gold">Residential Experiences</p>
