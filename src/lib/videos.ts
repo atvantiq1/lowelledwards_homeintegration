@@ -13,6 +13,9 @@ export interface ProjectVideo {
   description: string;
   services: readonly string[];
   orientation: "landscape" | "portrait";
+  /** Native pixel dimensions of the encoded clip, so layouts can honour its real aspect ratio. */
+  width: number;
+  height: number;
   poster: { src: string; alt: string };
   sources: { webm: string; mp4: string };
 }
@@ -25,6 +28,8 @@ export const projectVideos: readonly ProjectVideo[] = [
       "A dedicated theater room designed into an existing library, with a drop-down screen, surround sound, and seating built around the space rather than placed on top of it.",
     services: ["Screens", "Surround Sound", "Acoustics", "Seating"],
     orientation: "landscape",
+    width: 848,
+    height: 478,
     poster: {
       src: "/images/projects/theatre-rooms-poster.jpg",
       alt: "Private home theater built into a wood-paneled library, with a drop-down screen, floor-to-ceiling bookshelves, a chandelier, and red curtains",
@@ -41,6 +46,8 @@ export const projectVideos: readonly ProjectVideo[] = [
       "Theater seating built to order in leather, mohair, or Ultrasuede — sized, spaced, and angled to the room's sightline rather than sold off the floor.",
     services: ["Seating", "Custom Fit"],
     orientation: "portrait",
+    width: 478,
+    height: 850,
     poster: {
       src: "/images/projects/theatre-seating-poster.jpg",
       alt: "Row of red leather theater seats with built-in cupholders inside a dedicated home theater room with acoustic wall paneling",
@@ -56,7 +63,9 @@ export const projectVideos: readonly ProjectVideo[] = [
     description:
       "Motorized artwork that rises and lowers at the touch of a remote, concealing the television until it's wanted and returning the wall to art when it's not.",
     services: ["Motorized Art", "TV Concealment"],
-    orientation: "landscape",
+    orientation: "portrait",
+    width: 352,
+    height: 640,
     poster: {
       src: "/images/projects/tv-concealment-art-poster.jpg",
       alt: "Framed landscape artwork mounted above a fireplace, concealing a television behind it, with a remote control raising it into place",
@@ -73,6 +82,8 @@ export const projectVideos: readonly ProjectVideo[] = [
       "A television built into handcrafted cabinetry, rising into view only when it's called for, so the room reads as furniture first.",
     services: ["Custom Cabinetry", "TV Concealment"],
     orientation: "landscape",
+    width: 848,
+    height: 478,
     poster: {
       src: "/images/projects/tv-concealment-cabinetry-poster.jpg",
       alt: "Television lift concealed within a handcrafted wood cabinet at the foot of a bed, shown partially raised",

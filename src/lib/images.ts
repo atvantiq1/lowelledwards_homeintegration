@@ -204,8 +204,12 @@ export const aboutImages = {
  */
 export const projectsImages = {
   hero: {
-    src: pexels("13722888"),
-    alt: "Dark, modern living room with a slatted wood media wall, illuminated built-in bookshelf, and low-profile sectional seating",
+    src: "https://images.pexels.com/photos/36353380/pexels-photo-36353380.png?auto=compress&cs=tinysrgb",
+    alt: "Dimly lit home media room with a large projection screen, a warm fireplace glow, and plush sectional seating",
+  },
+  cta: {
+    src: "https://images.pexels.com/photos/32177950/pexels-photo-32177950.png?auto=compress&cs=tinysrgb",
+    alt: "Stone villa with a glowing pool and open glass doors beneath a soft sunset sky",
   },
 } as const;
 
@@ -245,7 +249,7 @@ export const homeTheatreImages = {
     alt: "Row of vibrant red leather reclining theater chairs inside a home theater room",
   },
   seatingClassic: {
-    src: pexels("7991179"),
+    src: "https://cdn.prod.website-files.com/629926620ba03720384bebb3/67e2e789a46d73be2f57f87b_087_25_Control4.com_VideoandHomeTheater_Header3.webp",
     alt: "Rows of empty red velvet theater seats in a dimly lit home cinema",
   },
   seatingRecline: {
@@ -257,11 +261,11 @@ export const homeTheatreImages = {
     alt: "Row of power-recline leather theater seats with built-in cupholders, lit by warm wood-trimmed cove lighting beside a framed movie poster",
   },
   audio: {
-    src: unsplash("1595432541891-a461100d3054"),
+    src: "https://cdn.prod.website-files.com/629926620ba03720384bebb3/67e2e7874ddb8622875786e6_087_25_Control4.com_VideoandHomeTheater_Triad.webp",
     alt: "Tall black tower speaker standing in a minimalist room with warm wood flooring",
   },
   video: {
-    src: unsplash("1721733258410-35e699661ad6"),
+    src: "https://cdn.prod.website-files.com/629926620ba03720384bebb3/67e2e788ba878152f8953962_087_25_Control4.com_VideoandHomeTheater_Header1.webp",
     alt: "Illuminated drop-down projection screen inside a dedicated home theater room",
     position: "50% 22%",
   },
