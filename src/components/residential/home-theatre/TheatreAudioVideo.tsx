@@ -6,9 +6,9 @@ export default function TheatreAudioVideo() {
   return (
     <section className="bg-bg2 py-12 sm:py-16 lg:py-20">
       <div className="section-pad grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10">
-        <Reveal className="lg:col-span-5" distance={32}>
+        <Reveal className="lg:col-span-6" distance={32}>
           <p className="eyebrow text-gold">Audio</p>
-          <div className="relative mt-4 aspect-4/3 overflow-hidden">
+          <div className="relative mt-4 h-64 overflow-hidden sm:h-80 lg:h-96">
             <Photo
               src={homeTheatreImages.audio.src}
               alt={homeTheatreImages.audio.alt}
@@ -27,9 +27,9 @@ export default function TheatreAudioVideo() {
           </p>
         </Reveal>
 
-        <Reveal className="lg:col-span-7 lg:mt-8" delay={0.12} distance={32}>
+        <Reveal className="lg:col-span-6" delay={0.12} distance={32}>
           <p className="eyebrow text-gold">Video</p>
-          <div className="relative mt-4 aspect-video overflow-hidden">
+          <div className="relative mt-4 h-64 overflow-hidden sm:h-80 lg:h-96">
             <Photo
               src={homeTheatreImages.video.src}
               alt={homeTheatreImages.video.alt}

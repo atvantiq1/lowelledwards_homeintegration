@@ -50,7 +50,7 @@ export default function ProjectsHero() {
           className="pointer-events-auto mt-10 inline-block"
         >
           <CTALink href="/contact" variant="solid" tone="light">
-            Request Quote
+            Request Consultation
           </CTALink>
         </motion.div>
       </div>

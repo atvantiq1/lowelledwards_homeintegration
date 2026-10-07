@@ -243,7 +243,7 @@ export default function Header() {
             className={`hidden items-center gap-1.5 border px-3 py-2 font-body text-[10px] font-medium tracking-[0.16em] whitespace-nowrap uppercase transition-[background-color,border-color,color] duration-500 lg:inline-flex xl:gap-2 xl:px-6 xl:py-2.5 xl:text-[11px] xl:tracking-[0.2em] ${
               solid
                 ? "border-gold bg-gold text-white hover:bg-gold2 hover:border-gold2"
-                : "border-white/60 bg-transparent text-white hover:border-white hover:bg-white/10"
+                : "border-gold bg-transparent text-white hover:border-gold2 hover:bg-gold/15"
             }`}
           >
             Request Consultation
