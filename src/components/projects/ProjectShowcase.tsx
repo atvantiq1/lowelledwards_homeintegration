@@ -137,7 +137,6 @@ function CategoryHeader({ category }: { category: Category }) {
     <Reveal>
       <header className="mb-3 flex flex-col gap-2 border-t border-cream/20 pt-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 md:mb-4">
         <div className="flex items-baseline gap-4">
-          <span className="eyebrow text-gold">{category.number}</span>
           <h2 className="font-display text-3xl leading-none text-cream sm:text-4xl">
             {category.title}
           </h2>
@@ -187,17 +186,6 @@ function VideoTile({
 
         <div className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/20" />
 
-        <span
-          aria-hidden
-          className="pointer-events-none absolute top-3 left-3 bg-white/90 px-2.5 py-1.5 font-body text-[0.68rem] leading-none tracking-[0.22em] text-cream"
-        >
-          {number}
-        </span>
-
-        <span className="absolute bottom-3 left-3 inline-flex items-center gap-2 bg-white/90 px-3 py-2 font-body text-[0.68rem] tracking-[0.22em] text-cream uppercase opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100 [@media(hover:none)]:opacity-100">
-          View Project
-          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
-        </span>
       </Link>
     </Reveal>
   );
@@ -221,9 +209,6 @@ function InfoPanel({
     <Reveal delay={0.08} distance={24} className={className}>
       <article className="flex h-full flex-col justify-between gap-3 border border-cream/10 bg-bg2 p-5 sm:p-6 xl:p-4 2xl:p-6">
         <div>
-          <p className="eyebrow text-cream/55 xl:hidden 2xl:block">
-            {number} — {category}
-          </p>
           <h3 className="mt-3 font-display text-2xl leading-[1.1] text-cream sm:text-3xl xl:mt-0 xl:text-[1.65rem] 2xl:mt-3 2xl:text-3xl">
             {project.type}
           </h3>

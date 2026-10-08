@@ -313,13 +313,22 @@ export default function Header() {
                         <Link
                           href={category.href}
                           onClick={closeMenu}
-                          className="block border-t border-bg4 py-4 pl-11 first:border-t-0"
+                          className="flex items-center gap-4 border-t border-bg4 py-3 pl-11 first:border-t-0"
                         >
-                          <span className="block font-body text-base text-cream transition-colors duration-300 hover:text-gold">
-                            {category.label}
-                          </span>
-                          <span className="mt-0.5 block font-body text-xs text-cream/50">
-                            {category.description}
+                          <div className="relative h-14 w-14 shrink-0 overflow-hidden">
+                            <Photo
+                              src={category.image.src}
+                              alt={category.image.alt}
+                              sizes="56px"
+                            />
+                          </div>
+                          <span className="block">
+                            <span className="block font-body text-base text-cream transition-colors duration-300 hover:text-gold">
+                              {category.label}
+                            </span>
+                            <span className="mt-0.5 block font-body text-xs text-cream/50">
+                              {category.description}
+                            </span>
                           </span>
                         </Link>
                       </li>
