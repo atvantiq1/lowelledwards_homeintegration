@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { homeTheatreImages } from "@/lib/images";
 
 export default function HomeTheatreIntroduction() {
@@ -38,19 +39,16 @@ export default function HomeTheatreIntroduction() {
           </Reveal>
         </div>
 
-        <Reveal
+        <ImageReveal
           delay={0.1}
-          distance={40}
-          className="relative lg:col-span-6 lg:col-start-7 lg:-my-10 lg:translate-x-6"
+          className="aspect-6/5 lg:col-span-6 lg:col-start-7 lg:-my-10 lg:translate-x-6"
         >
-          <div className="relative" style={{ aspectRatio: "6 / 5" }}>
-            <Photo
-              src={homeTheatreImages.introduction.src}
-              alt={homeTheatreImages.introduction.alt}
-              sizes="(min-width: 1024px) 40vw, 100vw"
-            />
-          </div>
-        </Reveal>
+          <Photo
+            src={homeTheatreImages.introduction.src}
+            alt={homeTheatreImages.introduction.alt}
+            sizes="(min-width: 1024px) 40vw, 100vw"
+          />
+        </ImageReveal>
       </div>
     </section>
   );

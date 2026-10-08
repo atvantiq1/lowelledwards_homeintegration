@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
@@ -63,17 +64,14 @@ export default function FeaturedProjects() {
             className={`group ${project.className}`}
           >
             <Link href="/projects" className="block h-full">
-              <div
-                className="relative overflow-hidden"
-                style={{ aspectRatio: project.aspect }}
-              >
-                <div className="h-full w-full transition-transform duration-700 ease-out group-hover:scale-105">
+              <div style={{ aspectRatio: project.aspect }}>
+                <ImageReveal className="h-full">
                   <Photo
                     src={project.image.src}
                     alt={project.image.alt}
                     sizes={project.sizes}
                   />
-                </div>
+                </ImageReveal>
               </div>
               <div className="mt-4">
                 <p className="font-body text-sm uppercase tracking-[0.08em] text-cream">

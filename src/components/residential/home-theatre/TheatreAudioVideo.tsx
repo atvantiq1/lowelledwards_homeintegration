@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { homeTheatreImages } from "@/lib/images";
 
 export default function TheatreAudioVideo() {
@@ -8,13 +9,13 @@ export default function TheatreAudioVideo() {
       <div className="section-pad grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10">
         <Reveal className="lg:col-span-6" distance={32}>
           <p className="eyebrow text-gold">Audio</p>
-          <div className="relative mt-4 h-64 overflow-hidden sm:h-80 lg:h-96">
+          <ImageReveal className="mt-4 h-64 sm:h-80 lg:h-96">
             <Photo
               src={homeTheatreImages.audio.src}
               alt={homeTheatreImages.audio.alt}
               sizes="(min-width: 1024px) 38vw, 100vw"
             />
-          </div>
+          </ImageReveal>
           <h3 className="mt-5 font-display text-2xl text-cream sm:text-3xl">
             Immersive sound.
           </h3>
@@ -29,14 +30,14 @@ export default function TheatreAudioVideo() {
 
         <Reveal className="lg:col-span-6" delay={0.12} distance={32}>
           <p className="eyebrow text-gold">Video</p>
-          <div className="relative mt-4 h-64 overflow-hidden sm:h-80 lg:h-96">
+          <ImageReveal className="mt-4 h-64 sm:h-80 lg:h-96">
             <Photo
               src={homeTheatreImages.video.src}
               alt={homeTheatreImages.video.alt}
               sizes="(min-width: 1024px) 52vw, 100vw"
               objectPosition={homeTheatreImages.video.position}
             />
-          </div>
+          </ImageReveal>
           <h3 className="mt-5 font-display text-2xl text-cream sm:text-3xl">
             Cinema-quality visuals.
           </h3>

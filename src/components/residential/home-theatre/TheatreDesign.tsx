@@ -3,6 +3,7 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { homeTheatreImages } from "@/lib/images";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -120,14 +121,14 @@ export default function TheatreDesign() {
             ))}
           </div>
 
-          <Reveal className="relative aspect-16/10 overflow-hidden lg:aspect-auto lg:h-[34rem]">
+          <ImageReveal className="aspect-16/10 lg:aspect-auto lg:h-[34rem]">
             <Photo
               src={homeTheatreImages.theatreDesign.src}
               alt={homeTheatreImages.theatreDesign.alt}
               sizes="(min-width: 1024px) 55vw, 100vw"
             />
             <div className="pointer-events-none absolute inset-0 bg-black/45" />
-          </Reveal>
+          </ImageReveal>
 
           <div className="flex flex-col justify-center gap-2 py-8">
             {RIGHT.map((item) => (
@@ -146,14 +147,14 @@ export default function TheatreDesign() {
             the architectural character without cramming annotation lines
             onto a small screen. */}
         <div className="lg:hidden">
-          <Reveal className="relative aspect-4/3 overflow-hidden sm:aspect-16/10">
+          <ImageReveal className="aspect-4/3 sm:aspect-16/10">
             <Photo
               src={homeTheatreImages.theatreDesign.src}
               alt={homeTheatreImages.theatreDesign.alt}
               sizes="100vw"
             />
             <div className="pointer-events-none absolute inset-0 bg-black/25" />
-          </Reveal>
+          </ImageReveal>
 
           <Reveal delay={0.1} className="mt-8">
             <ol className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-bg4 pt-6 sm:grid-cols-3">

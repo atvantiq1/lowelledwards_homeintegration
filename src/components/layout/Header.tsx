@@ -38,19 +38,19 @@ const RESIDENTIAL_CATEGORIES = [
   {
     label: "Networking",
     description: "Reliable performance.",
-    href: "/residential/smart-home-integration#systems",
+    href: "/residential/networking",
     image: smartHomeImages.systems.networking,
   },
   {
     label: "Security",
     description: "Advanced protection.",
-    href: "/residential/smart-home-integration#systems",
+    href: "/residential/security",
     image: smartHomeImages.systems.security,
   },
   {
     label: "Audio & Video",
     description: "Multi-room sound and picture.",
-    href: "/residential/smart-home-integration#systems",
+    href: "/residential/audio-video",
     image: smartHomeImages.systems.audioVideo,
   },
 ] as const;

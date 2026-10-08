@@ -1,5 +1,6 @@
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { aboutImages } from "@/lib/images";
 
 export default function CompanyStory() {
@@ -36,13 +37,13 @@ export default function CompanyStory() {
             distance={40}
             className="relative"
           >
-            <div className="relative ml-auto aspect-4/3 w-[82%] lg:aspect-auto lg:h-96">
+            <ImageReveal className="ml-auto aspect-4/3 w-[82%] lg:aspect-auto lg:h-96">
               <Photo
                 src={aboutImages.story.src}
                 alt={aboutImages.story.alt}
                 sizes="(min-width: 1024px) 48vw, 82vw"
               />
-            </div>
+            </ImageReveal>
           </Reveal>
 
           <Reveal
@@ -50,13 +51,13 @@ export default function CompanyStory() {
             distance={30}
             className="absolute -bottom-8 left-0 w-[36%] sm:-bottom-10 lg:-bottom-10"
           >
-            <div className="relative aspect-4/5 border-4 border-bg shadow-[0_20px_48px_rgba(0,0,0,0.18)]">
+            <ImageReveal className="aspect-4/5 border-4 border-bg shadow-[0_20px_48px_rgba(0,0,0,0.18)]">
               <Photo
                 src={aboutImages.storyDetail.src}
                 alt={aboutImages.storyDetail.alt}
                 sizes="(min-width: 1024px) 18vw, 34vw"
               />
-            </div>
+            </ImageReveal>
           </Reveal>
         </div>
       </div>

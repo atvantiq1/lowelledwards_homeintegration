@@ -1,6 +1,7 @@
 import { Film, Volume2, Armchair, Waves, Lightbulb, Settings2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
@@ -57,15 +58,13 @@ export default function HomeTheatreSection() {
           </CTALink>
         </Reveal>
 
-        <Reveal className="order-1 lg:order-2 lg:col-span-7">
-          <div className="relative aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:h-full lg:min-h-110">
-            <Photo
-              src={homeImages.homeTheatreFull.src}
-              alt={homeImages.homeTheatreFull.alt}
-              sizes="(min-width: 1024px) 58vw, 100vw"
-            />
-          </div>
-        </Reveal>
+        <ImageReveal className="aspect-4/3 sm:aspect-16/10 order-1 lg:order-2 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-110">
+          <Photo
+            src={homeImages.homeTheatreFull.src}
+            alt={homeImages.homeTheatreFull.alt}
+            sizes="(min-width: 1024px) 58vw, 100vw"
+          />
+        </ImageReveal>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { Volume2, MonitorPlay, Lightbulb, Blinds, Settings2, Wifi, ShieldCheck, Thermometer } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
@@ -19,15 +20,13 @@ export default function SmartHomeSection() {
   return (
     <section id="smart-home" className="bg-bg2 py-14 sm:py-18 lg:py-20">
       <div className="section-pad grid grid-cols-1 lg:grid-cols-12 lg:gap-8">
-        <Reveal className="lg:col-span-7">
-          <div className="relative aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:h-full lg:min-h-110">
-            <Photo
-              src={homeImages.smartHomeFull.src}
-              alt={homeImages.smartHomeFull.alt}
-              sizes="(min-width: 1024px) 58vw, 100vw"
-            />
-          </div>
-        </Reveal>
+        <ImageReveal className="aspect-4/3 sm:aspect-16/10 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-110">
+          <Photo
+            src={homeImages.smartHomeFull.src}
+            alt={homeImages.smartHomeFull.alt}
+            sizes="(min-width: 1024px) 58vw, 100vw"
+          />
+        </ImageReveal>
 
         <Reveal
           delay={0.15}

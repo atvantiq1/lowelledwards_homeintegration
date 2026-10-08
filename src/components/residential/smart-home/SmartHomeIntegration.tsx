@@ -1,6 +1,7 @@
 import { Smartphone, MonitorSmartphone, SlidersHorizontal, Mic2 } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
 import { smartHomeImages } from "@/lib/images";
 
@@ -15,15 +16,13 @@ export default function SmartHomeIntegration() {
   return (
     <section className="bg-bg2 py-16 sm:py-20 lg:py-28">
       <div className="section-pad grid grid-cols-1 lg:grid-cols-12 lg:gap-8">
-        <Reveal className="lg:col-span-7">
-          <div className="relative aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:h-full lg:min-h-110">
-            <Photo
-              src={smartHomeImages.integration.src}
-              alt={smartHomeImages.integration.alt}
-              sizes="(min-width: 1024px) 58vw, 100vw"
-            />
-          </div>
-        </Reveal>
+        <ImageReveal className="aspect-4/3 sm:aspect-16/10 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-110">
+          <Photo
+            src={smartHomeImages.integration.src}
+            alt={smartHomeImages.integration.alt}
+            sizes="(min-width: 1024px) 58vw, 100vw"
+          />
+        </ImageReveal>
 
         <Reveal
           delay={0.15}

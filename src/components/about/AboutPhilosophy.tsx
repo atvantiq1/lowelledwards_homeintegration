@@ -1,15 +1,9 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { aboutImages } from "@/lib/images";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
 export default function AboutPhilosophy() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden bg-bg py-20 sm:py-28 lg:py-36">
       <div className="section-pad grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-8">
@@ -40,19 +34,13 @@ export default function AboutPhilosophy() {
           </Reveal>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 1.08 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.1, ease: EASE }}
-          className="relative -mx-6 h-64 sm:mx-0 sm:h-80 lg:col-span-5 lg:col-start-8 lg:-my-20 lg:h-[38rem]"
-        >
+        <ImageReveal className="-mx-6 h-64 sm:mx-0 sm:h-80 lg:col-span-5 lg:col-start-8 lg:-my-20 lg:h-[38rem]">
           <Photo
             src={aboutImages.philosophy.src}
             alt={aboutImages.philosophy.alt}
             sizes="(min-width: 1024px) 38vw, 100vw"
           />
-        </motion.div>
+        </ImageReveal>
       </div>
     </section>
   );

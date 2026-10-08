@@ -1,19 +1,20 @@
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
+import ImageReveal from "@/components/ui/ImageReveal";
 import { homeTheatreImages } from "@/lib/images";
 
 export default function TheatreLighting() {
   return (
     <section className="bg-bg py-16 sm:py-20 lg:py-28">
-      <Reveal className="section-pad mb-10 sm:mb-14" distance={36}>
-        <div className="relative aspect-4/3 overflow-hidden sm:aspect-video lg:aspect-21/8">
+      <div className="section-pad mb-10 sm:mb-14">
+        <ImageReveal className="aspect-4/3 sm:aspect-video lg:aspect-21/8">
           <Photo
             src={homeTheatreImages.lighting.src}
             alt={homeTheatreImages.lighting.alt}
             sizes="100vw"
           />
-        </div>
-      </Reveal>
+        </ImageReveal>
+      </div>
 
       <div className="section-pad grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-8">
         <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-1">
