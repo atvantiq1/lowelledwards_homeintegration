@@ -32,7 +32,7 @@ const RESIDENTIAL_CATEGORIES = [
   {
     label: "Lighting & Shades",
     description: "Beautifully designed control.",
-    href: "/residential/smart-home-integration#systems",
+    href: "/residential/lighting-shades",
     image: smartHomeImages.systems.lighting,
   },
   {

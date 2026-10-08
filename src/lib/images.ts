@@ -278,3 +278,43 @@ export const homeTheatreImages = {
     alt: "Dark, sophisticated living room with a wall-mounted screen, dramatic architectural lighting, and a backlit bookshelf",
   },
 } as const;
+
+/**
+ * Lighting & Shades page photography, sourced from Pexels (free to use, no
+ * attribution required) and unique to this page, so it reads as its own
+ * gallery rather than a repeat of the other residential pages. No Lutron
+ * marketing imagery is used — only the Lutron logo already in
+ * `/images/brands`, because dealer rights to Lutron's photography have not
+ * been confirmed (see the note on `control4` above).
+ */
+export const lightingShadesImages = {
+  hero: {
+    src: pexels("7546599"),
+    alt: "Sunlit glass-walled living space with warm timber cladding, blinds drawn partway across the far windows, and a pale sofa facing open water",
+  },
+  introduction: {
+    src: pexels("8134802"),
+    alt: "Open living and dining space with a full-height linen drape beside a sliding glass door, warm timber and soft daylight",
+  },
+  lighting: {
+    src: pexels("19689230"),
+    alt: "Elegant living room with warm lamplight, a drum pendant and glowing wood shelving, framed by tall drapery",
+  },
+  shades: {
+    src: pexels("6077368"),
+    alt: "Bright corner room with a window wall, a pale roller shade and sheer drapery, and white upholstered seating",
+    position: "50% 40%",
+  },
+  integration: {
+    src: pexels("8082311"),
+    alt: "Sunlight falling across a polished floor through tall windows and heavy drapery, with a chandelier lit overhead",
+  },
+  experiences: {
+    src: pexels("6580239"),
+    alt: "Living room with floor-to-ceiling glass doors, a timber ceiling and a grey sofa overlooking a lake",
+  },
+  cta: {
+    src: pexels("31817162"),
+    alt: "Double-height living room with floor-to-ceiling glass and sunken seating, overlooking the sea",
+  },
+} as const;
