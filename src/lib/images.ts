@@ -318,3 +318,51 @@ export const lightingShadesImages = {
     alt: "Double-height living room with floor-to-ceiling glass and sunken seating, overlooking the sea",
   },
 } as const;
+
+/**
+ * Networking page photography, sourced from Pexels and Unsplash (both free
+ * to use, no attribution required). The page deliberately shows homes and
+ * living spaces rather than hardware — the network is meant to read as the
+ * quiet foundation behind them. No manufacturer imagery is used.
+ */
+export const networkingImages = {
+  hero: {
+    src: unsplash("1745429523637-60f5986cc1db"),
+    alt: "Modern living room with a wall-mounted TV on a slatted wood and grey feature wall, backlit shelving and a softly lit floating console",
+    position: "50% 50%",
+  },
+  introduction: {
+    src: unsplash("1583847268964-b28dc8f51f92"),
+    alt: "Calm living corner with a pale sofa, round wooden side tables and framed prints against a soft green wall",
+  },
+  introductionWide: {
+    src: unsplash("1682184805271-11671b7ecf4c"),
+    alt: "Spacious open-plan living space in soft neutrals with a low modular sofa, pendant lights and tall windows toward a lake",
+  },
+  wholeHome: {
+    src: pexels("12002390"),
+    alt: "Bright living room with tall windows and a fireplace, a lavender sectional sofa and a view of the hills beyond",
+  },
+  spaces: {
+    living: {
+      src: unsplash("1628744876497-eb30460be9f6"),
+      alt: "Light-filled living room with two grey velvet sofas facing each other beside a linear fireplace",
+    },
+    office: {
+      src: pexels("2883049"),
+      alt: "Home office with a tall walnut bookshelf, a leather lounge chair and a desk with task chairs beside large windows",
+    },
+    theatre: {
+      src: unsplash("1743685889437-210ad44b6c5f"),
+      alt: "Home theater with a large projection screen on a warm panelled wall, recessed ceiling lights and low seating facing the screen",
+    },
+  },
+  integration: {
+    src: pexels("20130628"),
+    alt: "Sunlit living room with white armchairs and a sofa beside a floor-to-ceiling window overlooking green hills",
+  },
+  cta: {
+    src: pexels("323781"),
+    alt: "Contemporary house with a stone and timber facade, a flat roof and a band of glazing against a blue sky",
+  },
+} as const;
