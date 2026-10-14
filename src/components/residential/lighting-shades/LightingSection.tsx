@@ -31,8 +31,7 @@ export default function LightingSection() {
             <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-cream/65">
               Lutron RadioRA lighting control is wireless, so light can be
               layered and dimmed throughout the home without opening walls.
-              In the morning it can rise gently; in the evening it settles —
-              and it works in step with the shades and the rest of the home
+              In the morning it can rise gently; in the evening it settles, and it works in step with the shades and the rest of the home
               control.
             </p>
           </Reveal>

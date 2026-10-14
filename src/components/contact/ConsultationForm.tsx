@@ -92,7 +92,7 @@ export default function ConsultationForm() {
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    // Frontend-only for now — form submission (API route, email service,
+    // Frontend-only for now: form submission (API route, email service,
     // etc.) will be wired up in a follow-up. `values` is fully validated
     // and ready to send at this point.
   }

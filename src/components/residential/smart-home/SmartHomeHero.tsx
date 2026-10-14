@@ -30,7 +30,7 @@ export default function SmartHomeHero() {
           transition={{ duration: 1.1, ease: EASE }}
           className="max-w-4xl font-display text-[clamp(1.75rem,5.5vw,5.5rem)] leading-[0.95] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)]"
         >
-          The Home, In Sync.
+          Your Home, In Sync.
         </motion.h1>
 
         <motion.p
@@ -40,7 +40,7 @@ export default function SmartHomeHero() {
           className="mt-6 max-w-xl font-body text-base leading-relaxed text-white/85 sm:text-lg"
         >
           Multi-room sound, lighting, motorized shades, climate, networking,
-          and security — brought together into one system that works quietly
+          and security, all brought together into one system that works quietly
           in the background of your home.
         </motion.p>
 

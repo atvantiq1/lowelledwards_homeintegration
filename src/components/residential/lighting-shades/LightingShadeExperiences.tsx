@@ -55,7 +55,7 @@ export default function LightingShadeExperiences() {
           className="relative mt-8 flex flex-col items-center lg:grid lg:grid-cols-5 lg:items-stretch"
           onMouseLeave={() => setActive(null)}
         >
-          {/* Connecting line — runs from the first to the last point on desktop */}
+          {/* Connecting line: runs from the first to the last point on desktop */}
           <span
             aria-hidden
             className="absolute top-1.25 right-[10%] left-[10%] hidden h-px bg-cream/15 lg:block"

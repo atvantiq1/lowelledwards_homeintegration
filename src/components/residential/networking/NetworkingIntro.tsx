@@ -19,8 +19,7 @@ export default function NetworkingIntro() {
             <p className="max-w-lg font-body text-base leading-relaxed text-cream/65">
               Networking is more than internet access. In a connected home,
               the audio, video, lighting, shades, automation and security
-              systems all rely on the network to reach one another — so how
-              it is designed shapes how well the whole home works.
+              systems all rely on the network to reach one another, which means how it is designed shapes how well the whole home works.
             </p>
             <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-cream/65">
               Lowell Edwards plans networking and Wi-Fi alongside the rest of

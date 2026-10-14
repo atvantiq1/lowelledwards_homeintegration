@@ -58,7 +58,7 @@ export default function ProjectShowcase() {
   return (
     <section id="showcase" className="scroll-mt-24 bg-bg text-cream">
       <div className="section-pad mx-auto max-w-384 pt-14 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
-        {/* 01 — Home Theater: landscape feature left, portrait right. */}
+        {/* 01: Home Theater: landscape feature left, portrait right. */}
         <div id={HOME_THEATER.id} className="scroll-mt-24">
           <CategoryHeader category={HOME_THEATER} />
           <div className="grid grid-cols-12 gap-3 md:gap-4 xl:grid-rows-[auto_1fr]">
@@ -92,7 +92,7 @@ export default function ProjectShowcase() {
           </div>
         </div>
 
-        {/* 02 — Smart Home: mirrored, portrait left, landscape right. */}
+        {/* 02: Smart Home: mirrored, portrait left, landscape right. */}
         <div id={SMART_HOME.id} className="mt-14 scroll-mt-24 sm:mt-16 lg:mt-20">
           <CategoryHeader category={SMART_HOME} />
           <div className="grid grid-cols-12 gap-3 md:gap-4 xl:grid-rows-[auto_1fr]">

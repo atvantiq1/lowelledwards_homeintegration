@@ -95,7 +95,7 @@ export default function TheatreDesign() {
           <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-cream/65">
             From high-performance audio and cinema-quality video to seating,
             lighting, acoustics, and intuitive control, each element is
-            designed to feel like part of the room — not equipment placed
+            designed to feel like part of the room, not equipment placed
             inside it.
           </p>
         </Reveal>

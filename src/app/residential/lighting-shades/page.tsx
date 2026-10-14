@@ -8,7 +8,7 @@ import LightingShadeExperiences from "@/components/residential/lighting-shades/L
 import LightingShadesCTA from "@/components/residential/lighting-shades/LightingShadesCTA";
 
 const description =
-  "Lutron lighting control and motorized shades from Lowell Edwards Home Integration — dimming, scenes and sensors, Sivoia QS and Serena shades, with daylight and electric light controlled together as part of the home.";
+  "Lutron lighting control and motorized shades from Lowell Edwards Home Integration: dimming, scenes and sensors, Sivoia QS and Serena shades, with daylight and electric light controlled together as part of the home.";
 
 export const metadata: Metadata = {
   title: "Lighting & Shades",

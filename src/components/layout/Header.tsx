@@ -64,8 +64,8 @@ export default function Header() {
   const residentialRef = useRef<HTMLDivElement>(null);
 
   // The navbar reads as transparent only at the very top of the hero; any
-  // scroll — and the opened mobile drawer, so the hamburger/X stays legible
-  // against it — flips it to the solid cream state.
+  // scroll, and the opened mobile drawer, so the hamburger/X stays legible
+  // against it, flips it to the solid cream state.
   const solid = scrolled || menuOpen;
 
   useEffect(() => {

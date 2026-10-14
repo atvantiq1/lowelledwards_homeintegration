@@ -25,16 +25,15 @@ export default function HomeTheatreIntroduction() {
             </p>
             <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
               Screens and speakers matter, but seating, lighting, acoustics,
-              and control are what make the room feel finished — each one
-              considered as part of the architecture of your home, not
+              and control are what make the room feel finished. Each one is considered as part of the architecture of your home, not
               added on top of it.
             </p>
             <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
               Like the body of a violin, the room itself shapes the sound.
-              We treat every theater with absorption, reflection, and bass
-              control — tuned for acoustic perfection, hidden from view —
-              then soundproof it, so a late movie never reaches the rest of
-              the house.
+              We carefully balance sound absorption, reflection, and bass
+              response to create a more immersive listening experience.
+              Where needed, we also incorporate sound isolation to help keep
+              movie audio from disturbing the rest of the home.
             </p>
           </Reveal>
         </div>

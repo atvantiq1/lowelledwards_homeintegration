@@ -4,7 +4,7 @@
  * `public/videos/optimized/` (H.264 MP4 + VP9 WebM, audio stripped,
  * faststart). Project type, description, and service terms are drawn from
  * lowelledwards.com and the terminology already established elsewhere on
- * this site — nothing here is invented.
+ * this site, so nothing here is invented.
  */
 
 export interface ProjectVideo {
@@ -43,7 +43,7 @@ export const projectVideos: readonly ProjectVideo[] = [
     id: "theatre-seating",
     type: "Home Theater Seating",
     description:
-      "Theater seating built to order in leather, mohair, or Ultrasuede — sized, spaced, and angled to the room's sightline rather than sold off the floor.",
+      "Theater seating built to order in leather, mohair, or Ultrasuede, sized, spaced, and angled to the room's sightline rather than sold off the floor.",
     services: ["Seating", "Custom Fit"],
     orientation: "portrait",
     width: 478,

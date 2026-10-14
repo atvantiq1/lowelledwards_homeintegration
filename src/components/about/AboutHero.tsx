@@ -39,8 +39,7 @@ export default function AboutHero() {
           transition={{ duration: 1, delay: 0.3, ease: EASE }}
           className="mt-6 max-w-lg font-body text-base leading-relaxed text-white/85 sm:text-lg"
         >
-          We believe great technology should be felt, not seen — quietly
-          built into the way you already live.
+          We believe great technology should be felt, not seen. It should be quietly built into the way you already live.
         </motion.p>
       </div>
     </section>

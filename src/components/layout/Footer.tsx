@@ -3,19 +3,18 @@ import Link from "next/link";
 
 const SITE_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Residential", href: "/residential" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
 const SERVICES = [
-  "Audio & Video",
-  "Lighting & Shades",
-  "Home Automation",
-  "Networking & Security",
-  "Home Theater",
-  "Thermostats",
+  { label: "Audio & Video", href: "/residential/audio-video" },
+  { label: "Lighting & Shades", href: "/residential/lighting-shades" },
+  { label: "Home Automation", href: "/residential/smart-home-integration" },
+  { label: "Networking", href: "/residential/networking" },
+  { label: "Security", href: "/residential/security" },
+  { label: "Home Theater", href: "/residential/home-theatre" },
 ];
 
 const SOCIAL_LINKS = [
@@ -69,14 +68,12 @@ export default function Footer() {
             />
           </div>
           <p className="mt-6 max-w-sm font-body text-sm leading-relaxed text-cream/60">
-            Luxury living powered by technology — without the technology
-            taking over the design.
+            Luxury living powered by technology, without the technology taking over the design.
           </p>
           <p className="mt-4 max-w-sm font-body text-sm leading-relaxed text-cream/60">
             For more than 40 years, we&rsquo;ve designed and installed
             technology around the way our clients live, entertain, and
-            relax — backed by a team that stays with the relationship long
-            after installation.
+            relax, supported by a team that stays with the relationship long after installation.
           </p>
         </div>
 
@@ -99,12 +96,14 @@ export default function Footer() {
         <div>
           <p className="eyebrow text-cream/40">Services</p>
           <ul className="mt-6 space-y-3">
-            {SERVICES.map((service, i) => (
-              <li
-                key={i}
-                className="font-body text-sm text-cream/70"
-              >
-                {service}
+            {SERVICES.map((service) => (
+              <li key={service.label}>
+                <Link
+                  href={service.href}
+                  className="font-body text-sm text-cream/70 transition-colors duration-300 hover:text-gold"
+                >
+                  {service.label}
+                </Link>
               </li>
             ))}
           </ul>

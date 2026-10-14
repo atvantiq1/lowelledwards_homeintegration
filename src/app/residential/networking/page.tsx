@@ -8,7 +8,7 @@ import NetworkingProcess from "@/components/residential/networking/NetworkingPro
 import NetworkingCTA from "@/components/residential/networking/NetworkingCTA";
 
 const description =
-  "Networking and Wi-Fi systems from Lowell Edwards Home Integration — the dependable foundation behind home theater, audio, video, lighting, shades, automation and security, planned around your home.";
+  "Networking and Wi-Fi systems from Lowell Edwards Home Integration: the dependable foundation behind home theater, audio, video, lighting, shades, automation and security, planned around your home.";
 
 export const metadata: Metadata = {
   title: "Networking",

@@ -21,8 +21,7 @@ export default function ProjectsIntro() {
             Every project starts with how a family actually lives, not with a
             list of equipment. From a theater room built into a library to
             seating fitted to a single sightline, our factory-trained
-            technicians design and install each system in-house — technology
-            that disappears into the architecture of the home.
+            technicians design and install each system in-house. The result is technology that disappears into the architecture of the home.
           </p>
         </Reveal>
       </div>

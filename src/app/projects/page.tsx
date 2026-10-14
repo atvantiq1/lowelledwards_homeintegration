@@ -8,11 +8,11 @@ import ProjectsCTA from "@/components/projects/ProjectsCTA";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "A selection of real Lowell Edwards Home Integration work — home theaters, seating, and TV concealment designed into the architecture of the home.",
+    "A selection of real Lowell Edwards Home Integration work: home theaters, seating, and TV concealment designed into the architecture of the home.",
   openGraph: {
     title: "Projects | Lowell Edwards Home Integration",
     description:
-      "A selection of real Lowell Edwards Home Integration work — home theaters, seating, and TV concealment designed into the architecture of the home.",
+      "A selection of real Lowell Edwards Home Integration work: home theaters, seating, and TV concealment designed into the architecture of the home.",
     type: "website",
   },
 };

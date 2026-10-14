@@ -39,7 +39,7 @@ export default function ProjectsHero() {
           transition={{ duration: 1, delay: 0.25, ease: EASE }}
           className="mt-6 max-w-xl font-body text-base leading-relaxed text-white/85 sm:text-lg"
         >
-          A selection of real Lowell Edwards work — theaters, seating, and
+          A selection of real Lowell Edwards work: theaters, seating, and
           technology designed into the architecture of the home.
         </motion.p>
 

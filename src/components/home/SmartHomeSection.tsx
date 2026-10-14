@@ -38,7 +38,7 @@ export default function SmartHomeSection() {
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
-            A smart home should make everyday life easier not more
+            A smart home should make everyday life easier, not more
             complicated.
           </p>
           <p className="mt-4 font-body text-sm leading-relaxed text-cream/65">

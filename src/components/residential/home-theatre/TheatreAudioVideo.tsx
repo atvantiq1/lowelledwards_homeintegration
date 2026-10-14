@@ -43,7 +43,7 @@ export default function TheatreAudioVideo() {
           </h3>
           <p className="mt-2 max-w-md font-body text-sm leading-relaxed text-cream/65">
             A dedicated screen or a display concealed within the room until
-            it&rsquo;s time to watch — video built into the architecture
+            it&rsquo;s time to watch, with video built into the architecture
             rather than placed on top of it. Laser projection and
             acoustically transparent screens keep the image sharp at true
             cinema scale, without giving up a seat&rsquo;s worth of sound.

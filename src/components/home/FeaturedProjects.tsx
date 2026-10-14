@@ -8,7 +8,7 @@ import { homeImages } from "@/lib/images";
 const PROJECTS = [
   {
     name: "Hillside Modern Residence",
-    location: "Full-Home Automation — Audio, Video & Lighting",
+    location: "Full-Home Automation: Audio, Video & Lighting",
     className: "lg:col-span-7 lg:row-span-2",
     aspect: "4 / 5",
     image: homeImages.projectLarge,
@@ -24,7 +24,7 @@ const PROJECTS = [
   },
   {
     name: "Lakeside Estate",
-    location: "Outdoor Living — Shades, Audio & Landscape Lighting",
+    location: "Outdoor Living: Shades, Audio & Landscape Lighting",
     className: "lg:col-span-5 lg:row-span-1",
     aspect: "4 / 3",
     image: homeImages.projectOutdoor,

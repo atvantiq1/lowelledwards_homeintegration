@@ -35,8 +35,7 @@ export default function SmartHomeIntegration() {
             <span className="cap-o-tight">O</span>ne connected experience.
           </h2>
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
-            The systems Lowell Edwards integrates — from home theater to
-            lighting control — meet through the network. When it is planned
+            The systems Lowell Edwards integrates, from home theater to lighting control, meet through the network. When it is planned
             well, they can be brought together into a single, customized
             experience.
           </p>

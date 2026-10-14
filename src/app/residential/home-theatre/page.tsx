@@ -10,11 +10,11 @@ import HomeTheatreCTA from "@/components/residential/home-theatre/HomeTheatreCTA
 export const metadata: Metadata = {
   title: "Home Theatre",
   description:
-    "Private home theaters from Lowell Edwards Home Integration — cinema-quality audio and video, luxury seating, architectural lighting, and one-touch control, designed into the architecture of your home.",
+    "Private home theaters from Lowell Edwards Home Integration: cinema-quality audio and video, luxury seating, architectural lighting, and one-touch control, designed into the architecture of your home.",
   openGraph: {
     title: "Home Theatre | Lowell Edwards Home Integration",
     description:
-      "Private home theaters from Lowell Edwards Home Integration — cinema-quality audio and video, luxury seating, architectural lighting, and one-touch control, designed into the architecture of your home.",
+      "Private home theaters from Lowell Edwards Home Integration: cinema-quality audio and video, luxury seating, architectural lighting, and one-touch control, designed into the architecture of your home.",
     type: "website",
   },
 };

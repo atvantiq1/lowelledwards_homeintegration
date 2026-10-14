@@ -20,14 +20,20 @@ export default function SmartHomeIntroduction() {
           <Reveal delay={0.12} className="mt-8">
             <p className="max-w-md font-body text-base leading-relaxed text-cream/65">
               For more than 40 years, Lowell Edwards has integrated the
-              systems throughout a home — multi-room sound, lighting
-              control, motorized shading, climate, and even pool systems —
-              into a single, customized interface.
+              systems throughout a home, including multi-room sound, lighting control, motorized shading, climate, and even pool systems, in a single, customized interface.
             </p>
             <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
               Every system is selected and installed around the way you
               live, so the technology stays in the background and the home
               stays in focus.
+            </p>
+            <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
+              From the first design conversation through installation and
+              long after, one team plans, programs, and supports the entire
+              system. Whether it is a new build, a renovation, or an
+              upgrade to an existing home, we shape the experience to fit
+              your space and your routines, so every room feels effortless
+              from day one.
             </p>
           </Reveal>
         </div>

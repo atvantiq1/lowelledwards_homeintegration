@@ -62,7 +62,7 @@ export default function ExpertisePromise() {
         <Reveal delay={0.12} distance={24} className="lg:col-span-6">
           <p className="max-w-md font-body text-base leading-relaxed text-white/65">
             Our factory-trained technicians pride themselves on getting the
-            job done right the first time — backed by direct partnerships
+            job done right the first time, backed by direct partnerships
             with the brands our clients already trust, and a safety-first
             approach on every visit.
           </p>

@@ -28,8 +28,7 @@ export default function LightShadeIntegration() {
           <p className="max-w-md font-body text-base leading-relaxed text-white/80">
             Lutron controls daylight and electric light together. Shades can
             move with the position of the sun while lighting is set
-            alongside them, so a room stays balanced as the day changes —
-            and the controls stay out of sight.
+            alongside them, so a room stays balanced as the day changes while the controls stay out of sight.
           </p>
           <div className="mt-6 flex items-center gap-4">
             <span className="flex h-10 items-center bg-cream px-4">

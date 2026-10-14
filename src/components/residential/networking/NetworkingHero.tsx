@@ -41,8 +41,7 @@ export default function NetworkingHero() {
           transition={{ duration: 1, delay: 0.25, ease: EASE }}
           className="mt-6 max-w-xl font-body text-base leading-relaxed text-white/90 sm:text-lg"
         >
-          A reliable network is the quiet foundation of a modern connected
-          home — working behind the scenes so every system in it can work
+          A reliable network is the quiet foundation of a modern connected home, working behind the scenes so every system in it can work
           together.
         </motion.p>
 

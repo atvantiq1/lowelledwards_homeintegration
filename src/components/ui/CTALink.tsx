@@ -18,8 +18,8 @@ const solidVariant =
   "bg-gold px-8 py-4 text-white hover:bg-gold2 focus-visible:outline-offset-4";
 
 // "dark" tone sits on light backgrounds, so hover uses the dark maroon gold.
-// "light" tone sits on dark backgrounds/imagery, so hover uses gold-light —
-// the dark gold is nearly invisible against a dark background.
+// "light" tone sits on dark backgrounds/imagery, so hover uses gold-light,
+// since the dark gold is nearly invisible against a dark background.
 const variantsByTone: Record<
   NonNullable<CTALinkProps["tone"]>,
   Record<"outline" | "text", string>

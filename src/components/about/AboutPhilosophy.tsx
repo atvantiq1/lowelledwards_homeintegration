@@ -14,10 +14,10 @@ export default function AboutPhilosophy() {
 
           <Reveal delay={0.1} className="mt-6">
             <h2 className="max-w-2xl font-display text-4xl leading-[1.08] text-cream sm:text-5xl lg:text-[3.5rem]">
-              Technology Should Enhance the Home
+              Technology Should Enhance the Home,
               <span className="text-gold">
                 {" "}
-                — Not Compete With It.
+                Not Compete With It.
               </span>
             </h2>
           </Reveal>
@@ -26,8 +26,7 @@ export default function AboutPhilosophy() {
             <p className="max-w-md font-body text-base leading-relaxed text-cream/65">
               From home theaters and whole-home automation to networking and
               custom cabinetry, we design every system as one integrated
-              experience rather than a collection of separate products —
-              approached with the same eye for detail and commitment to
+              experience rather than a collection of separate products, approached with the same eye for detail and commitment to
               getting it right the first time, on every project, regardless
               of size.
             </p>

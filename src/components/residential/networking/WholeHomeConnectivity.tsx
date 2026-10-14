@@ -46,8 +46,7 @@ export default function WholeHomeConnectivity() {
             </h2>
             <p className="mt-5 max-w-md font-body text-base leading-relaxed text-cream/65">
               A home works as one only when the connection behind it does.
-              Good networking is what lets every room — and every system in
-              it — rely on the same foundation.
+              Good networking is what lets every room, and every system in it, rely on the same foundation.
             </p>
           </Reveal>
 

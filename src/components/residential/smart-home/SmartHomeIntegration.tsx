@@ -2,7 +2,6 @@ import { Smartphone, MonitorSmartphone, SlidersHorizontal, Mic2 } from "lucide-r
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
-import CTALink from "@/components/ui/CTALink";
 import { smartHomeImages } from "@/lib/images";
 
 const CONTROLS = [
@@ -34,16 +33,14 @@ export default function SmartHomeIntegration() {
             <span className="cap-o-tight">O</span>ne Controlled Experience.
           </h2>
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
-            Audio, video, lighting, shades, climate, and security — every
-            system in the home, working together through a single,
+            Audio, video, lighting, shades, climate, and security: every system in the home, working together through a single,
             customized interface rather than a collection of disconnected
             apps and remotes.
           </p>
           <p className="mt-4 font-body text-sm leading-relaxed text-cream/65">
             Whether it&rsquo;s a Lutron or Crestron touchscreen mounted by
             the door, a keypad in the hallway, an app on your phone, or a
-            simple voice command, every system responds the same way —
-            instantly, and without a second thought.
+            simple voice command, every system responds the same way, instantly and without a second thought.
           </p>
 
           <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-bg4 pt-8">
@@ -63,10 +60,6 @@ export default function SmartHomeIntegration() {
               </li>
             ))}
           </ul>
-
-          <CTALink href="/contact" variant="outline" className="mt-10 self-start">
-            Request Consultation
-          </CTALink>
         </Reveal>
       </div>
     </section>

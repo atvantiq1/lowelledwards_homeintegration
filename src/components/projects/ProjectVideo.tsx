@@ -34,7 +34,7 @@ interface ProjectVideoProps {
   sources: { webm: string; mp4: string };
   poster: { src: string; alt: string };
   className?: string;
-  /** Skips the intersection-observer gate and loads immediately — for the hero video only. */
+  /** Skips the intersection-observer gate and loads immediately, for the hero video only. */
   priority?: boolean;
   objectPosition?: string;
   /** `sizes` hint for the poster image. */

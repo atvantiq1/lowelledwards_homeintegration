@@ -10,7 +10,7 @@ export default function LightingShadesIntro() {
         <Reveal className="lg:col-span-8">
           <p className="eyebrow text-gold">Light &amp; Shade</p>
           <h2 className="mt-6 font-display text-4xl text-cream sm:text-5xl lg:text-[4rem]">
-            A home that adjusts to the way you live — not the other way around.
+            Your home, your lifestyle, your way.
           </h2>
         </Reveal>
 
@@ -19,7 +19,7 @@ export default function LightingShadesIntro() {
             Lutron lighting and shade controls bring daylight and electric
             light together, so a room can change with the hour without anyone
             crossing it to flip a switch or pull a cord. It is operated from
-            a wall keypad, a handheld remote, or an iPad — and sits alongside
+            a wall keypad, a handheld remote, or an iPad, and sits alongside
             every other system in the home.
           </p>
         </Reveal>

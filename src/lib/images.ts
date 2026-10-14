@@ -1,6 +1,6 @@
 /**
  * Homepage photography, sourced from Pexels (free to use, no attribution
- * required — https://www.pexels.com/license/). Swap any `src` for the
+ * required: https://www.pexels.com/license/). Swap any `src` for the
  * client's own photography when it becomes available; no other code needs
  * to change.
  */
@@ -8,8 +8,8 @@
 const pexels = (id: string, w = 2400) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
 
-// Unsplash (free to use under the Unsplash License, no attribution required
-// — https://unsplash.com/license).
+// Unsplash (free to use under the Unsplash License, no attribution required,
+// see https://unsplash.com/license).
 const unsplash = (id: string, w = 2400) =>
   `https://images.unsplash.com/photo-${id}?q=80&w=${w}&auto=format&fit=crop`;
 
@@ -20,7 +20,7 @@ const unsplash = (id: string, w = 2400) =>
 const control4 = (path: string) =>
   `https://cdn.prod.website-files.com/629926620ba03720384bebb3/${path}`;
 
-// ecobee's Contentful-hosted CDN — genuine ecobee product photography.
+// ecobee's Contentful-hosted CDN with genuine ecobee product photography.
 const ecobee = (path: string, w = 1080) =>
   `https://images.ctfassets.net/a3qyhfznts9y/${path}?w=${w}&h=${w}&q=80&fm=webp`;
 
@@ -97,7 +97,7 @@ export const homeImages = {
 
 /**
  * Smart Home Integration page photography. Every shot here is unique to
- * this page — sourced from Pexels (free to use, no attribution required) —
+ * this page and sourced from Pexels (free to use, no attribution required),
  * rather than reused from `homeImages`, so the page reads as its own
  * gallery instead of a repeat of the homepage.
  */
@@ -148,10 +148,8 @@ export const smartHomeImages = {
   },
   lifestyle: {
     entertain: {
-      src: control4(
-        "67e5987d5e482a05a7bcd372_087_25_Control4.com_Audio_Header-1.webp"
-      ),
-      alt: "Wall-mounted TV showing the Control4 entertainment menu, with streaming apps and whole-home scenes above a sleek soundbar and media console",
+      src: pexels("7166926"),
+      alt: "Living room with a wall-mounted television on a taupe media panel, warm cove lighting and recessed ceiling lights, and a tufted sofa",
     },
     relax: {
       src: pexels("19096629"),
@@ -283,7 +281,7 @@ export const homeTheatreImages = {
  * Lighting & Shades page photography, sourced from Pexels (free to use, no
  * attribution required) and unique to this page, so it reads as its own
  * gallery rather than a repeat of the other residential pages. No Lutron
- * marketing imagery is used — only the Lutron logo already in
+ * marketing imagery is used, only the Lutron logo already in
  * `/images/brands`, because dealer rights to Lutron's photography have not
  * been confirmed (see the note on `control4` above).
  */
@@ -322,7 +320,7 @@ export const lightingShadesImages = {
 /**
  * Networking page photography, sourced from Pexels and Unsplash (both free
  * to use, no attribution required). The page deliberately shows homes and
- * living spaces rather than hardware — the network is meant to read as the
+ * living spaces rather than hardware, since the network is meant to read as the
  * quiet foundation behind them. No manufacturer imagery is used.
  */
 export const networkingImages = {
@@ -364,5 +362,62 @@ export const networkingImages = {
   cta: {
     src: pexels("323781"),
     alt: "Contemporary house with a stone and timber facade, a flat roof and a band of glazing against a blue sky",
+  },
+} as const;
+
+/**
+ * Security page photography, sourced from Pexels and Unsplash (both free to
+ * use, no attribution required) and unique to this page. The page leads with
+ * beautiful homes and spaces, because security is meant to read as part of a
+ * well-designed property, so only the cameras section shows a device up
+ * close. The doorbell inset is Control4 dealer imagery covered by the
+ * client-confirmed rights noted on the `control4` helper above. Swap any `src`
+ * for the client's own project photography when it becomes available; no
+ * other code needs to change.
+ */
+export const securityImages = {
+  hero: {
+    src: pexels("4933643"),
+    alt: "Large stone and shingle home at dusk beneath a pink and lilac sky, with warmly lit windows, a three-car garage and a curving driveway around a landscaped island",
+    position: "50% 50%",
+  },
+  introduction: {
+    src: pexels("5252546"),
+    alt: "Bright modern home entrance with a tall bronze front door between glazed panels, clipped shrubs and a timber-clad porch",
+  },
+  residential: {
+    src: pexels("37591155"),
+    alt: "White dome camera mounted discreetly at the corner of a modern pale facade beside a tall glazed window",
+    position: "45% 45%",
+  },
+  doorbell: {
+    src: control4(
+      "67f82d25b87618e365fef577_087_25_Control4.com_SafetyandSecurity_Products_VideoDoorbells.webp"
+    ),
+    alt: "Slim video doorbell mounted flush beside a residential front entrance",
+  },
+  coverage: {
+    grounds: {
+      src: unsplash("1569595772723-28b435a286a3"),
+      alt: "Landscaped grounds at night with a curving paved path, beds of flowers and softly lit trees leading to a timber garden pavilion",
+    },
+    door: {
+      src: pexels("14750384"),
+      alt: "Carved timber front door set in a limestone wall beneath a stone lintel, flanked by two lantern wall lights",
+    },
+    paths: {
+      src: pexels("31737859"),
+      alt: "Illuminated lawn and stone terrace beside a modern home's lit entrance at dusk",
+      position: "30% 50%",
+    },
+  },
+  connected: {
+    src: pexels("7534561"),
+    alt: "Spacious, light-filled living room with cream sofas, a patterned rug, tall curtains and polished timber floors",
+    position: "50% 55%",
+  },
+  cta: {
+    src: pexels("7031411"),
+    alt: "Contemporary timber-clad and white house with large glazed openings, a pool terrace and a soft sunrise sky",
   },
 } as const;

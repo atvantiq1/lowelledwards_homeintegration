@@ -9,11 +9,11 @@ import SmartHomeCTA from "@/components/residential/smart-home/SmartHomeCTA";
 export const metadata: Metadata = {
   title: "Smart Home Integration",
   description:
-    "Whole-home automation from Lowell Edwards Home Integration — multi-room audio, video, lighting control, motorized shades, climate, networking, and security, integrated into one customized experience.",
+    "Whole-home automation from Lowell Edwards Home Integration: multi-room audio, video, lighting control, motorized shades, climate, networking, and security, integrated into one customized experience.",
   openGraph: {
     title: "Smart Home Integration | Lowell Edwards Home Integration",
     description:
-      "Whole-home automation from Lowell Edwards Home Integration — multi-room audio, video, lighting control, motorized shades, climate, networking, and security, integrated into one customized experience.",
+      "Whole-home automation from Lowell Edwards Home Integration: multi-room audio, video, lighting control, motorized shades, climate, networking, and security, integrated into one customized experience.",
     type: "website",
   },
 };

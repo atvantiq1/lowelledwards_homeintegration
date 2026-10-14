@@ -17,7 +17,7 @@ const EASE = [0.16, 1, 0.3, 1] as const;
  * photo settles from a slight zoom. Under reduced motion it simply fades in.
  * The inner wrapper adds the shared ~1.03 hover scale.
  *
- * Visibility is observed on the un-clipped outer frame — an element whose
+ * Visibility is observed on the un-clipped outer frame, because an element whose
  * clip-path hides it entirely never reports as intersecting.
  */
 export default function ImageReveal({

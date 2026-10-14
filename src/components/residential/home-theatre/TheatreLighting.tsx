@@ -24,7 +24,7 @@ export default function TheatreLighting() {
           </h2>
           <p className="mt-5 max-w-lg font-body text-base leading-relaxed text-cream/65">
             Lighting, shades, and the theater itself, brought together on
-            Lutron and Crestron control — so the room dims, the screen wakes,
+            Lutron and Crestron control, so the room dims, the screen wakes,
             and the sound is ready, all from a single touch.
           </p>
         </Reveal>
@@ -32,7 +32,7 @@ export default function TheatreLighting() {
         <Reveal delay={0.2} className="lg:col-span-5 lg:col-start-8">
           <p className="max-w-lg font-body text-base leading-relaxed text-cream/65">
             A single &ldquo;Movie&rdquo; scene dims the room, lowers the
-            shades, and wakes the system in sequence — so the only thing left
+            shades, and wakes the system in sequence, so the only thing left
             to do once the lights go down is watch.
           </p>
         </Reveal>

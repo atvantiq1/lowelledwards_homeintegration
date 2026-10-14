@@ -19,7 +19,7 @@ const STYLES = [
     label: "Lounge",
     image: homeTheatreImages.seating,
     description:
-      "Wider spacing and a relaxed recline, so the room feels as comfortable on a Sunday afternoon as on a premiere night — built for households who linger as much as they watch.",
+      "Wider spacing and a relaxed recline, so the room feels as comfortable on a Sunday afternoon as on a premiere night. It is built for households who linger as much as they watch.",
   },
   {
     label: "Power Recline",
@@ -57,8 +57,7 @@ export default function TheatreSeating() {
             Every row is built to order by seating specialists like Fortress
             Seating and CinemaTech, sized, spaced, and angled to its
             sightline, then finished in fine leather, mohair, or Ultrasuede
-            with details like motorized recline, LED aisle lighting, and tray
-            tables — built for comfort through the whole film, not just the
+            with details like motorized recline, LED aisle lighting, and tray tables, all built for comfort through the whole film, not just the
             first act.
           </p>
         </Reveal>
@@ -129,7 +128,7 @@ export default function TheatreSeating() {
             })}
           </div>
 
-          <div className="mt-6 flex min-h-16 justify-center">
+          <div className="mt-6 flex min-h-28 justify-center">
             <AnimatePresence mode="wait">
               <motion.p
                 key={STYLES[active].label}
@@ -138,7 +137,7 @@ export default function TheatreSeating() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3, ease: EASE }}
                 aria-live="polite"
-                className="max-w-md text-center font-body text-sm leading-relaxed text-cream/65"
+                className="max-w-2xl text-center font-body text-base leading-relaxed text-cream/70 sm:text-lg"
               >
                 {STYLES[active].description}
               </motion.p>

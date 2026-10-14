@@ -7,7 +7,7 @@ type Brand = {
   width: number;
   height: number;
   className?: string;
-  /** Logo art is white/light on transparent — needs a dark plate to read, not a filter. */
+  /** Logo art is white/light on transparent, so it needs a dark plate to read, not a filter. */
   onDark?: boolean;
 };
 

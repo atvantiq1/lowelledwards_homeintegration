@@ -25,7 +25,7 @@ const SYSTEMS = [
   {
     label: "Shades",
     description:
-      "Motorized shades that rise and fall with the light, and with your day programmed for sunrise, movie night, or a single tap.",
+      "Motorized shades that respond to natural light and your daily routine, with settings for sunrise, movie night, or a single tap.",
     image: smartHomeImages.systems.shades,
   },
   {
@@ -49,7 +49,7 @@ const SYSTEMS = [
   {
     label: "Security",
     description:
-      "Cameras, smart locks, and video intercoms on the same interface as everything else protection that stays out of sight until you need it.",
+      "Cameras, smart locks, and video intercoms work together through one interface, keeping your home protected without drawing attention to the technology.",
     image: smartHomeImages.systems.security,
   },
 ] as const;

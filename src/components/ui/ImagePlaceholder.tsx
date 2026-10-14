@@ -29,7 +29,7 @@ export default function ImagePlaceholder({
   return (
     <div
       role="img"
-      aria-label={sublabel ? `${label} — ${sublabel}` : label}
+      aria-label={sublabel ? `${label}: ${sublabel}` : label}
       style={aspect ? { aspectRatio: aspect } : undefined}
       className={`relative flex h-full w-full flex-col items-center overflow-hidden bg-bg3 ${positionClasses[labelPosition]} ${className}`}
     >
