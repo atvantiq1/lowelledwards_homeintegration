@@ -73,7 +73,7 @@ export default function SmartHomeLifestyle() {
             </motion.div>
 
             <div className="absolute bottom-6 left-6 max-w-[calc(100%-3rem)] bg-black/45 p-6 backdrop-blur-sm sm:bottom-8 sm:left-8 sm:max-w-sm sm:p-8">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40">
                 <Volume2 className="h-4 w-4 text-white" strokeWidth={1.25} aria-hidden />
               </span>
               <h3 className="mt-5 font-display text-3xl text-white sm:text-4xl">
@@ -113,7 +113,7 @@ export default function SmartHomeLifestyle() {
                 </motion.div>
 
                 <div className="absolute bottom-5 left-5 max-w-[calc(100%-2.5rem)] bg-black/45 p-5 backdrop-blur-sm sm:bottom-6 sm:left-6 sm:max-w-xs sm:p-6">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/40">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40">
                     <scene.icon className="h-3.5 w-3.5 text-white" strokeWidth={1.25} aria-hidden />
                   </span>
                   <h3 className="mt-4 font-display text-2xl text-white sm:text-3xl">

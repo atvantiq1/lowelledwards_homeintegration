@@ -30,7 +30,7 @@ export default function Hero() {
           transition={{ duration: 1.1, ease: EASE }}
           className="max-w-4xl font-display text-[clamp(1.75rem,5.5vw,5.5rem)] leading-[0.95] text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.55)]"
         >
-          Technology, Designed Around Your Home.
+          Technology Designed Around Your Home.
         </motion.h1>
 
         <motion.p
