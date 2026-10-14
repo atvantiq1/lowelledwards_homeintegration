@@ -28,7 +28,7 @@ export default function SecurityIntro() {
             </h2>
           </Reveal>
 
-          <Reveal delay={0.18} className="mt-10 lg:ml-24">
+          <Reveal delay={0.18} className="mt-10 ">
             <p className="max-w-lg font-body text-base leading-relaxed text-cream/65">
               Lowell Edwards designs and installs intercom, entry and video
               surveillance systems as part of a home&rsquo;s wider technology, planned around the property and the way it is used rather
