@@ -26,8 +26,18 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    src: pexels("5982764"),
-    alt: "Sunlit luxury living room with floor-to-ceiling windows, warm wood walls and a leather sectional overlooking the horizon",
+    // Control4 dealer artwork, 2x Lanczos-upscaled from the 1440px original
+    // and widened on the left with a mirrored strip of the patio so the
+    // devices sit in the right half (~48%-75% of the width). Hero.tsx sets
+    // the crop per breakpoint; re-check that if you swap this image.
+    src: "/images/home-hero-wide.jpg",
+    alt: "Modern desert home at dusk beside a pool, with a Control4 touch screen and the Control4 app on a phone showing audio sessions and room controls",
+  },
+  // Taller variant of the hero for portrait screens (below lg): the pool
+  // reflection is extended downward so the devices sit in the upper half and
+  // the headline can sit below them without covering the product.
+  heroPortrait: {
+    src: "/images/home-hero-portrait-tall.jpg",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",

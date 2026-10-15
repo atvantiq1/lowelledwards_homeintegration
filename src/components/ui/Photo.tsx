@@ -5,6 +5,8 @@ interface PhotoProps {
   alt: string;
   sizes?: string;
   priority?: boolean;
+  /** next/image quality (1-100); must be listed in images.qualities. */
+  quality?: number;
   className?: string;
   /** CSS object-position, e.g. "50% 35%". Defaults to centered. */
   objectPosition?: string;
@@ -15,6 +17,7 @@ export default function Photo({
   alt,
   sizes = "100vw",
   priority = false,
+  quality,
   className = "",
   objectPosition,
 }: PhotoProps) {
@@ -26,6 +29,7 @@ export default function Photo({
         fill
         sizes={sizes}
         priority={priority}
+        quality={quality}
         className="object-cover transition-[object-position] duration-700 ease-out"
         style={objectPosition ? { objectPosition } : undefined}
       />
