@@ -12,6 +12,9 @@ const PROJECTS = [
     className: "lg:col-span-7 lg:row-span-2",
     aspect: "4 / 5",
     image: homeImages.projectLarge,
+    // Landscape photo in a tall tile: anchor the crop on the TV (~42% across)
+    // so it is never trimmed off.
+    objectPosition: "42% 50%",
     sizes: "(min-width: 1024px) 58vw, 100vw",
   },
   {
@@ -70,6 +73,7 @@ export default function FeaturedProjects() {
                     src={project.image.src}
                     alt={project.image.alt}
                     sizes={project.sizes}
+                    objectPosition={project.objectPosition}
                   />
                 </ImageReveal>
               </div>

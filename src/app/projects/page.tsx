@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ProjectsHero from "@/components/projects/ProjectsHero";
 import ProjectsIntro from "@/components/projects/ProjectsIntro";
 import ProjectShowcase from "@/components/projects/ProjectShowcase";
+import ProjectGallery from "@/components/projects/ProjectGallery";
 import ProjectServices from "@/components/projects/ProjectServices";
 import ProjectsCTA from "@/components/projects/ProjectsCTA";
 
@@ -23,6 +24,7 @@ export default function ProjectsPage() {
       <ProjectsHero />
       <ProjectsIntro />
       <ProjectShowcase />
+      <ProjectGallery />
       <ProjectServices />
       <ProjectsCTA />
     </>

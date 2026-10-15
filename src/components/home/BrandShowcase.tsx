@@ -31,6 +31,8 @@ const ROW_ONE: Brand[] = [
     height: 40,
     onDark: true,
   },
+  { name: "Sonos", src: "/images/brands/sonos.svg", width: 160, height: 36 },
+  { name: "KEF", src: "/images/brands/kef.svg", width: 132, height: 44 },
 ];
 
 const ROW_TWO: Brand[] = [
@@ -48,6 +50,8 @@ const ROW_TWO: Brand[] = [
   { name: "CinemaTech", src: "/images/brands/cinematech.svg", width: 170, height: 40 },
   { name: "Fortress Seating", src: "/images/brands/fortress-seating.png", width: 160, height: 62 },
   { name: "RowOne", src: "/images/brands/rowone.png", width: 150, height: 51 },
+  { name: "ecobee", src: "/images/brands/ecobee.svg", width: 160, height: 32 },
+  { name: "NAD", src: "/images/brands/nad.png", width: 200, height: 200 },
 ];
 
 function MarqueeRow({

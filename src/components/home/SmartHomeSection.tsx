@@ -1,4 +1,13 @@
-import { Volume2, MonitorPlay, Lightbulb, Blinds, Settings2, Wifi, ShieldCheck, Thermometer } from "lucide-react";
+import {
+  AudioIcon,
+  VideoIcon,
+  LightingIcon,
+  ShadesIcon,
+  AutomationIcon,
+  NetworkingIcon,
+  SecurityIcon,
+  ThermostatIcon,
+} from "@/components/ui/HomeIcons";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
@@ -6,14 +15,14 @@ import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
 const CAPABILITIES = [
-  { label: "Audio", icon: Volume2 },
-  { label: "Video", icon: MonitorPlay },
-  { label: "Lighting", icon: Lightbulb },
-  { label: "Shades", icon: Blinds },
-  { label: "Automation", icon: Settings2 },
-  { label: "Networking", icon: Wifi },
-  { label: "Security", icon: ShieldCheck },
-  { label: "Thermostats", icon: Thermometer },
+  { label: "Audio", icon: AudioIcon },
+  { label: "Video", icon: VideoIcon },
+  { label: "Lighting", icon: LightingIcon },
+  { label: "Shades", icon: ShadesIcon },
+  { label: "Automation", icon: AutomationIcon },
+  { label: "Networking", icon: NetworkingIcon },
+  { label: "Security", icon: SecurityIcon },
+  { label: "Thermostats", icon: ThermostatIcon },
 ];
 
 export default function SmartHomeSection() {
@@ -34,7 +43,7 @@ export default function SmartHomeSection() {
           className="flex flex-col justify-center bg-bg p-10 sm:p-12 lg:col-span-5 lg:p-14"
         >
           <h2 className="font-display text-3xl text-cream sm:text-4xl">
-            <span className="cap-o-tight">O</span>ne System. Every Room.
+            Smart Home Integration
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
@@ -54,9 +63,7 @@ export default function SmartHomeSection() {
             {CAPABILITIES.map(({ label, icon: Icon }) => (
               <li key={label} className="group/cap flex items-center gap-3">
                 <Icon
-                  className="h-4 w-4 shrink-0 text-gold/70 transition-colors duration-300 group-hover/cap:text-gold"
-                  strokeWidth={1.25}
-                  aria-hidden
+                  className="h-6 w-6 shrink-0 text-gold/80 transition-colors duration-300 group-hover/cap:text-gold"
                 />
                 <span className="font-body text-sm text-cream/70 transition-colors duration-300 group-hover/cap:text-cream">
                   {label}

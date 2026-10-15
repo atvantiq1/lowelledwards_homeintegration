@@ -16,7 +16,6 @@ export default function Home() {
       <Hero />
       <BrandIntroduction />
       <BrandShowcase />
-      <ResidentialExperiences />
       <SmartHomeSection />
       <HomeTheatreSection />
       <FeaturedProjects />

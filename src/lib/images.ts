@@ -26,8 +26,8 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    src: pexels("13722886"),
-    alt: "Dark, modern living room with a wall-mounted TV on a slatted wood media wall, an illuminated built-in bookshelf, and a plush sectional",
+    src: pexels("5982764"),
+    alt: "Sunlit luxury living room with floor-to-ceiling windows, warm wood walls and a leather sectional overlooking the horizon",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",
@@ -82,8 +82,8 @@ export const homeImages = {
     alt: "Stylish living room with a statement chandelier and layered ambient lighting",
   },
   whyService: {
-    src: pexels("5982764"),
-    alt: "Luxury living room with expansive windows fitted for automated shades",
+    src: pexels("7166926"),
+    alt: "Warm modern living room with a wall-mounted display and floor-length curtains ready for automated shades",
   },
   whyPricing: {
     src: pexels("1571458"),
@@ -421,3 +421,35 @@ export const securityImages = {
     alt: "Contemporary timber-clad and white house with large glazed openings, a pool terrace and a soft sunrise sky",
   },
 } as const;
+
+/**
+ * Stills for the Projects "In the Details" gallery. Each one reuses a photo
+ * already vetted for the matching service page, so no new sources are added.
+ */
+export const projectGalleryImages = [
+  {
+    label: "Lighting Control",
+    caption: "One touch sets the scene for movie night",
+    image: homeTheatreImages.lighting,
+  },
+  {
+    label: "Home Theater",
+    caption: "Screen, acoustics and seating built around one sightline",
+    image: homeTheatreImages.theatreDesign,
+  },
+  {
+    label: "Theater Seating",
+    caption: "Power-recline leather, fitted to the room",
+    image: homeTheatreImages.seatingSignature,
+  },
+  {
+    label: "Audio & Video",
+    caption: "Displays and sound that sit quietly in the room",
+    image: smartHomeImages.systems.audioVideo,
+  },
+  {
+    label: "Motorized Shades",
+    caption: "Light that moves with the day",
+    image: smartHomeImages.systems.shades,
+  },
+] as const;
