@@ -10,15 +10,46 @@ import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
+import CapabilityList from "@/components/ui/CapabilityList";
 import { homeImages } from "@/lib/images";
 
 const FEATURES = [
-  { label: "Cinema Screens", icon: CinemaScreenIcon },
-  { label: "Immersive Audio", icon: SurroundSoundIcon },
-  { label: "Theater Seating", icon: TheatreSeatIcon },
-  { label: "Acoustic Design", icon: AcousticsIcon },
-  { label: "Lighting Control", icon: LightingIcon },
-  { label: "One-Touch Control", icon: RemoteControlIcon },
+  {
+    label: "Cinema Screens",
+    icon: CinemaScreenIcon,
+    description:
+      "Large-format screens and projection with the contrast and detail the filmmakers intended.",
+  },
+  {
+    label: "Immersive Audio",
+    icon: SurroundSoundIcon,
+    description:
+      "Surround sound that places you inside the story, from whispers to full-scale impact.",
+  },
+  {
+    label: "Theater Seating",
+    icon: TheatreSeatIcon,
+    description:
+      "Plush, custom seating arranged so every seat has an ideal view and sound.",
+  },
+  {
+    label: "Acoustic Design",
+    icon: AcousticsIcon,
+    description:
+      "Room treatments that control echo and outside noise for clean, accurate sound.",
+  },
+  {
+    label: "Lighting Control",
+    icon: LightingIcon,
+    description:
+      "Lighting that dims automatically when the movie starts and returns when it ends.",
+  },
+  {
+    label: "One-Touch Control",
+    icon: RemoteControlIcon,
+    description:
+      "A single button or remote that powers everything on and sets the room for showtime.",
+  },
 ];
 
 export default function HomeTheatreSection() {
@@ -45,18 +76,7 @@ export default function HomeTheatreSection() {
             theaters that feel at home within the architecture of your space.
           </p>
 
-          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-bg4 pt-8">
-            {FEATURES.map(({ label, icon: Icon }) => (
-              <li key={label} className="group/cap flex items-center gap-3">
-                <Icon
-                  className="h-6 w-6 shrink-0 text-gold/80 transition-colors duration-300 group-hover/cap:text-gold"
-                />
-                <span className="font-body text-sm text-cream/70 transition-colors duration-300 group-hover/cap:text-cream">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <CapabilityList items={FEATURES} />
 
           <CTALink href="/residential/home-theatre" variant="outline" className="mt-10 self-start">
             Explore Home Theater

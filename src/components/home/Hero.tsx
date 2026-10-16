@@ -18,6 +18,8 @@ export default function Hero() {
           alt={homeImages.hero.alt}
           sizes="100vw"
           priority
+          quality={90}
+          className="[&_img]:object-[72%_50%] lg:[&_img]:object-[50%_50%]"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent" />
         <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/15 to-transparent" />

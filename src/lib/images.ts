@@ -26,18 +26,12 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    // Control4 dealer artwork, 2x Lanczos-upscaled from the 1440px original
-    // and widened on the left with a mirrored strip of the patio so the
-    // devices sit in the right half (~48%-75% of the width). Hero.tsx sets
-    // the crop per breakpoint; re-check that if you swap this image.
-    src: "/images/home-hero-wide.jpg",
+    // Control4 dealer artwork at 2x resolution so it stays sharp full-bleed.
+    // The devices sit in the lower right (~60%-93% of the width); Hero.tsx
+    // biases the crop toward them on narrow screens, so re-check that if you
+    // swap this image.
+    src: "/images/home-hero.jpg",
     alt: "Modern desert home at dusk beside a pool, with a Control4 touch screen and the Control4 app on a phone showing audio sessions and room controls",
-  },
-  // Taller variant of the hero for portrait screens (below lg): the pool
-  // reflection is extended downward so the devices sit in the upper half and
-  // the headline can sit below them without covering the product.
-  heroPortrait: {
-    src: "/images/home-hero-portrait-tall.jpg",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",
@@ -113,8 +107,8 @@ export const homeImages = {
  */
 export const smartHomeImages = {
   hero: {
-    src: unsplash("1650091507687-5ea34d80e674"),
-    alt: "Close-up of a hand adjusting a smart home touchscreen control panel mounted in a dark modern kitchen, representing a home's connected comfort and lighting",
+    src: "https://cdn.prod.website-files.com/67f03f77de69426b9d8fdba4/68efc9b91a94942e9dc1bf6a_DSC01065.jpg",
+    alt: "Bright living room with a white sofa facing a wall-mounted TV showing a smart home interface, with keypads on the wall and warm wood accents",
   },
   introduction: {
     src: pexels("5179534"),
@@ -189,8 +183,8 @@ export const smartHomeImages = {
  */
 export const aboutImages = {
   hero: {
-    src: "/images/about-hero.png",
-    alt: "Luxury living room at dusk with panoramic windows overlooking a sunset coastline, a linear gas fireplace, a plush sectional, and a wall-mounted TV displaying a mountain lake scene",
+    src: pexels("5982764"),
+    alt: "Sunlit luxury living room with floor-to-ceiling windows, warm wood walls and a leather sectional overlooking the horizon",
   },
   story: {
     src: unsplash("1721613887012-097af2aaf042"),
@@ -241,8 +235,8 @@ export const contactImages = {
  */
 export const homeTheatreImages = {
   hero: {
-    src: "/images/home-theatre-heroimage.jpg",
-    alt: "Luxury home theater with a sectional sofa facing a large wall-mounted screen, framed by warm cove lighting and wood paneling",
+    src: "/images/home-theatre-hero.jpg",
+    alt: "Home theater with tiered cream sectional seating facing a large projection screen, framed by walnut and fabric acoustic panels and warm cove lighting",
   },
   introduction: {
     src: "/images/home-theatre-introduction.png",

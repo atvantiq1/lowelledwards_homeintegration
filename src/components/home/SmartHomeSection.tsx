@@ -12,17 +12,58 @@ import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
 import CTALink from "@/components/ui/CTALink";
+import CapabilityList from "@/components/ui/CapabilityList";
 import { homeImages } from "@/lib/images";
 
 const CAPABILITIES = [
-  { label: "Audio", icon: AudioIcon },
-  { label: "Video", icon: VideoIcon },
-  { label: "Lighting", icon: LightingIcon },
-  { label: "Shades", icon: ShadesIcon },
-  { label: "Automation", icon: AutomationIcon },
-  { label: "Networking", icon: NetworkingIcon },
-  { label: "Security", icon: SecurityIcon },
-  { label: "Thermostats", icon: ThermostatIcon },
+  {
+    label: "Audio",
+    icon: AudioIcon,
+    description:
+      "Whole-home music that follows you from room to room, with clear sound at any volume.",
+  },
+  {
+    label: "Video",
+    icon: VideoIcon,
+    description:
+      "Displays and sources that are easy to use, discreetly placed, and ready when you are.",
+  },
+  {
+    label: "Lighting",
+    icon: LightingIcon,
+    description:
+      "Scenes that set the mood for any moment, from morning routines to evening entertaining.",
+  },
+  {
+    label: "Shades",
+    icon: ShadesIcon,
+    description:
+      "Motorized shades that balance natural light, privacy, and comfort throughout the day.",
+  },
+  {
+    label: "Automation",
+    icon: AutomationIcon,
+    description:
+      "One simple system that ties every device together and responds to the way you live.",
+  },
+  {
+    label: "Networking",
+    icon: NetworkingIcon,
+    description:
+      "A fast, reliable network with full-home coverage for every device and every room.",
+  },
+  {
+    label: "Security",
+    icon: SecurityIcon,
+    description:
+      "Cameras, door locks, and alerts you can monitor and control from anywhere.",
+  },
+  {
+    label: "Thermostats",
+    icon: ThermostatIcon,
+    description:
+      "Zoned climate control that keeps every space comfortable while saving energy.",
+  },
 ];
 
 export default function SmartHomeSection() {
@@ -59,18 +100,7 @@ export default function SmartHomeSection() {
             you need them.
           </p>
 
-          <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-bg4 pt-8">
-            {CAPABILITIES.map(({ label, icon: Icon }) => (
-              <li key={label} className="group/cap flex items-center gap-3">
-                <Icon
-                  className="h-6 w-6 shrink-0 text-gold/80 transition-colors duration-300 group-hover/cap:text-gold"
-                />
-                <span className="font-body text-sm text-cream/70 transition-colors duration-300 group-hover/cap:text-cream">
-                  {label}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <CapabilityList items={CAPABILITIES} />
 
           <CTALink href="/residential/smart-home-integration" variant="outline" className="mt-10 self-start">
             Explore Smart Home Integration
