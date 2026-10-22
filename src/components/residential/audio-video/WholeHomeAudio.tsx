@@ -29,16 +29,17 @@ const DETAILS = [
 export default function WholeHomeAudio() {
   return (
     <section className="bg-bg2 py-16 sm:py-20 lg:py-28">
-      <div className="section-pad grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center lg:gap-8">
-        <ImageReveal className="aspect-4/3 sm:aspect-16/10 lg:col-span-7 lg:aspect-auto lg:h-170">
+      <div className="section-pad grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+        <ImageReveal className="aspect-4/3 sm:aspect-16/10 lg:aspect-auto lg:h-full lg:min-h-150">
           <Photo
             src={audioVideoImages.wholeHomeAudio.src}
             alt={audioVideoImages.wholeHomeAudio.alt}
-            sizes="(min-width: 1024px) 58vw, 100vw"
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            objectPosition="50% 60%"
           />
         </ImageReveal>
 
-        <div className="lg:col-span-5 lg:pl-6">
+        <div className="lg:self-center">
           <Reveal>
             <p className="eyebrow text-gold">Whole-Home Audio</p>
             <h2 className="mt-4 max-w-md font-display text-4xl text-cream sm:text-5xl">

@@ -473,11 +473,11 @@ export const projectGalleryImages = [
 ] as const;
 
 /**
- * Audio & Video page photography. The hero is Unsplash (free to use, no
- * attribution required); the rest is lifestyle photography from the
- * official sites of brands Lowell Edwards carries (Sonos, KEF, Sonance,
- * Marantz). Confirm dealer usage rights with each brand before launch, as
- * with the Control4 note above.
+ * Audio & Video page photography. The hero and Whole-Home Audio shots are
+ * Unsplash (free to use, no attribution required); the rest is lifestyle
+ * photography from the official sites of brands Lowell Edwards carries
+ * (Sonos, KEF, Sonance). Confirm dealer usage rights with each brand
+ * before launch, as with the Control4 note above.
  *
  * All of these are local copies in src/assets/images/audio-video (resized
  * to at most 2000px) rather than remote URLs: the brand CDNs were slow
@@ -495,9 +495,9 @@ export const audioVideoImages = {
     alt: "Large TV on a white wall flanked by slim KEF in-wall speakers with a center channel below, above a marble ledge and terracotta sofa",
   },
   wholeHomeAudio: {
-    // Marantz Horizon with HEOS, marantz.com
+    // Unsplash (ZtiiefLVQ_M)
     src: avWholeHomeAudio,
-    alt: "Marantz Horizon wireless speaker on a stone mantel above a long walnut dining table in a warm plaster-walled room",
+    alt: "Warmly lit living room with a turntable and white bookshelf speakers on a low cabinet beneath a gallery wall and swing-arm lamp",
   },
   spaces: {
     living: {
