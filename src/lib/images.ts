@@ -198,6 +198,11 @@ export const aboutImages = {
     src: unsplash("1662454420647-3d20ddcdb8f8"),
     alt: "Contemporary living room with a large wall-mounted TV and warm ambient lighting",
   },
+  // Placeholder portrait until the client supplies a photo of Lowell.
+  founder: {
+    src: unsplash("1507003211169-0a1dd7228f2d", 1200),
+    alt: "Portrait of Lowell Edwards, founder of Lowell Edwards Home Integration",
+  },
 } as const;
 
 /**
@@ -457,3 +462,53 @@ export const projectGalleryImages = [
     image: smartHomeImages.systems.shades,
   },
 ] as const;
+
+/**
+ * Audio & Video page photography. The hero is Unsplash (free to use, no
+ * attribution required); the rest is lifestyle photography from the
+ * official sites of brands Lowell Edwards carries (Sonos, KEF, Sonance,
+ * Marantz), each at least 1920px wide. Confirm dealer usage rights with
+ * each brand before launch, as with the Control4 note above.
+ */
+export const audioVideoImages = {
+  hero: {
+    src: unsplash("1704040686413-2c607dbd2f06"),
+    alt: "Spacious luxury living room with a black marble media wall holding a large TV above a linear fireplace, recessed ceiling lights and a cream sectional",
+  },
+  introduction: {
+    // KEF Ci3160REFM-THX in-wall speakers, us.kef.com
+    src: "https://us.kef.com/cdn/shop/files/ci3160refm_sp4069b0_lifestyle_a33b46ec-e232-4777-91eb-a38ed4ed8c62.jpg?v=1786948492&width=2400",
+    alt: "Large TV on a white wall flanked by slim KEF in-wall speakers with a center channel below, above a marble ledge and terracotta sofa",
+  },
+  wholeHomeAudio: {
+    // Marantz Horizon with HEOS, marantz.com
+    src: "https://www.marantz.com/dw/image/v2/bgjh_prd/on/demandware.static/-/Library-Sites-marantz_europe_shared/default/dw6687aa77/blog/heos-marantz-horizon/Column2_Tailored_sound_image1-min.jpg?sw=2400",
+    alt: "Marantz Horizon wireless speaker on a stone mantel above a long walnut dining table in a warm plaster-walled room",
+  },
+  spaces: {
+    living: {
+      // Sonos Arc Ultra and Sub 4, sonos.com
+      src: "https://media.sonos.com/images/znqtjj88/production/8ab6acffdf1378d8176351732c34ef0c5b33f2d7-2480x2480.jpg?w=2400&q=90&fit=clip&auto=format",
+      alt: "Family on a blue sofa watching a wall-mounted TV with a Sonos soundbar beneath it in a bright living room",
+    },
+    outdoor: {
+      // Sonance outdoor music, sonance.com
+      src: "https://sonance.com/cdn/shop/files/A_Resi_Outdoor_W5A6704_DESKTOP.jpg?v=1696461106&width=2000",
+      alt: "Friends relaxing around a fire pit on a covered outdoor lounge at night with integrated lighting and sound",
+    },
+    listening: {
+      // KEF Reference 4 Meta, us.kef.com
+      src: "https://us.kef.com/cdn/shop/files/reference-4c-centre-channel-speaker_sp4052a_lifestyle.jpg?v=1786948368&width=2000",
+      alt: "White KEF Reference tower speakers and center channel beneath a wall-mounted TV against a textured concrete wall",
+    },
+  },
+  discreet: {
+    // Sonance Visual Experience Series in a wood ceiling, sonance.com
+    src: "https://sonance.com/cdn/shop/files/01_Wood_VP_1.jpg?v=1702077665&width=1920",
+    alt: "Grand timber-ceilinged great room with speakers set discreetly into the wood ceiling above white sofas and a stone fireplace",
+  },
+  cta: {
+    src: pexels("6663044"),
+    alt: "Covered outdoor living space overlooking a pool at dusk",
+  },
+} as const;
