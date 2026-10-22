@@ -94,7 +94,7 @@ export default function AboutHeritage() {
               {STATS.map((s) => (
                 <div
                   key={s.label}
-                  className="flex flex-col-reverse px-3 first:pl-0 sm:px-6"
+                  className="flex flex-col-reverse justify-end px-3 first:pl-0 sm:px-6"
                 >
                   <dt className="mt-2 font-body text-[11px] leading-snug tracking-[0.14em] text-cream/55 uppercase sm:text-xs">
                     {s.label}
