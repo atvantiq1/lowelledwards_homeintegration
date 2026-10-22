@@ -1,0 +1,54 @@
+import { NextResponse, type NextRequest } from "next/server";
+import { createLead } from "@/lib/leads";
+import {
+  contactLeadSchema,
+  formatValidationMessage,
+} from "@/lib/lead-validation";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getCaptchaToken, verifyCaptchaToken } from "@/lib/recaptcha";
+
+// Prisma needs Node.js APIs and does not run on the Edge runtime.
+export const runtime = "nodejs";
+
+function reply(code: number, message: string, headers?: HeadersInit) {
+  return NextResponse.json(
+    { status: code >= 200 && code < 300, code, message },
+    { status: code, headers },
+  );
+}
+
+export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const limit = checkRateLimit("contact", ip);
+  if (!limit.allowed) {
+    return reply(429, "Too many requests. Please try again later.", {
+      "Retry-After": String(limit.retryAfterSeconds),
+    });
+  }
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return reply(400, "Invalid request body.");
+  }
+
+  const captcha = await verifyCaptchaToken(getCaptchaToken(body), ip);
+  if (!captcha.ok) {
+    return reply(captcha.status, captcha.reason);
+  }
+
+  const parsed = contactLeadSchema.safeParse(body);
+  if (!parsed.success) {
+    return reply(400, formatValidationMessage(parsed.error));
+  }
+
+  try {
+    await createLead({ formType: "contact", ...parsed.data });
+  } catch (error) {
+    console.error("Failed to save contact lead", error);
+    return reply(500, "Something went wrong. Please try again.");
+  }
+
+  return reply(200, "Thank you. We'll be in touch shortly.");
+}
