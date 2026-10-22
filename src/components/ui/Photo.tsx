@@ -1,7 +1,8 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 interface PhotoProps {
-  src: string;
+  /** Remote URL, or a static import (local file, gets a blur placeholder). */
+  src: string | StaticImageData;
   alt: string;
   sizes?: string;
   priority?: boolean;
@@ -31,6 +32,7 @@ export default function Photo({
         preload={priority}
         loading={priority ? "eager" : undefined}
         quality={quality}
+        placeholder={typeof src === "string" ? "empty" : "blur"}
         className="object-cover transition-[object-position] duration-700 ease-out"
         style={objectPosition ? { objectPosition } : undefined}
       />
