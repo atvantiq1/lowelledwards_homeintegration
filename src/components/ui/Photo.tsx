@@ -28,7 +28,8 @@ export default function Photo({
         alt={alt}
         fill
         sizes={sizes}
-        priority={priority}
+        preload={priority}
+        loading={priority ? "eager" : undefined}
         quality={quality}
         className="object-cover transition-[object-position] duration-700 ease-out"
         style={objectPosition ? { objectPosition } : undefined}
