@@ -24,12 +24,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.ctfassets.net",
       },
-      // Official sites of brands Lowell Edwards carries, for lifestyle
-      // photography on the Audio & Video page (see src/lib/images.ts).
-      { protocol: "https", hostname: "media.sonos.com" },
-      { protocol: "https", hostname: "us.kef.com" },
-      { protocol: "https", hostname: "sonance.com" },
-      { protocol: "https", hostname: "www.marantz.com" },
     ],
   },
 };
