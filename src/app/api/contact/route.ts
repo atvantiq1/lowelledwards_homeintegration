@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { sendMail } from "@/lib/email";
 import { createLead } from "@/lib/leads";
 import {
   contactLeadSchema,
@@ -43,12 +44,33 @@ export async function POST(req: NextRequest) {
     return reply(400, formatValidationMessage(parsed.error));
   }
 
+  const lead = parsed.data;
   try {
-    await createLead({ formType: "contact", ...parsed.data });
+    await createLead({ formType: "contact", ...lead });
   } catch (error) {
     console.error("Failed to save contact lead", error);
     return reply(500, "Something went wrong. Please try again.");
   }
 
-  return reply(200, "Thank you. We'll be in touch shortly.");
+  // The lead is already saved, so a failed notification must not fail the request.
+  try {
+    await sendMail({
+      subject: `Consultation request from ${lead.name}`,
+      text: [
+        `Name: ${lead.name}`,
+        `Email: ${lead.email}`,
+        `Phone: ${lead.phone}`,
+        `Project Type: ${lead.projectType}`,
+        `Location: ${lead.location}`,
+        "",
+        "Message:",
+        lead.message,
+      ].join("\n"),
+      replyTo: lead.email,
+    });
+  } catch (error) {
+    console.error("Contact notification email failed", error);
+  }
+
+  return reply(200, "Thank you. A member of our team will be in touch shortly.");
 }

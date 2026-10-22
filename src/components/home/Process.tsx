@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, PenTool, Wrench, LifeBuoy } from "lucide-react";
+import { ArrowRight, MessageCircle, PenTool, GraduationCap, LifeBuoy } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -18,15 +18,15 @@ const STEPS = [
     number: "02",
     label: "Design",
     description:
-      "Our team develops a thoughtful technology plan around your lifestyle and the architecture of your home.",
+      "We design a tailored system around your lifestyle and architecture, then our certified technicians install it with precision and care.",
     icon: PenTool,
   },
   {
     number: "03",
-    label: "Integrate",
+    label: "Client Training & Guidance",
     description:
-      "Our technicians install and integrate your systems with attention to performance, reliability, and detail.",
-    icon: Wrench,
+      "We walk you through every installed product and how to use it day to day, so you feel confident and in control from the start.",
+    icon: GraduationCap,
   },
   {
     number: "04",

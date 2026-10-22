@@ -5,6 +5,7 @@ import type ReCAPTCHA from "react-google-recaptcha";
 import Reveal from "@/components/ui/Reveal";
 import CaptchaField from "@/components/ui/CaptchaField";
 import AlternativeContact from "@/components/contact/AlternativeContact";
+import { EMAIL_PATTERN } from "@/lib/contact";
 import { PROJECT_TYPES } from "@/lib/project-types";
 
 interface FormValues {
@@ -27,7 +28,6 @@ const initialValues: FormValues = {
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^[\d\s()+.-]{7,}$/;
 
 function validate(values: FormValues): FormErrors {
@@ -347,7 +347,7 @@ export default function ConsultationForm() {
                 <p
                   role="status"
                   aria-live="polite"
-                  className={`mt-4 font-body text-sm ${result?.ok ? "text-gold" : "text-red"}`}
+                  className={`mt-4 font-body text-sm ${result?.ok ? "text-green" : "text-red"}`}
                 >
                   {result?.message}
                 </p>

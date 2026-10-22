@@ -1,3 +1,12 @@
+import avHero from "@/assets/images/audio-video/hero.jpg";
+import avIntroduction from "@/assets/images/audio-video/introduction.jpg";
+import avWholeHomeAudio from "@/assets/images/audio-video/whole-home-audio.jpg";
+import avLiving from "@/assets/images/audio-video/living.jpg";
+import avOutdoor from "@/assets/images/audio-video/outdoor.jpg";
+import avListening from "@/assets/images/audio-video/listening.jpg";
+import avDiscreet from "@/assets/images/audio-video/discreet.jpg";
+import avCta from "@/assets/images/audio-video/cta.jpg";
+
 /**
  * Homepage photography, sourced from Pexels (free to use, no attribution
  * required: https://www.pexels.com/license/). Swap any `src` for the
@@ -197,6 +206,11 @@ export const aboutImages = {
   philosophy: {
     src: unsplash("1662454420647-3d20ddcdb8f8"),
     alt: "Contemporary living room with a large wall-mounted TV and warm ambient lighting",
+  },
+  // Placeholder portrait until the client supplies a photo of Lowell.
+  founder: {
+    src: unsplash("1507003211169-0a1dd7228f2d", 1200),
+    alt: "Portrait of Lowell Edwards, founder of Lowell Edwards Home Integration",
   },
 } as const;
 
@@ -457,3 +471,58 @@ export const projectGalleryImages = [
     image: smartHomeImages.systems.shades,
   },
 ] as const;
+
+/**
+ * Audio & Video page photography. The hero and Whole-Home Audio shots are
+ * Unsplash (free to use, no attribution required); the rest is lifestyle
+ * photography from the official sites of brands Lowell Edwards carries
+ * (Sonos, KEF, Sonance). Confirm dealer usage rights with each brand
+ * before launch, as with the Control4 note above.
+ *
+ * All of these are local copies in src/assets/images/audio-video (resized
+ * to at most 2000px) rather than remote URLs: the brand CDNs were slow
+ * origins for the image optimizer, and static imports get a blur placeholder
+ * plus immutable caching.
+ */
+export const audioVideoImages = {
+  hero: {
+    src: avHero,
+    alt: "Spacious luxury living room with a black marble media wall holding a large TV above a linear fireplace, recessed ceiling lights and a cream sectional",
+  },
+  introduction: {
+    // KEF Ci3160REFM-THX in-wall speakers, us.kef.com
+    src: avIntroduction,
+    alt: "Large TV on a white wall flanked by slim KEF in-wall speakers with a center channel below, above a marble ledge and terracotta sofa",
+  },
+  wholeHomeAudio: {
+    // Unsplash (ZtiiefLVQ_M)
+    src: avWholeHomeAudio,
+    alt: "Warmly lit living room with a turntable and white bookshelf speakers on a low cabinet beneath a gallery wall and swing-arm lamp",
+  },
+  spaces: {
+    living: {
+      // Sonos Arc Ultra and Sub 4, sonos.com
+      src: avLiving,
+      alt: "Family on a blue sofa watching a wall-mounted TV with a Sonos soundbar beneath it in a bright living room",
+    },
+    outdoor: {
+      // Sonance outdoor music, sonance.com
+      src: avOutdoor,
+      alt: "Friends relaxing around a fire pit on a covered outdoor lounge at night with integrated lighting and sound",
+    },
+    listening: {
+      // KEF Reference 4 Meta, us.kef.com
+      src: avListening,
+      alt: "White KEF Reference tower speakers and center channel beneath a wall-mounted TV against a textured concrete wall",
+    },
+  },
+  discreet: {
+    // Sonance Visual Experience Series in a wood ceiling, sonance.com
+    src: avDiscreet,
+    alt: "Grand timber-ceilinged great room with speakers set discreetly into the wood ceiling above white sofas and a stone fireplace",
+  },
+  cta: {
+    src: avCta,
+    alt: "Covered outdoor living space overlooking a pool at dusk",
+  },
+} as const;

@@ -9,6 +9,8 @@ import Process from "@/components/home/Process";
 import Testimonial from "@/components/home/Testimonial";
 import BrandShowcase from "@/components/home/BrandShowcase";
 import FinalCTA from "@/components/home/FinalCTA";
+import FirstMonthFree from "@/components/home/FirstMonthFree";
+import Newsletter from "@/components/home/Newsletter";
 
 export default function Home() {
   return (
@@ -21,7 +23,9 @@ export default function Home() {
       <FeaturedProjects />
       <WhyLowellEdwards />
       <Process />
+      <FirstMonthFree />
       <Testimonial />
+      <Newsletter />
       <FinalCTA />
     </>
   );

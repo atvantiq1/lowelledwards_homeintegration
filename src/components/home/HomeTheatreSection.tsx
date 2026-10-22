@@ -9,7 +9,6 @@ import {
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
-import CTALink from "@/components/ui/CTALink";
 import CapabilityList from "@/components/ui/CapabilityList";
 import { homeImages } from "@/lib/images";
 
@@ -77,10 +76,6 @@ export default function HomeTheatreSection() {
           </p>
 
           <CapabilityList items={FEATURES} />
-
-          <CTALink href="/residential/home-theatre" variant="outline" className="mt-10 self-start">
-            Explore Home Theater
-          </CTALink>
         </Reveal>
 
         <ImageReveal className="aspect-4/3 sm:aspect-16/10 order-1 lg:order-2 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-110">
