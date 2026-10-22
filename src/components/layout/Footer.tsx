@@ -128,7 +128,7 @@ export default function Footer() {
             </li>
             <li className="font-body text-sm text-cream/70">
               <a
-                href="mailto:hello@lowelledwards.com"
+                href="mailto:info@lowelledwards.com"
                 className="transition-colors duration-300 hover:text-gold"
               >
                 info@lowelledwards.com

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import CTALink from "@/components/ui/CTALink";
 
 type Brand = {
   name: string;
@@ -112,7 +113,7 @@ function MarqueeRow({
 
 export default function BrandShowcase() {
   return (
-    <section className="overflow-hidden bg-bg2 py-16 sm:py-20 lg:py-24">
+    <section className="overflow-hidden bg-bg2 pt-16 sm:pt-20 lg:pt-24">
       <div className="section-pad mb-12 text-center sm:mb-16">
         <Reveal>
           <p className="eyebrow text-gold">Brands We Work With</p>
@@ -125,6 +126,24 @@ export default function BrandShowcase() {
       <Reveal delay={0.1} className="space-y-6 sm:space-y-8">
         <MarqueeRow brands={ROW_ONE} duration={40} />
         <MarqueeRow brands={ROW_TWO} reverse duration={50} />
+      </Reveal>
+
+      <Reveal
+        delay={0.15}
+        className="section-pad mt-14 flex flex-col gap-8 bg-ivory py-12 sm:mt-20 sm:py-14 lg:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+      >
+        <p className="font-display text-2xl leading-snug text-cream sm:text-3xl lg:basis-[52%]">
+          World-class brands, thoughtfully integrated into whole-home
+          automation and private cinemas designed around you.
+        </p>
+        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap lg:ml-auto lg:justify-end">
+          <CTALink href="/residential/smart-home-integration" variant="outline">
+            Explore Smart Home Integration
+          </CTALink>
+          <CTALink href="/residential/home-theatre" variant="outline">
+            Explore Home Theater
+          </CTALink>
+        </div>
       </Reveal>
     </section>
   );

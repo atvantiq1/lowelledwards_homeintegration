@@ -9,14 +9,39 @@ import { homeImages } from "@/lib/images";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 const STATS = [
-  { value: "40 Years", label: "Experience", image: homeImages.whyExperience },
-  { value: "24 Hours", label: "Response SLA", image: homeImages.whyResponse },
-  { value: "24/7", label: "Phone Support", image: homeImages.whySupport },
-  { value: "1 Year", label: "In-Home Service", image: homeImages.whyService },
-  { value: "No Surprises", label: "Itemized Pricing", image: homeImages.whyPricing },
   {
-    value: "Factory Certified",
-    label: "Trained Technicians",
+    title: "Four Decades of Expertise",
+    description:
+      "40+ years of experience creating technology environments designed around the way our clients live.",
+    image: homeImages.whyExperience,
+  },
+  {
+    title: "Responsive When It Matters",
+    description:
+      "A 24-hour response commitment when your home technology needs attention.",
+    image: homeImages.whyResponse,
+  },
+  {
+    title: "Support Around the Clock",
+    description: "24/7 phone support from a team that knows your systems.",
+    image: homeImages.whySupport,
+  },
+  {
+    title: "We Stand Behind Our Work",
+    description:
+      "One year of in-home service included with every installation.",
+    image: homeImages.whyService,
+  },
+  {
+    title: "Complete Pricing Transparency",
+    description:
+      "Detailed, itemized proposals with no hidden costs or surprises.",
+    image: homeImages.whyPricing,
+  },
+  {
+    title: "High Quality Luxury Installation",
+    description:
+      "Factory-trained, certified technicians delivering expert installation and integration.",
     image: homeImages.whyTechnicians,
   },
 ];
@@ -28,10 +53,12 @@ export default function WhyLowellEdwards() {
     <section className="bg-cream py-16 sm:py-20 lg:py-28">
       <div className="section-pad mb-10 sm:mb-14">
         <Reveal>
-          <p className="eyebrow text-gold-light">Why Lowell Edwards</p>
-          <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">
-            Experience You Can Rely <span className="cap-o-tight">O</span>n.
+          <h2 className="font-display text-4xl text-gold-light sm:text-5xl lg:text-6xl">
+            Why Lowell Edwards
           </h2>
+          <p className="mt-4 font-body text-base uppercase tracking-[0.18em] text-white/80 sm:text-lg">
+            Experience You Can Rely On.
+          </p>
         </Reveal>
       </div>
 
@@ -41,13 +68,13 @@ export default function WhyLowellEdwards() {
             {STATS.map((stat, i) => {
               const isActive = i === active;
               return (
-                <li key={stat.value} className="relative border-t border-white/10 last:border-b">
+                <li key={stat.title} className="relative border-t border-white/10 last:border-b">
                   <button
                     type="button"
                     onMouseEnter={() => setActive(i)}
                     onFocus={() => setActive(i)}
                     onClick={() => setActive(i)}
-                    aria-pressed={isActive}
+                    aria-expanded={isActive}
                     className="flex w-full items-baseline gap-4 py-6 text-left sm:gap-8 sm:py-7"
                   >
                     <span
@@ -57,19 +84,29 @@ export default function WhyLowellEdwards() {
                     >
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span
-                      className={`font-display text-3xl transition-colors duration-300 sm:text-4xl lg:text-5xl ${
-                        isActive ? "text-gold-light" : "text-white"
-                      }`}
-                    >
-                      {stat.value}
-                    </span>
-                    <span
-                      className={`ml-auto font-body text-xs uppercase tracking-widest transition-colors duration-300 sm:text-sm ${
-                        isActive ? "text-gold-light/80" : "text-white/40"
-                      }`}
-                    >
-                      {stat.label}
+                    <span className="flex-1">
+                      <span
+                        className={`block font-display text-2xl transition-colors duration-300 sm:text-3xl lg:text-4xl ${
+                          isActive ? "text-gold-light" : "text-white"
+                        }`}
+                      >
+                        {stat.title}
+                      </span>
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.span
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.4, ease: EASE }}
+                            className="block overflow-hidden"
+                          >
+                            <span className="block pt-3 font-body text-sm leading-relaxed text-white/65 sm:text-base">
+                              {stat.description}
+                            </span>
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
                     </span>
                   </button>
 
