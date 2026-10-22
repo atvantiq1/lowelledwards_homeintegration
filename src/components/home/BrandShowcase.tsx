@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
+import CTALink from "@/components/ui/CTALink";
 
 type Brand = {
   name: string;
@@ -125,6 +126,24 @@ export default function BrandShowcase() {
       <Reveal delay={0.1} className="space-y-6 sm:space-y-8">
         <MarqueeRow brands={ROW_ONE} duration={40} />
         <MarqueeRow brands={ROW_TWO} reverse duration={50} />
+      </Reveal>
+
+      <Reveal
+        delay={0.15}
+        className="section-pad mt-14 flex flex-col-reverse gap-8 sm:mt-20 lg:flex-row lg:items-center lg:justify-between lg:gap-14"
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap lg:shrink-0">
+          <CTALink href="/residential/smart-home-integration" variant="outline">
+            Explore Smart Home Integration
+          </CTALink>
+          <CTALink href="/residential/home-theatre" variant="outline">
+            Explore Home Theater
+          </CTALink>
+        </div>
+        <p className="max-w-xl font-display text-2xl leading-snug text-cream sm:text-3xl lg:text-right">
+          World-class brands, thoughtfully integrated into whole-home
+          automation and private cinemas designed around you.
+        </p>
       </Reveal>
     </section>
   );

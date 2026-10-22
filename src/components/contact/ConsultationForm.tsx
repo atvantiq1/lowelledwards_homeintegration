@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Reveal from "@/components/ui/Reveal";
 import AlternativeContact from "@/components/contact/AlternativeContact";
+import { EMAIL_PATTERN } from "@/lib/contact";
 
 const PROJECT_TYPES = [
   "Smart Home Integration",
@@ -34,7 +35,6 @@ const initialValues: FormValues = {
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_PATTERN = /^[\d\s()+.-]{7,}$/;
 
 function validate(values: FormValues): FormErrors {
@@ -73,6 +73,8 @@ const inputClass =
 export default function ConsultationForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [submitError, setSubmitError] = useState("");
 
   function handleChange(
     field: keyof FormValues,
@@ -84,7 +86,7 @@ export default function ConsultationForm() {
     };
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const validationErrors = validate(values);
@@ -92,9 +94,24 @@ export default function ConsultationForm() {
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    // Frontend-only for now: form submission (API route, email service,
-    // etc.) will be wired up in a follow-up. `values` is fully validated
-    // and ready to send at this point.
+    setStatus("sending");
+    setSubmitError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "consultation", ...values }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error ?? "Something went wrong.");
+      }
+      setValues(initialValues);
+      setStatus("sent");
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("idle");
+    }
   }
 
   return (
@@ -285,9 +302,10 @@ export default function ConsultationForm() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2"
+                  disabled={status === "sending"}
+                  className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2 disabled:opacity-60"
                 >
-                  <span>Request Consultation</span>
+                  <span>{status === "sending" ? "Sending…" : "Request Consultation"}</span>
                   <span
                     className="inline-block transition-transform duration-300 group-hover:translate-x-1"
                     aria-hidden
@@ -295,6 +313,14 @@ export default function ConsultationForm() {
                     →
                   </span>
                 </button>
+                <p role="status" aria-live="polite" className="mt-4 font-body text-sm">
+                  {status === "sent" && (
+                    <span className="text-green">
+                      Thank you. A member of our team will be in touch shortly.
+                    </span>
+                  )}
+                  {submitError && <span className="text-red">{submitError}</span>}
+                </p>
               </div>
             </form>
           </Reveal>

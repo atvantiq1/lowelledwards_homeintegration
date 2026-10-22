@@ -11,7 +11,6 @@ import {
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
-import CTALink from "@/components/ui/CTALink";
 import CapabilityList from "@/components/ui/CapabilityList";
 import { homeImages } from "@/lib/images";
 
@@ -101,10 +100,6 @@ export default function SmartHomeSection() {
           </p>
 
           <CapabilityList items={CAPABILITIES} />
-
-          <CTALink href="/residential/smart-home-integration" variant="outline" className="mt-10 self-start">
-            Explore Smart Home Integration
-          </CTALink>
         </Reveal>
       </div>
     </section>
