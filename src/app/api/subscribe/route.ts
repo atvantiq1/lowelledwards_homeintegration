@@ -1,6 +1,10 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { z } from "zod";
 import { sendMail } from "@/lib/email";
+import {
+  renderSubscriberAdminEmail,
+  renderSubscriberWelcomeEmail,
+} from "@/lib/email-templates";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
@@ -43,18 +47,23 @@ export async function POST(req: NextRequest) {
   }
   const { email } = parsed.data;
 
-  try {
-    await sendMail({
-      subject: "New newsletter subscriber",
-      text: `A new visitor subscribed to updates from the website.\n\nEmail: ${email}`,
-      replyTo: email,
-    });
-  } catch (error) {
-    console.error("Subscribe notification email failed", error);
+  const welcome = renderSubscriberWelcomeEmail();
+  const notification = renderSubscriberAdminEmail(email, new Date());
+
+  const [welcomeResult, adminResult] = await Promise.allSettled([
+    sendMail({ to: email, ...welcome }),
+    sendMail({ ...notification, replyTo: email }),
+  ]);
+
+  // Subscribers aren't stored anywhere else yet, so log the address with any
+  // failure to keep it recoverable from the server logs.
+  if (adminResult.status === "rejected") {
+    console.error(`Subscriber admin email failed for ${email}`, adminResult.reason);
+  }
+  if (welcomeResult.status === "rejected") {
+    console.error(`Subscriber welcome email failed for ${email}`, welcomeResult.reason);
     return reply(502, "We couldn't subscribe you right now. Please try again later.");
   }
-
-  // TODO: send the welcome email to the subscriber once the template is provided.
 
   return reply(200, "Thank you for subscribing.");
 }

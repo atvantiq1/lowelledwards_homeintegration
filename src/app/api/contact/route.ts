@@ -1,5 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { sendMail } from "@/lib/email";
+import {
+  renderConsultationAdminEmail,
+  renderConsultationCustomerEmail,
+} from "@/lib/email-templates";
 import { createLead } from "@/lib/leads";
 import {
   contactLeadSchema,
@@ -52,24 +56,16 @@ export async function POST(req: NextRequest) {
     return reply(500, "Something went wrong. Please try again.");
   }
 
-  // The lead is already saved, so a failed notification must not fail the request.
-  try {
-    await sendMail({
-      subject: `Consultation request from ${lead.name}`,
-      text: [
-        `Name: ${lead.name}`,
-        `Email: ${lead.email}`,
-        `Phone: ${lead.phone}`,
-        `Project Type: ${lead.projectType}`,
-        `Location: ${lead.location}`,
-        "",
-        "Message:",
-        lead.message,
-      ].join("\n"),
-      replyTo: lead.email,
-    });
-  } catch (error) {
-    console.error("Contact notification email failed", error);
+  // The lead is already saved, so failed emails are logged but never fail the request.
+  const [adminResult, customerResult] = await Promise.allSettled([
+    sendMail({ ...renderConsultationAdminEmail(lead), replyTo: lead.email }),
+    sendMail({ to: lead.email, ...renderConsultationCustomerEmail(lead) }),
+  ]);
+  if (adminResult.status === "rejected") {
+    console.error("Consultation admin email failed", adminResult.reason);
+  }
+  if (customerResult.status === "rejected") {
+    console.error("Consultation customer email failed", customerResult.reason);
   }
 
   return reply(200, "Thank you. A member of our team will be in touch shortly.");
