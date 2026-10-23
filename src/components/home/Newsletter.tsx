@@ -19,14 +19,14 @@ export default function Newsletter() {
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "subscribe", email: email.trim() }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Something went wrong.");
+        throw new Error(data.message ?? "Something went wrong.");
       }
       setEmail("");
       setStatus("sent");
