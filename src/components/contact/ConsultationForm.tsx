@@ -1,19 +1,12 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
+import type ReCAPTCHA from "react-google-recaptcha";
 import Reveal from "@/components/ui/Reveal";
+import CaptchaField from "@/components/ui/CaptchaField";
 import AlternativeContact from "@/components/contact/AlternativeContact";
 import { EMAIL_PATTERN } from "@/lib/contact";
-
-const PROJECT_TYPES = [
-  "Smart Home Integration",
-  "Home Theater",
-  "Audio & Video",
-  "Lighting & Shades",
-  "Home Automation",
-  "Networking & Security",
-  "Other",
-];
+import { PROJECT_TYPES } from "@/lib/project-types";
 
 interface FormValues {
   name: string;
@@ -50,7 +43,10 @@ function validate(values: FormValues): FormErrors {
 
   if (!values.phone.trim()) {
     errors.phone = "Please enter your phone number.";
-  } else if (!PHONE_PATTERN.test(values.phone.trim())) {
+  } else if (
+    !PHONE_PATTERN.test(values.phone.trim()) ||
+    !/^\d{10,15}$/.test(values.phone.replace(/\D/g, ""))
+  ) {
     errors.phone = "Please enter a valid phone number.";
   }
 
@@ -73,8 +69,13 @@ const inputClass =
 export default function ConsultationForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [submitError, setSubmitError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string>();
+  const captchaRef = useRef<ReCAPTCHA>(null);
+  const [result, setResult] = useState<{ ok: boolean; message: string } | null>(
+    null,
+  );
 
   function handleChange(
     field: keyof FormValues,
@@ -88,29 +89,49 @@ export default function ConsultationForm() {
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting) return;
 
     const validationErrors = validate(values);
     setErrors(validationErrors);
+    setResult(null);
 
-    if (Object.keys(validationErrors).length > 0) return;
+    setCaptchaError(captchaToken ? undefined : "Please confirm you're not a robot.");
 
-    setStatus("sending");
-    setSubmitError("");
+    if (Object.keys(validationErrors).length > 0 || !captchaToken) return;
+
+    setSubmitting(true);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "consultation", ...values }),
+        body: JSON.stringify({ ...values, captchaToken }),
       });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Something went wrong.");
+      const data: { status?: boolean; message?: string } = await res
+        .json()
+        .catch(() => ({}));
+
+      if (res.ok && data.status) {
+        setResult({
+          ok: true,
+          message: data.message ?? "Thank you. We'll be in touch shortly.",
+        });
+        setValues(initialValues);
+      } else {
+        setResult({
+          ok: false,
+          message: data.message ?? "Something went wrong. Please try again.",
+        });
       }
-      setValues(initialValues);
-      setStatus("sent");
-    } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : "Something went wrong.");
-      setStatus("idle");
+    } catch {
+      setResult({
+        ok: false,
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
+      // A reCAPTCHA token is single-use, so every attempt needs a fresh tick.
+      captchaRef.current?.reset();
+      setCaptchaToken(null);
+      setSubmitting(false);
     }
   }
 
@@ -299,13 +320,23 @@ export default function ConsultationForm() {
                 )}
               </div>
 
+              <CaptchaField
+                ref={captchaRef}
+                error={captchaError}
+                onChange={(token) => {
+                  setCaptchaToken(token);
+                  if (token) setCaptchaError(undefined);
+                }}
+              />
+
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={status === "sending"}
-                  className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2 disabled:opacity-60"
+                  disabled={submitting}
+                  aria-busy={submitting}
+                  className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <span>{status === "sending" ? "Sending…" : "Request Consultation"}</span>
+                  <span>{submitting ? "Sending…" : "Request Consultation"}</span>
                   <span
                     className="inline-block transition-transform duration-300 group-hover:translate-x-1"
                     aria-hidden
@@ -313,13 +344,12 @@ export default function ConsultationForm() {
                     →
                   </span>
                 </button>
-                <p role="status" aria-live="polite" className="mt-4 font-body text-sm">
-                  {status === "sent" && (
-                    <span className="text-green">
-                      Thank you. A member of our team will be in touch shortly.
-                    </span>
-                  )}
-                  {submitError && <span className="text-red">{submitError}</span>}
+                <p
+                  role="status"
+                  aria-live="polite"
+                  className={`mt-4 font-body text-sm ${result?.ok ? "text-green" : "text-red"}`}
+                >
+                  {result?.message}
                 </p>
               </div>
             </form>

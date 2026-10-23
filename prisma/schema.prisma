@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id          Int      @id @default(autoincrement())
+  // "contact" for now; future forms can reuse this table with their own type.
+  formType    String   @db.VarChar(50)
+  name        String   @db.VarChar(100)
+  email       String   @db.VarChar(254)
+  phone       String   @db.VarChar(40)
+  projectType String   @db.VarChar(50)
+  location    String   @db.VarChar(150)
+  message     String   @db.Text
+  createdAt   DateTime @default(now())
+
+  @@index([formType, createdAt])
+  @@map("leads")
+}
