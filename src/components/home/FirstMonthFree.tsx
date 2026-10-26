@@ -15,12 +15,12 @@ export default function FirstMonthFree() {
         <Reveal className="lg:col-span-7">
           <p className="eyebrow text-gold-light">Ongoing Service Plan</p>
           <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">
-            Your First Month of Service Is Free.
+            Purchase a Service Plan, Get Your First Month Free.
           </h2>
           <p className="mt-5 max-w-xl font-body text-base leading-relaxed text-white/65">
-            Every new installation includes a complimentary first month of our
-            service plan, so your systems stay tuned, secure, and performing
-            exactly as they should while you settle in.
+            Purchase a service plan and receive the first month of service
+            free, so your systems stay tuned, secure, and performing exactly
+            as they should.
           </p>
           <CTALink
             href="/contact"

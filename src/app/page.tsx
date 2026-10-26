@@ -17,9 +17,9 @@ export default function Home() {
     <>
       <Hero />
       <BrandIntroduction />
-      <BrandShowcase />
       <SmartHomeSection />
       <HomeTheatreSection />
+      <BrandShowcase />
       <FeaturedProjects />
       <WhyLowellEdwards />
       <Process />

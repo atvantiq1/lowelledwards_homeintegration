@@ -57,6 +57,8 @@ export default function VideoEverywhere() {
                 src={outdoor.src}
                 alt={outdoor.alt}
                 sizes="(min-width: 1024px) 40vw, 100vw"
+                // Portrait shot: frame the screen and seating, not the sky.
+                objectPosition="50% 78%"
               />
             </ImageReveal>
             <Reveal delay={0.1}>

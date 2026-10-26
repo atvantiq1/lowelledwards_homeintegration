@@ -118,7 +118,7 @@ export default function BrandShowcase() {
         <Reveal>
           <p className="eyebrow text-gold">Brands We Work With</p>
           <h2 className="mt-4 font-display text-3xl text-cream sm:text-4xl">
-            The Premium Systems Behind Every Installation.
+            The Premium Brands Behind Every Installation.
           </h2>
         </Reveal>
       </div>
