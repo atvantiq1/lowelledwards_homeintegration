@@ -118,7 +118,7 @@ export default function Header() {
             src="/images/logo.png"
             alt="Lowell Edwards Home Integration"
             fill
-            priority
+            loading="eager"
             sizes="320px"
             className={`object-contain object-left transition-[filter] duration-500 ${
               solid ? "" : "brightness-0 invert"
