@@ -45,7 +45,7 @@ export default function Newsletter() {
             Ideas for a Smarter, More Beautiful Home.
           </h2>
           <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-cream/65">
-            Subscribe for featured projects, new technology, and seasonal
+            Keep informed on featured projects, new technology, and seasonal
             tips from the Lowell Edwards team. No clutter, just the good stuff.
           </p>
         </Reveal>

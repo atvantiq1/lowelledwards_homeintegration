@@ -23,7 +23,7 @@ const STEPS = [
   },
   {
     number: "03",
-    label: "Client Training & Guidance",
+    label: "Personal Walkthrough & Training",
     description:
       "We walk you through every installed product and how to use it day to day, so you feel confident and in control from the start.",
     icon: GraduationCap,

@@ -22,8 +22,9 @@ const STATS = [
     image: homeImages.whyResponse,
   },
   {
-    title: "Support Around the Clock",
-    description: "24/7 phone support from a team that knows your systems.",
+    title: "Free Phone & Remote Support",
+    description:
+      "Free phone and remote support from a team that knows your systems, available during business hours.",
     image: homeImages.whySupport,
   },
   {
@@ -150,12 +151,12 @@ export default function WhyLowellEdwards() {
       <div className="section-pad mt-6 sm:mt-8">
         <Reveal className="max-w-2xl">
           <h3 className="font-display text-2xl text-white sm:text-3xl">
-            A Better Experience From Design to Support.
+            1 Year Support Plan After Installation.
           </h3>
           <p className="mt-4 font-body text-base leading-relaxed text-white/60">
-            We believe the relationship does not end when installation is
-            complete. Our team remains available to help keep your home
-            technology performing the way it should.
+            The relationship does not end when installation is complete. Every
+            project includes a one-year support plan, so our team is there to
+            keep your home technology performing the way it should.
           </p>
         </Reveal>
       </div>
