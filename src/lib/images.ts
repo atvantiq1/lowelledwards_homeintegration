@@ -1,3 +1,4 @@
+import homeHero from "@/assets/images/home/hero.jpg";
 import avHero from "@/assets/images/audio-video/hero.jpg";
 import avIntroduction from "@/assets/images/audio-video/introduction.jpg";
 import avWholeHomeAudio from "@/assets/images/audio-video/whole-home-audio.jpg";
@@ -35,12 +36,11 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    // Control4 dealer artwork at 2x resolution so it stays sharp full-bleed.
-    // The devices sit in the lower right (~60%-93% of the width); Hero.tsx
-    // biases the crop toward them on narrow screens, so re-check that if you
-    // swap this image.
-    src: "/images/home-hero.jpg",
-    alt: "Modern desert home at dusk beside a pool, with a Control4 touch screen and the Control4 app on a phone showing audio sessions and room controls",
+    // Unsplash, Michael Brown (q6eSeT3euLU), local 3200px copy. The glass
+    // facade sits right of center; Hero.tsx biases the crop toward it on
+    // narrow screens, so re-check that if you swap this image.
+    src: homeHero,
+    alt: "Modern glass-walled luxury home at dusk with warm light glowing from every floor, a lit pool and terrace in the foreground",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",
