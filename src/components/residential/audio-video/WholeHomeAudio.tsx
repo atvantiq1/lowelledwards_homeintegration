@@ -35,8 +35,6 @@ export default function WholeHomeAudio() {
             src={audioVideoImages.wholeHomeAudio.src}
             alt={audioVideoImages.wholeHomeAudio.alt}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            // Portrait shot: keep the hi-fi stack and speakers in the crop.
-            objectPosition="50% 85%"
           />
         </ImageReveal>
 

@@ -143,3 +143,73 @@ button:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* react-phone-input-2, restyled to match the consultation form fields */
+.phone-field.react-tel-input {
+  font-family: var(--fb), sans-serif;
+}
+
+.phone-field.react-tel-input .form-control {
+  width: 100%;
+  height: auto;
+  padding: 0.625rem 1rem 0.625rem 3.5rem;
+  border: 1px solid var(--bg4);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg2) 60%, transparent);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--cream);
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+}
+
+.phone-field.react-tel-input .form-control:focus {
+  border-color: var(--gold);
+  background: var(--bg);
+  box-shadow: none;
+  outline: none;
+}
+
+.phone-field.react-tel-input .form-control[aria-invalid="true"] {
+  border-color: var(--red);
+}
+
+.phone-field.react-tel-input .flag-dropdown,
+.phone-field.react-tel-input .flag-dropdown.open,
+.phone-field.react-tel-input .selected-flag,
+.phone-field.react-tel-input .flag-dropdown.open .selected-flag {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.phone-field.react-tel-input .selected-flag {
+  width: 3rem;
+  padding-left: 1rem;
+}
+
+.phone-field.react-tel-input .country-list {
+  margin-top: 1px;
+  border-radius: 0;
+  font-size: 0.875rem;
+  color: var(--cream);
+}
+
+.phone-field.react-tel-input .country-list .search {
+  padding: 0.5rem;
+}
+
+.phone-field.react-tel-input .country-list .search-box {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--bg4);
+  border-radius: 0;
+  font-size: 0.875rem;
+}
+
+.phone-field.react-tel-input .country-list .country.highlight,
+.phone-field.react-tel-input .country-list .country:hover {
+  background: var(--bg2);
+}

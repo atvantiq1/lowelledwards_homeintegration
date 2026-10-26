@@ -2,7 +2,11 @@ import { z } from "zod";
 import { PROJECT_TYPES } from "@/lib/project-types";
 
 const NAME_PATTERN = /^[\p{L}\s'.-]+$/u;
-const PHONE_PATTERN = /^[\d\s()+.-]+$/;
+// E.164: "+", country code, then the subscriber number; 15 digits at most.
+const PHONE_PATTERN = /^\+[1-9]\d{7,14}$/;
+const HAS_LETTER = /\p{L}/u;
+
+export const MESSAGE_MAX_LENGTH = 2000;
 
 function requiredText(label: string, min: number, max: number) {
   return z
@@ -24,20 +28,18 @@ export const contactLeadSchema = z.object({
     .min(1, { error: "Please enter your email." })
     .max(254, { error: "Must be at most 254 characters." })
     .pipe(z.email({ error: "Please enter a valid email address." })),
-  phone: requiredText("phone number", 1, 40)
-    .regex(PHONE_PATTERN, { error: "Please enter a valid phone number." })
-    .refine(
-      (value) => {
-        const digits = value.replace(/\D/g, "").length;
-        return digits >= 10 && digits <= 15;
-      },
-      { error: "Please enter a valid phone number." },
-    ),
+  phone: z
+    .string({ error: "Please enter your phone number." })
+    .trim()
+    .min(1, { error: "Please enter your phone number." })
+    .regex(PHONE_PATTERN, { error: "Please enter a valid phone number." }),
   projectType: z.enum(PROJECT_TYPES, {
     error: "Please select a project type.",
   }),
-  location: requiredText("location", 2, 150),
-  message: requiredText("project details", 1, 2000),
+  location: requiredText("location", 2, 150).regex(HAS_LETTER, {
+    error: "Please enter a city and state.",
+  }),
+  message: requiredText("project details", 10, MESSAGE_MAX_LENGTH),
 });
 
 export type ContactLeadInput = z.infer<typeof contactLeadSchema>;

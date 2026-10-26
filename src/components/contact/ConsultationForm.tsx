@@ -2,15 +2,21 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import type ReCAPTCHA from "react-google-recaptcha";
+import PhoneInput, { type CountryData } from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Reveal from "@/components/ui/Reveal";
 import CaptchaField from "@/components/ui/CaptchaField";
 import AlternativeContact from "@/components/contact/AlternativeContact";
-import { EMAIL_PATTERN } from "@/lib/contact";
+import {
+  contactLeadSchema,
+  MESSAGE_MAX_LENGTH,
+} from "@/lib/lead-validation";
 import { PROJECT_TYPES } from "@/lib/project-types";
 
 interface FormValues {
   name: string;
   email: string;
+  // Digits only, country code included, as react-phone-input-2 reports it.
   phone: string;
   projectType: string;
   location: string;
@@ -28,34 +34,42 @@ const initialValues: FormValues = {
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-const PHONE_PATTERN = /^[\d\s()+.-]{7,}$/;
+type PhoneCountry = Pick<CountryData, "countryCode" | "dialCode" | "format">;
 
-function validate(values: FormValues): FormErrors {
+const DEFAULT_COUNTRY = "us";
+
+// The country's mask has one "." per digit, so it gives the full number length.
+function maskDigitCount(format: string): number {
+  return format.split("").filter((char) => char === ".").length;
+}
+
+// Sends "+<digits>", or "" when only the country code has been entered.
+function toE164(phone: string, country: PhoneCountry | null): string {
+  if (!phone || phone === country?.dialCode) return "";
+  return `+${phone}`;
+}
+
+function validate(values: FormValues, country: PhoneCountry | null): FormErrors {
   const errors: FormErrors = {};
+  const parsed = contactLeadSchema.safeParse({
+    ...values,
+    phone: toE164(values.phone, country),
+  });
 
-  if (!values.name.trim()) errors.name = "Please enter your name.";
-
-  if (!values.email.trim()) {
-    errors.email = "Please enter your email.";
-  } else if (!EMAIL_PATTERN.test(values.email.trim())) {
-    errors.email = "Please enter a valid email address.";
+  if (!parsed.success) {
+    for (const issue of parsed.error.issues) {
+      const field = issue.path[0] as keyof FormValues;
+      errors[field] ??= issue.message;
+    }
   }
 
-  if (!values.phone.trim()) {
-    errors.phone = "Please enter your phone number.";
-  } else if (
-    !PHONE_PATTERN.test(values.phone.trim()) ||
-    !/^\d{10,15}$/.test(values.phone.replace(/\D/g, ""))
-  ) {
-    errors.phone = "Please enter a valid phone number.";
+  // Masks vary in length outside North America, so only there is the
+  // exact digit count enforced; elsewhere the mask caps the length.
+  if (!errors.phone && country?.dialCode === "1") {
+    if (values.phone.length !== maskDigitCount(country.format)) {
+      errors.phone = "Please enter a 10-digit phone number.";
+    }
   }
-
-  if (!values.projectType) errors.projectType = "Please select a project type.";
-
-  if (!values.location.trim()) errors.location = "Please enter your location.";
-
-  if (!values.message.trim())
-    errors.message = "Tell us a bit about your project.";
 
   return errors;
 }
@@ -64,12 +78,13 @@ const fieldLabelClass =
   "font-body text-xs font-medium uppercase tracking-[0.14em] text-cream/50";
 
 const inputClass =
-  "mt-2 w-full border border-bg4 bg-bg2/60 px-4 py-2.5 font-body text-base text-cream placeholder:text-cream/30 transition-colors duration-300 focus:border-gold focus:bg-bg focus:outline-none";
+  "mt-2 w-full border border-bg4 bg-bg2/60 px-4 py-2.5 font-body text-base text-cream placeholder:text-cream/30 transition-colors duration-300 focus:border-gold focus:bg-bg focus:outline-none aria-invalid:border-red";
 
 export default function ConsultationForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
+  const [phoneCountry, setPhoneCountry] = useState<PhoneCountry | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [captchaError, setCaptchaError] = useState<string>();
   const captchaRef = useRef<ReCAPTCHA>(null);
@@ -77,21 +92,50 @@ export default function ConsultationForm() {
     null,
   );
 
+  // Once a field shows an error, re-check it on every keystroke so the
+  // message clears as soon as the value is fixed.
+  function updateField(
+    field: keyof FormValues,
+    value: string,
+    country: PhoneCountry | null = phoneCountry,
+  ) {
+    const next = { ...values, [field]: value };
+    setValues(next);
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: validate(next, country)[field] }));
+    }
+  }
+
   function handleChange(
     field: keyof FormValues,
   ): (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => void {
-    return (e) => {
-      setValues((prev) => ({ ...prev, [field]: e.target.value }));
+    return (e) => updateField(field, e.target.value);
+  }
+
+  // Empty fields are only flagged on submit, so tabbing through stays quiet.
+  function handleBlur(field: keyof FormValues): () => void {
+    return () => {
+      if (!values[field].trim()) return;
+      setErrors((prev) => ({
+        ...prev,
+        [field]: validate(values, phoneCountry)[field],
+      }));
     };
+  }
+
+  function handlePhoneChange(value: string, data: CountryData | object) {
+    const country = "dialCode" in data ? data : null;
+    setPhoneCountry(country);
+    updateField("phone", value, country);
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (submitting) return;
 
-    const validationErrors = validate(values);
+    const validationErrors = validate(values, phoneCountry);
     setErrors(validationErrors);
     setResult(null);
 
@@ -104,7 +148,11 @@ export default function ConsultationForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, captchaToken }),
+        body: JSON.stringify({
+          ...values,
+          phone: toE164(values.phone, phoneCountry),
+          captchaToken,
+        }),
       });
       const data: { status?: boolean; message?: string } = await res
         .json()
@@ -173,6 +221,8 @@ export default function ConsultationForm() {
                     aria-describedby={errors.name ? "name-error" : undefined}
                     value={values.name}
                     onChange={handleChange("name")}
+                    onBlur={handleBlur("name")}
+                    maxLength={100}
                     className={inputClass}
                   />
                   {errors.name && (
@@ -197,6 +247,8 @@ export default function ConsultationForm() {
                     aria-describedby={errors.email ? "email-error" : undefined}
                     value={values.email}
                     onChange={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    maxLength={254}
                     className={inputClass}
                   />
                   {errors.email && (
@@ -210,18 +262,28 @@ export default function ConsultationForm() {
                   <label htmlFor="phone" className={fieldLabelClass}>
                     Phone
                   </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    required
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.phone)}
-                    aria-describedby={errors.phone ? "phone-error" : undefined}
+                  <PhoneInput
+                    country={DEFAULT_COUNTRY}
+                    preferredCountries={["us", "ca"]}
+                    enableSearch
+                    disableSearchIcon
+                    countryCodeEditable={false}
                     value={values.phone}
-                    onChange={handleChange("phone")}
-                    className={inputClass}
+                    onChange={handlePhoneChange}
+                    onBlur={handleBlur("phone")}
+                    onMount={(_, data) => {
+                      if ("dialCode" in data) setPhoneCountry(data);
+                    }}
+                    containerClass="phone-field mt-2"
+                    inputProps={{
+                      id: "phone",
+                      name: "phone",
+                      autoComplete: "tel",
+                      required: true,
+                      "aria-required": "true",
+                      "aria-invalid": Boolean(errors.phone),
+                      "aria-describedby": errors.phone ? "phone-error" : undefined,
+                    }}
                   />
                   {errors.phone && (
                     <p id="phone-error" className="mt-2 font-body text-xs text-red">
@@ -245,6 +307,7 @@ export default function ConsultationForm() {
                     }
                     value={values.projectType}
                     onChange={handleChange("projectType")}
+                    onBlur={handleBlur("projectType")}
                     className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%231a1a2e%22 stroke-opacity=%220.4%22 stroke-width=%221.6%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-size-[16px] bg-position-[right_1rem_center] bg-no-repeat pr-10`}
                   >
                     <option value="" disabled>
@@ -284,6 +347,8 @@ export default function ConsultationForm() {
                     }
                     value={values.location}
                     onChange={handleChange("location")}
+                    onBlur={handleBlur("location")}
+                    maxLength={150}
                     className={inputClass}
                   />
                   {errors.location && (
@@ -311,6 +376,8 @@ export default function ConsultationForm() {
                   aria-describedby={errors.message ? "message-error" : undefined}
                   value={values.message}
                   onChange={handleChange("message")}
+                  onBlur={handleBlur("message")}
+                  maxLength={MESSAGE_MAX_LENGTH}
                   className={`${inputClass} resize-none`}
                 />
                 {errors.message && (

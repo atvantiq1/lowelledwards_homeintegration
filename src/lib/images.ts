@@ -473,12 +473,11 @@ export const projectGalleryImages = [
 ] as const;
 
 /**
- * Audio & Video page photography. The hero is Unsplash and the Whole-Home
- * Audio, outdoor and Discreet By Design shots are Pexels (both free to use,
- * no attribution required), stand-ins until photos of real Jersey Shore
- * projects are available. The rest is lifestyle
- * photography from the official sites of brands Lowell Edwards carries
- * (Sonos, KEF). Confirm dealer usage rights with each brand before launch,
+ * Audio & Video page photography. The hero is Unsplash and the outdoor and
+ * Discreet By Design shots are Pexels (both free to use, no attribution
+ * required), stand-ins until photos of real Jersey Shore projects are
+ * available. The rest is lifestyle photography from the official sites of
+ * brands Lowell Edwards carries (Sonos, KEF). Confirm dealer usage rights with each brand before launch,
  * as with the Control4 note above.
  *
  * All of these are local copies in src/assets/images/audio-video (resized
@@ -497,9 +496,9 @@ export const audioVideoImages = {
     alt: "Large TV on a white wall flanked by slim KEF in-wall speakers with a center channel below, above a marble ledge and terracotta sofa",
   },
   wholeHomeAudio: {
-    // Pexels (17551313)
+    // KEF LS50 Meta, us.kef.com
     src: avWholeHomeAudio,
-    alt: "Hi-fi receiver, cassette deck and turntable on a wooden sideboard between two speakers, against blue and white striped wallpaper",
+    alt: "Pair of black KEF bookshelf speakers and a slim streamer and amplifier stack on light built-in shelving in a bright, modern home office",
   },
   spaces: {
     living: {
