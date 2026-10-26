@@ -473,11 +473,12 @@ export const projectGalleryImages = [
 ] as const;
 
 /**
- * Audio & Video page photography. The hero and Whole-Home Audio shots are
- * Unsplash (free to use, no attribution required); the rest is lifestyle
- * photography from the official sites of brands Lowell Edwards carries
- * (Sonos, KEF, Sonance). Confirm dealer usage rights with each brand
- * before launch, as with the Control4 note above.
+ * Audio & Video page photography. The hero is Unsplash and the outdoor and
+ * Discreet By Design shots are Pexels (both free to use, no attribution
+ * required), stand-ins until photos of real Jersey Shore projects are
+ * available. The rest is lifestyle photography from the official sites of
+ * brands Lowell Edwards carries (Sonos, KEF). Confirm dealer usage rights with each brand before launch,
+ * as with the Control4 note above.
  *
  * All of these are local copies in src/assets/images/audio-video (resized
  * to at most 2000px) rather than remote URLs: the brand CDNs were slow
@@ -495,9 +496,9 @@ export const audioVideoImages = {
     alt: "Large TV on a white wall flanked by slim KEF in-wall speakers with a center channel below, above a marble ledge and terracotta sofa",
   },
   wholeHomeAudio: {
-    // Unsplash (ZtiiefLVQ_M)
+    // KEF LS50 Meta, us.kef.com
     src: avWholeHomeAudio,
-    alt: "Warmly lit living room with a turntable and white bookshelf speakers on a low cabinet beneath a gallery wall and swing-arm lamp",
+    alt: "Pair of black KEF bookshelf speakers and a slim streamer and amplifier stack on light built-in shelving in a bright, modern home office",
   },
   spaces: {
     living: {
@@ -506,9 +507,9 @@ export const audioVideoImages = {
       alt: "Family on a blue sofa watching a wall-mounted TV with a Sonos soundbar beneath it in a bright living room",
     },
     outdoor: {
-      // Sonance outdoor music, sonance.com
+      // Pexels (3131971)
       src: avOutdoor,
-      alt: "Friends relaxing around a fire pit on a covered outdoor lounge at night with integrated lighting and sound",
+      alt: "Backyard movie night under the stars, with a large outdoor screen, string lights and lounge seating around a fire",
     },
     listening: {
       // KEF Reference 4 Meta, us.kef.com
@@ -517,9 +518,9 @@ export const audioVideoImages = {
     },
   },
   discreet: {
-    // Sonance Visual Experience Series in a wood ceiling, sonance.com
+    // Pexels (12715501)
     src: avDiscreet,
-    alt: "Grand timber-ceilinged great room with speakers set discreetly into the wood ceiling above white sofas and a stone fireplace",
+    alt: "Bright white open-plan great room with ceiling spotlights, linen sofas and a wall of glass doors opening onto a terrace above the ocean",
   },
   cta: {
     src: avCta,

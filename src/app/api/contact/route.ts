@@ -1,93 +1,72 @@
-import { CONTACT_EMAIL, EMAIL_PATTERN } from "@/lib/contact";
+import { NextResponse, type NextRequest } from "next/server";
+import { sendMail } from "@/lib/email";
+import {
+  renderConsultationAdminEmail,
+  renderConsultationCustomerEmail,
+} from "@/lib/email-templates";
+import { createLead } from "@/lib/leads";
+import {
+  contactLeadSchema,
+  formatValidationMessage,
+} from "@/lib/lead-validation";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { getCaptchaToken, verifyCaptchaToken } from "@/lib/recaptcha";
 
-const CONSULTATION_FIELDS = [
-  "name",
-  "email",
-  "phone",
-  "projectType",
-  "location",
-  "message",
-] as const;
+// Prisma needs Node.js APIs and does not run on the Edge runtime.
+export const runtime = "nodejs";
 
-const MAX_FIELD_LENGTH = 5000;
-
-function clean(value: unknown): string {
-  return typeof value === "string" ? value.trim().slice(0, MAX_FIELD_LENGTH) : "";
+function reply(code: number, message: string, headers?: HeadersInit) {
+  return NextResponse.json(
+    { status: code >= 200 && code < 300, code, message },
+    { status: code, headers },
+  );
 }
 
-async function sendMail(subject: string, text: string, replyTo: string) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) throw new Error("RESEND_API_KEY is not set");
+export async function POST(req: NextRequest) {
+  const ip = getClientIp(req.headers);
+  const limit = checkRateLimit("contact", ip);
+  if (!limit.allowed) {
+    return reply(429, "Too many requests. Please try again later.", {
+      "Retry-After": String(limit.retryAfterSeconds),
+    });
+  }
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: process.env.CONTACT_FROM_EMAIL ?? "Lowell Edwards Website <onboarding@resend.dev>",
-      to: [CONTACT_EMAIL],
-      reply_to: replyTo,
-      subject,
-      text,
-    }),
-  });
-
-  if (!res.ok) throw new Error(`Email provider responded ${res.status}`);
-}
-
-export async function POST(request: Request) {
-  let body: Record<string, unknown>;
+  let body: unknown;
   try {
-    body = await request.json();
+    body = await req.json();
   } catch {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
+    return reply(400, "Invalid request body.");
   }
 
-  const email = clean(body.email);
-  if (!EMAIL_PATTERN.test(email)) {
-    return Response.json({ error: "Please enter a valid email address." }, { status: 400 });
+  const captcha = await verifyCaptchaToken(getCaptchaToken(body), ip);
+  if (!captcha.ok) {
+    return reply(captcha.status, captcha.reason);
   }
 
+  const parsed = contactLeadSchema.safeParse(body);
+  if (!parsed.success) {
+    return reply(400, formatValidationMessage(parsed.error));
+  }
+
+  const lead = parsed.data;
   try {
-    if (body.type === "subscribe") {
-      await sendMail(
-        "New newsletter subscriber",
-        `A new visitor subscribed to updates from the website.\n\nEmail: ${email}`,
-        email,
-      );
-    } else if (body.type === "consultation") {
-      const values = Object.fromEntries(
-        CONSULTATION_FIELDS.map((field) => [field, clean(body[field])]),
-      );
-      if (CONSULTATION_FIELDS.some((field) => !values[field])) {
-        return Response.json({ error: "Please complete every field." }, { status: 400 });
-      }
-      await sendMail(
-        `Consultation request from ${values.name}`,
-        [
-          `Name: ${values.name}`,
-          `Email: ${values.email}`,
-          `Phone: ${values.phone}`,
-          `Project Type: ${values.projectType}`,
-          `Location: ${values.location}`,
-          "",
-          "Message:",
-          values.message,
-        ].join("\n"),
-        email,
-      );
-    } else {
-      return Response.json({ error: "Invalid request." }, { status: 400 });
-    }
-  } catch (err) {
-    console.error("Contact email failed:", err);
-    return Response.json(
-      { error: `We couldn't send your message. Please email us at ${CONTACT_EMAIL}.` },
-      { status: 502 },
-    );
+    await createLead({ formType: "contact", ...lead });
+  } catch (error) {
+    console.error("Failed to save contact lead", error);
+    return reply(500, "Something went wrong. Please try again.");
   }
 
-  return Response.json({ ok: true });
+  // The lead is already saved, so failed emails are logged but never fail the request.
+  const [adminResult, customerResult] = await Promise.allSettled([
+    sendMail({ ...renderConsultationAdminEmail(lead), replyTo: lead.email }),
+    sendMail({ to: lead.email, ...renderConsultationCustomerEmail(lead) }),
+  ]);
+  if (adminResult.status === "rejected") {
+    console.error("Consultation admin email failed", adminResult.reason);
+  }
+  if (customerResult.status === "rejected") {
+    console.error("Consultation customer email failed", customerResult.reason);
+  }
+
+  return reply(200, "Thank you. A member of our team will be in touch shortly.");
 }

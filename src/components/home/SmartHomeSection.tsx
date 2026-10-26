@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   AudioIcon,
   VideoIcon,
@@ -12,6 +13,7 @@ import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
 import CapabilityList from "@/components/ui/CapabilityList";
+import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
 const CAPABILITIES = [
@@ -83,7 +85,12 @@ export default function SmartHomeSection() {
           className="flex flex-col justify-center bg-bg p-10 sm:p-12 lg:col-span-5 lg:p-14"
         >
           <h2 className="font-display text-3xl text-cream sm:text-4xl">
-            Smart Home Integration
+            <Link
+              href="/residential/smart-home-integration"
+              className="transition-colors duration-300 hover:text-gold"
+            >
+              Smart Home Integration
+            </Link>
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
@@ -100,6 +107,14 @@ export default function SmartHomeSection() {
           </p>
 
           <CapabilityList items={CAPABILITIES} />
+
+          <CTALink
+            href="/residential/smart-home-integration"
+            variant="solid"
+            className="mt-10 self-start"
+          >
+            Plan Your Home Automation
+          </CTALink>
         </Reveal>
       </div>
     </section>

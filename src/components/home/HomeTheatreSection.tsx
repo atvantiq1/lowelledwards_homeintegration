@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   CinemaScreenIcon,
   SurroundSoundIcon,
@@ -10,6 +11,7 @@ import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import ImageReveal from "@/components/ui/ImageReveal";
 import CapabilityList from "@/components/ui/CapabilityList";
+import CTALink from "@/components/ui/CTALink";
 import { homeImages } from "@/lib/images";
 
 const FEATURES = [
@@ -61,7 +63,12 @@ export default function HomeTheatreSection() {
           className="order-2 flex flex-col justify-center bg-bg2 p-10 sm:p-12 lg:order-1 lg:col-span-5 lg:p-14"
         >
           <h2 className="font-display text-3xl text-cream sm:text-4xl">
-            Home Theater
+            <Link
+              href="/residential/home-theatre"
+              className="transition-colors duration-300 hover:text-gold"
+            >
+              Immersive Home Theater
+            </Link>
           </h2>
 
           <p className="mt-5 font-body text-sm leading-relaxed text-cream/65">
@@ -76,6 +83,14 @@ export default function HomeTheatreSection() {
           </p>
 
           <CapabilityList items={FEATURES} />
+
+          <CTALink
+            href="/residential/home-theatre"
+            variant="solid"
+            className="mt-10 self-start"
+          >
+            Plan Your Theater
+          </CTALink>
         </Reveal>
 
         <ImageReveal className="aspect-4/3 sm:aspect-16/10 order-1 lg:order-2 lg:col-span-7 lg:aspect-auto lg:h-full lg:min-h-110">

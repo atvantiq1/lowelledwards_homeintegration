@@ -19,14 +19,14 @@ export default function Newsletter() {
     setStatus("sending");
     setError("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "subscribe", email: email.trim() }),
+        body: JSON.stringify({ email: email.trim() }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "Something went wrong.");
+        throw new Error(data.message ?? "Something went wrong.");
       }
       setEmail("");
       setStatus("sent");
@@ -45,7 +45,7 @@ export default function Newsletter() {
             Ideas for a Smarter, More Beautiful Home.
           </h2>
           <p className="mt-4 max-w-lg font-body text-base leading-relaxed text-cream/65">
-            Subscribe for featured projects, new technology, and seasonal
+            Keep informed on featured projects, new technology, and seasonal
             tips from the Lowell Edwards team. No clutter, just the good stuff.
           </p>
         </Reveal>

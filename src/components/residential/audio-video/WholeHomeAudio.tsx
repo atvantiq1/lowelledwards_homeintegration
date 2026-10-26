@@ -35,7 +35,6 @@ export default function WholeHomeAudio() {
             src={audioVideoImages.wholeHomeAudio.src}
             alt={audioVideoImages.wholeHomeAudio.alt}
             sizes="(min-width: 1024px) 48vw, 100vw"
-            objectPosition="50% 60%"
           />
         </ImageReveal>
 
