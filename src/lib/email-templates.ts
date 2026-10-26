@@ -148,8 +148,16 @@ export interface ConsultationEmailInput {
   email: string;
   phone: string;
   projectType: string;
-  location: string;
+  streetAddress: string;
+  city: string;
+  // Full state name, e.g. "New Jersey", not the two-letter code.
+  state: string;
+  zipCode: string;
   message: string;
+}
+
+function formatAddress(lead: ConsultationEmailInput): [string, string] {
+  return [lead.streetAddress, `${lead.city}, ${lead.state} ${lead.zipCode}`];
 }
 
 export function renderConsultationAdminEmail(lead: ConsultationEmailInput): RenderedEmail {
@@ -165,7 +173,7 @@ export function renderConsultationAdminEmail(lead: ConsultationEmailInput): Rend
          row("Email", `<a href="mailto:${escapeHtml(lead.email)}" style="color:${BRAND.maroon};">${safe(lead.email)}</a>`) +
          row("Phone", `<a href="tel:${escapeHtml(lead.phone.replace(/[^\d+]/g, ""))}" style="color:${BRAND.maroon};">${safe(lead.phone)}</a>`) +
          row("Project Type", safe(lead.projectType)) +
-         row("Location", safe(lead.location)) +
+         row("Address", formatAddress(lead).map(safe).join("<br>")) +
          row("Project Description", safe(lead.message)),
      )}
      <p style="margin:0 0 24px;">Please review the request and contact the customer to discuss their project requirements and schedule a complimentary in-home consultation.</p>
@@ -185,7 +193,7 @@ export function renderConsultationAdminEmail(lead: ConsultationEmailInput): Rend
     `Email: ${lead.email}`,
     `Phone: ${lead.phone}`,
     `Project Type: ${lead.projectType}`,
-    `Location: ${lead.location}`,
+    `Address: ${formatAddress(lead).join(", ")}`,
     `Project Description: ${lead.message}`,
     "",
     "Please review the request and contact the customer to discuss their project requirements and schedule a complimentary in-home consultation.",
@@ -216,7 +224,7 @@ export function renderConsultationCustomerEmail(lead: ConsultationEmailInput): R
      ${sectionHeading("Your Request Details")}
      ${detailsTable(
        row("Project Type", escapeHtml(lead.projectType)) +
-         row("Location", escapeHtml(lead.location)),
+         row("Address", formatAddress(lead).map(escapeHtml).join("<br>")),
      )}
      <p ${p}>If you need to speak with us directly, please call <a href="tel:+12015253300" style="color:${BRAND.maroon};">${COMPANY_PHONE}</a> or email <a href="mailto:${CONTACT_EMAIL}" style="color:${BRAND.maroon};">${CONTACT_EMAIL}</a>.</p>
      <p ${p}>We look forward to helping you create a home experience designed around your lifestyle.</p>
@@ -233,7 +241,7 @@ export function renderConsultationCustomerEmail(lead: ConsultationEmailInput): R
     "",
     "Your Request Details",
     `Project Type: ${lead.projectType}`,
-    `Location: ${lead.location}`,
+    `Address: ${formatAddress(lead).join(", ")}`,
     "",
     `If you need to speak with us directly, please call ${COMPANY_PHONE} or email ${CONTACT_EMAIL}.`,
     "",

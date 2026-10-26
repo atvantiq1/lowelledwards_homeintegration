@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE `leads` ADD COLUMN `city` VARCHAR(100) NULL,
+    ADD COLUMN `state` VARCHAR(2) NULL,
+    ADD COLUMN `streetAddress` VARCHAR(150) NULL,
+    ADD COLUMN `zipCode` VARCHAR(10) NULL,
+    MODIFY `location` VARCHAR(150) NULL;

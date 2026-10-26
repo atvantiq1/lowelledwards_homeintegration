@@ -11,6 +11,7 @@ import {
 } from "@/lib/lead-validation";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { getCaptchaToken, verifyCaptchaToken } from "@/lib/recaptcha";
+import { getUsStateName, isUsCity } from "@/lib/us-locations";
 
 // Prisma needs Node.js APIs and does not run on the Edge runtime.
 export const runtime = "nodejs";
@@ -49,6 +50,14 @@ export async function POST(req: NextRequest) {
   }
 
   const lead = parsed.data;
+  const stateName = getUsStateName(lead.state);
+  if (!stateName) {
+    return reply(400, "State: Please select a state.");
+  }
+  if (!isUsCity(lead.state, lead.city)) {
+    return reply(400, "City: Please select a city in the chosen state.");
+  }
+
   try {
     await createLead({ formType: "contact", ...lead });
   } catch (error) {
@@ -57,9 +66,10 @@ export async function POST(req: NextRequest) {
   }
 
   // The lead is already saved, so failed emails are logged but never fail the request.
+  const emailLead = { ...lead, state: stateName };
   const [adminResult, customerResult] = await Promise.allSettled([
-    sendMail({ ...renderConsultationAdminEmail(lead), replyTo: lead.email }),
-    sendMail({ to: lead.email, ...renderConsultationCustomerEmail(lead) }),
+    sendMail({ ...renderConsultationAdminEmail(emailLead), replyTo: lead.email }),
+    sendMail({ to: lead.email, ...renderConsultationCustomerEmail(emailLead) }),
   ]);
   if (adminResult.status === "rejected") {
     console.error("Consultation admin email failed", adminResult.reason);

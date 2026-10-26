@@ -8,16 +8,23 @@ datasource db {
 }
 
 model Lead {
-  id          Int      @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   // "contact" for now; future forms can reuse this table with their own type.
-  formType    String   @db.VarChar(50)
-  name        String   @db.VarChar(100)
-  email       String   @db.VarChar(254)
-  phone       String   @db.VarChar(40)
-  projectType String   @db.VarChar(50)
-  location    String   @db.VarChar(150)
-  message     String   @db.Text
-  createdAt   DateTime @default(now())
+  formType      String   @db.VarChar(50)
+  name          String   @db.VarChar(100)
+  email         String   @db.VarChar(254)
+  phone         String   @db.VarChar(40)
+  projectType   String   @db.VarChar(50)
+  // Superseded by the address fields below; kept for leads saved before them.
+  location      String?  @db.VarChar(150)
+  // Optional only because older rows predate them; the API always sets them.
+  streetAddress String?  @db.VarChar(150)
+  city          String?  @db.VarChar(100)
+  // Two-letter USPS code, e.g. "NJ".
+  state         String?  @db.VarChar(2)
+  zipCode       String?  @db.VarChar(10)
+  message       String   @db.Text
+  createdAt     DateTime @default(now())
 
   @@index([formType, createdAt])
   @@map("leads")

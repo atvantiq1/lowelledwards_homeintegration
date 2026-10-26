@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import type ReCAPTCHA from "react-google-recaptcha";
+import { CalendarDays } from "lucide-react";
 import PhoneInput, { type CountryData } from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Reveal from "@/components/ui/Reveal";
@@ -12,6 +13,7 @@ import {
   MESSAGE_MAX_LENGTH,
 } from "@/lib/lead-validation";
 import { PROJECT_TYPES } from "@/lib/project-types";
+import type { UsState } from "@/lib/us-locations";
 
 interface FormValues {
   name: string;
@@ -19,7 +21,11 @@ interface FormValues {
   // Digits only, country code included, as react-phone-input-2 reports it.
   phone: string;
   projectType: string;
-  location: string;
+  streetAddress: string;
+  zipCode: string;
+  // Two-letter USPS code, e.g. "NJ".
+  state: string;
+  city: string;
   message: string;
 }
 
@@ -28,7 +34,10 @@ const initialValues: FormValues = {
   email: "",
   phone: "",
   projectType: "",
-  location: "",
+  streetAddress: "",
+  zipCode: "",
+  state: "",
+  city: "",
   message: "",
 };
 
@@ -75,12 +84,19 @@ function validate(values: FormValues, country: PhoneCountry | null): FormErrors 
 }
 
 const fieldLabelClass =
-  "font-body text-xs font-medium uppercase tracking-[0.14em] text-cream/50";
+  "font-body text-xs font-medium uppercase tracking-[0.14em] text-gold";
 
 const inputClass =
-  "mt-2 w-full border border-bg4 bg-bg2/60 px-4 py-2.5 font-body text-base text-cream placeholder:text-cream/30 transition-colors duration-300 focus:border-gold focus:bg-bg focus:outline-none aria-invalid:border-red";
+  "mt-2 w-full rounded-md border border-bg4 bg-bg px-4 py-3 font-body text-base text-cream placeholder:text-cream/35 transition-colors duration-300 focus:border-gold focus:outline-none aria-invalid:border-red";
 
-export default function ConsultationForm() {
+const selectClass = `${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%231a1a2e%22 stroke-opacity=%220.4%22 stroke-width=%221.6%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-size-[16px] bg-position-[right_1rem_center] bg-no-repeat pr-10 disabled:cursor-not-allowed disabled:opacity-60`;
+
+interface ConsultationFormProps {
+  // Passed down from the server so the ~8MB city dataset stays out of the bundle.
+  states: UsState[];
+}
+
+export default function ConsultationForm({ states }: ConsultationFormProps) {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -91,6 +107,15 @@ export default function ConsultationForm() {
   const [result, setResult] = useState<{ ok: boolean; message: string } | null>(
     null,
   );
+  const [cities, setCities] = useState<string[]>([]);
+  const [citiesStatus, setCitiesStatus] = useState<"idle" | "loading" | "error">(
+    "idle",
+  );
+  const citiesRequest = useRef<AbortController | null>(null);
+  const zipLookup = useRef<{ zip: string; controller: AbortController | null }>({
+    zip: "",
+    controller: null,
+  });
 
   // Once a field shows an error, re-check it on every keystroke so the
   // message clears as soon as the value is fixed.
@@ -123,6 +148,91 @@ export default function ConsultationForm() {
         [field]: validate(values, phoneCountry)[field],
       }));
     };
+  }
+
+  // Resolves true once the state's cities are in the dropdown, false if the
+  // request failed or a newer state choice replaced it.
+  async function loadCities(state: string): Promise<boolean> {
+    citiesRequest.current?.abort();
+    setCities([]);
+    if (!state) {
+      setCitiesStatus("idle");
+      return false;
+    }
+
+    const controller = new AbortController();
+    citiesRequest.current = controller;
+    setCitiesStatus("loading");
+    try {
+      const res = await fetch(`/api/us-cities?state=${encodeURIComponent(state)}`, {
+        signal: controller.signal,
+      });
+      const data: { cities?: string[] } = await res.json().catch(() => ({}));
+      if (!res.ok || !data.cities) throw new Error("City lookup failed");
+      setCities(data.cities);
+      setCitiesStatus("idle");
+      return true;
+    } catch {
+      if (!controller.signal.aborted) setCitiesStatus("error");
+      return false;
+    }
+  }
+
+  // Picking a state clears the city, since it may not exist in the new state.
+  function handleStateChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const state = e.target.value;
+    const next = { ...values, state, city: "" };
+    setValues(next);
+    if (errors.state || errors.city) {
+      setErrors((prev) => ({
+        ...prev,
+        state: validate(next, phoneCountry).state,
+        city: undefined,
+      }));
+    }
+    // A manual choice wins over a ZIP lookup that is still in flight.
+    zipLookup.current.controller?.abort();
+    void loadCities(state);
+  }
+
+  // Once the first five digits are in, look the ZIP up and fill in the state
+  // and city. Typing a ZIP+4 suffix does not trigger another lookup.
+  function handleZipChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const zipCode = e.target.value.replace(/[^\d-]/g, "");
+    updateField("zipCode", zipCode);
+
+    const zip = /^\d{5}/.exec(zipCode)?.[0] ?? "";
+    if (zip === zipLookup.current.zip) return;
+    zipLookup.current.controller?.abort();
+    zipLookup.current = { zip, controller: null };
+    if (zip) void lookUpZip(zip);
+  }
+
+  async function lookUpZip(zip: string) {
+    const controller = new AbortController();
+    zipLookup.current.controller = controller;
+    const stillCurrent = () => !controller.signal.aborted;
+
+    let data: { state?: string; city?: string | null };
+    try {
+      const res = await fetch(`/api/zip-lookup?zip=${zip}`, {
+        signal: controller.signal,
+      });
+      if (!res.ok) return;
+      data = await res.json();
+    } catch {
+      // Autofill is a convenience; the visitor can still pick by hand.
+      return;
+    }
+    const { state, city } = data;
+    if (!state || !stillCurrent()) return;
+
+    setValues((prev) => ({ ...prev, state, city: "" }));
+    setErrors((prev) => ({ ...prev, state: undefined, city: undefined }));
+    const loaded = await loadCities(state);
+    if (loaded && city && stillCurrent()) {
+      setValues((prev) => (prev.state === state ? { ...prev, city } : prev));
+    }
   }
 
   function handlePhoneChange(value: string, data: CountryData | object) {
@@ -164,6 +274,8 @@ export default function ConsultationForm() {
           message: data.message ?? "Thank you. We'll be in touch shortly.",
         });
         setValues(initialValues);
+        setCities([]);
+        zipLookup.current = { zip: "", controller: null };
       } else {
         setResult({
           ok: false,
@@ -203,18 +315,23 @@ export default function ConsultationForm() {
             <AlternativeContact />
           </div>
 
-          <Reveal delay={0.12} className="lg:col-span-6 lg:col-start-7">
-            <form noValidate onSubmit={handleSubmit} className="space-y-7">
+          <Reveal
+            delay={0.12}
+            className="rounded-2xl border border-bg4 bg-bg2 px-5 py-10 sm:px-10 lg:col-span-7 lg:col-start-6 lg:px-12 lg:py-12"
+          >
+            <form noValidate onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className={fieldLabelClass}>
                     Name
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
                   <input
                     id="name"
                     name="name"
                     type="text"
                     autoComplete="name"
+                    placeholder="Enter your name"
                     required
                     aria-required="true"
                     aria-invalid={Boolean(errors.name)}
@@ -235,12 +352,14 @@ export default function ConsultationForm() {
                 <div>
                   <label htmlFor="email" className={fieldLabelClass}>
                     Email
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
                   <input
                     id="email"
                     name="email"
                     type="email"
                     autoComplete="email"
+                    placeholder="Enter email address"
                     required
                     aria-required="true"
                     aria-invalid={Boolean(errors.email)}
@@ -261,6 +380,7 @@ export default function ConsultationForm() {
                 <div>
                   <label htmlFor="phone" className={fieldLabelClass}>
                     Phone
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
                   <PhoneInput
                     country={DEFAULT_COUNTRY}
@@ -295,6 +415,7 @@ export default function ConsultationForm() {
                 <div>
                   <label htmlFor="projectType" className={fieldLabelClass}>
                     Project Type
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
                   <select
                     id="projectType"
@@ -308,7 +429,7 @@ export default function ConsultationForm() {
                     value={values.projectType}
                     onChange={handleChange("projectType")}
                     onBlur={handleBlur("projectType")}
-                    className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%231a1a2e%22 stroke-opacity=%220.4%22 stroke-width=%221.6%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-size-[16px] bg-position-[right_1rem_center] bg-no-repeat pr-10`}
+                    className={selectClass}
                   >
                     <option value="" disabled>
                       Select one
@@ -329,34 +450,134 @@ export default function ConsultationForm() {
                   )}
                 </div>
 
-                <div className="sm:col-span-2">
-                  <label htmlFor="location" className={fieldLabelClass}>
-                    Location
+                <div>
+                  <label htmlFor="streetAddress" className={fieldLabelClass}>
+                    Street Address
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
                   <input
-                    id="location"
-                    name="location"
-                    type="text"
-                    autoComplete="address-level2"
-                    placeholder="City, State"
+                    id="streetAddress"
+                    name="streetAddress"
                     required
                     aria-required="true"
-                    aria-invalid={Boolean(errors.location)}
-                    aria-describedby={
-                      errors.location ? "location-error" : undefined
-                    }
-                    value={values.location}
-                    onChange={handleChange("location")}
-                    onBlur={handleBlur("location")}
+                    aria-invalid={Boolean(errors.streetAddress)}
+                    aria-describedby={errors.streetAddress ? "streetAddress-error" : undefined}
+                    value={values.streetAddress}
+                    type="text"
+                    autoComplete="street-address"
+                    placeholder="Enter street address"
+                    onChange={handleChange("streetAddress")}
+                    onBlur={handleBlur("streetAddress")}
                     maxLength={150}
                     className={inputClass}
                   />
-                  {errors.location && (
-                    <p
-                      id="location-error"
-                      className="mt-2 font-body text-xs text-red"
-                    >
-                      {errors.location}
+                  {errors.streetAddress && (
+                    <p id="streetAddress-error" className="mt-2 font-body text-xs text-red">
+                      {errors.streetAddress}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="zipCode" className={fieldLabelClass}>
+                    ZIP Code
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
+                  </label>
+                  <input
+                    id="zipCode"
+                    name="zipCode"
+                    required
+                    aria-required="true"
+                    aria-invalid={Boolean(errors.zipCode)}
+                    aria-describedby={errors.zipCode ? "zipCode-error" : undefined}
+                    value={values.zipCode}
+                    type="text"
+                    inputMode="numeric"
+                    autoComplete="postal-code"
+                    placeholder="Enter ZIP code"
+                    onChange={handleZipChange}
+                    onBlur={handleBlur("zipCode")}
+                    maxLength={10}
+                    className={inputClass}
+                  />
+                  {errors.zipCode && (
+                    <p id="zipCode-error" className="mt-2 font-body text-xs text-red">
+                      {errors.zipCode}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="state" className={fieldLabelClass}>
+                    State
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
+                  </label>
+                  <select
+                    id="state"
+                    name="state"
+                    required
+                    aria-required="true"
+                    aria-invalid={Boolean(errors.state)}
+                    aria-describedby={errors.state ? "state-error" : undefined}
+                    value={values.state}
+                    autoComplete="address-level1"
+                    onChange={handleStateChange}
+                    onBlur={handleBlur("state")}
+                    className={selectClass}
+                  >
+                    <option value="" disabled>
+                      Select state
+                    </option>
+                    {states.map((state) => (
+                      <option key={state.code} value={state.code}>
+                        {state.name}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.state && (
+                    <p id="state-error" className="mt-2 font-body text-xs text-red">
+                      {errors.state}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="city" className={fieldLabelClass}>
+                    City
+                    <span aria-hidden className="ml-1 text-gold-light">*</span>
+                  </label>
+                  <select
+                    id="city"
+                    name="city"
+                    required
+                    aria-required="true"
+                    aria-invalid={Boolean(errors.city)}
+                    aria-describedby={errors.city ? "city-error" : undefined}
+                    value={values.city}
+                    autoComplete="address-level2"
+                    disabled={!values.state || citiesStatus !== "idle"}
+                    onChange={handleChange("city")}
+                    onBlur={handleBlur("city")}
+                    className={selectClass}
+                  >
+                    <option value="" disabled>
+                      {!values.state
+                        ? "Select state first"
+                        : citiesStatus === "loading"
+                          ? "Loading cities…"
+                          : citiesStatus === "error"
+                            ? "Couldn't load cities. Re-select the state."
+                            : "Select city"}
+                    </option>
+                    {cities.map((city) => (
+                      <option key={city} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.city && (
+                    <p id="city-error" className="mt-2 font-body text-xs text-red">
+                      {errors.city}
                     </p>
                   )}
                 </div>
@@ -365,11 +586,13 @@ export default function ConsultationForm() {
               <div>
                 <label htmlFor="message" className={fieldLabelClass}>
                   Tell Us About Your Project
+                  <span aria-hidden className="ml-1 text-gold-light">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
+                  placeholder="Tell us about your project"
                   required
                   aria-required="true"
                   aria-invalid={Boolean(errors.message)}
@@ -401,15 +624,10 @@ export default function ConsultationForm() {
                   type="submit"
                   disabled={submitting}
                   aria-busy={submitting}
-                  className="group inline-flex items-center gap-2 bg-gold px-8 py-4 font-body text-[13px] tracking-[0.08em] uppercase text-white transition-colors duration-300 hover:bg-gold2 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-gold px-8 py-4 font-body text-sm font-medium tracking-[0.08em] text-white shadow-[0_8px_20px_-8px_rgba(103,0,1,0.6)] transition-colors duration-300 hover:bg-gold2 disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <span>{submitting ? "Sending…" : "Request Consultation"}</span>
-                  <span
-                    className="inline-block transition-transform duration-300 group-hover:translate-x-1"
-                    aria-hidden
-                  >
-                    →
-                  </span>
+                  <CalendarDays className="size-4" aria-hidden />
+                  <span>{submitting ? "Sending…" : "Submit request"}</span>
                 </button>
                 <p
                   role="status"

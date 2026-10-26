@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactHero from "@/components/contact/ContactHero";
 import ConsultationForm from "@/components/contact/ConsultationForm";
+import { getUsStates } from "@/lib/us-locations";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,7 +19,7 @@ export default function ContactPage() {
   return (
     <>
       <ContactHero />
-      <ConsultationForm />
+      <ConsultationForm states={getUsStates()} />
     </>
   );
 }
