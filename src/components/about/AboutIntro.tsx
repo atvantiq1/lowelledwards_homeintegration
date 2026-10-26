@@ -11,7 +11,7 @@ export default function AboutIntro() {
                 About Lowell Edwards Home Integration
               </p>
               <h2 className="mt-6 max-w-3xl font-display text-4xl leading-[1.08] text-cream sm:text-5xl lg:text-[3.5rem]">
-                Over 40 Years of Excellence in
+                <span className="cap-o-tight">O</span>ver 40 Years of Excellence in
                 <span className="text-gold"> Luxury Home Technology</span>
               </h2>
               <p className="mt-6 font-display text-xl italic text-cream/80 sm:text-2xl">
@@ -35,7 +35,7 @@ export default function AboutIntro() {
 
         <Reveal delay={0.1} className="mt-14 border-l-2 border-gold pl-6 sm:mt-20 sm:pl-10">
           <p className="max-w-4xl font-display text-2xl leading-snug text-cream sm:text-3xl">
-            Our philosophy is simple: Technology should enhance the way you
+            <span className="cap-o-tight">O</span>ur philosophy is simple: Technology should enhance the way you
             live, complement the beauty of your home, and work effortlessly in
             the background.
           </p>
