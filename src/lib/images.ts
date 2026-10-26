@@ -1,4 +1,4 @@
-import homeHero from "@/assets/images/home/hero.jpg";
+import homeHero from "@/assets/images/home/hero-smart-panel.jpg";
 import avHero from "@/assets/images/audio-video/hero.jpg";
 import avIntroduction from "@/assets/images/audio-video/introduction.jpg";
 import avWholeHomeAudio from "@/assets/images/audio-video/whole-home-audio.jpg";
@@ -36,11 +36,11 @@ const ecobee = (path: string, w = 1080) =>
 
 export const homeImages = {
   hero: {
-    // Unsplash, Michael Brown (q6eSeT3euLU), local 3200px copy. The glass
-    // facade sits right of center; Hero.tsx biases the crop toward it on
+    // Client-supplied, 1536x1024. The house sits left of center with a smart
+    // home panel on the right; Hero.tsx biases the crop toward the house on
     // narrow screens, so re-check that if you swap this image.
     src: homeHero,
-    alt: "Modern glass-walled luxury home at dusk with warm light glowing from every floor, a lit pool and terrace in the foreground",
+    alt: "Modern luxury home at dusk with a lit pool and terrace, and a wall-mounted smart home control panel in the foreground",
   },
   brandIntroduction: {
     src: "/images/brand-introduction.png",

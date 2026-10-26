@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Photo from "@/components/ui/Photo";
 import { homeImages } from "@/lib/images";
@@ -148,8 +150,8 @@ export default function WhyLowellEdwards() {
         </Reveal>
       </div>
 
-      <div className="section-pad mt-6 sm:mt-8">
-        <Reveal className="max-w-2xl">
+      <div className="section-pad mt-6 grid grid-cols-1 gap-8 sm:mt-8 lg:grid-cols-12 lg:items-center lg:gap-10">
+        <Reveal className="max-w-2xl lg:col-span-7">
           <h3 className="font-display text-2xl text-white sm:text-3xl">
             1 Year Support Plan After Installation.
           </h3>
@@ -158,6 +160,15 @@ export default function WhyLowellEdwards() {
             project includes a one-year support plan, so our team is there to
             keep your home technology performing the way it should.
           </p>
+        </Reveal>
+        <Reveal className="flex lg:col-span-5 lg:justify-center">
+          <Link
+            href="/about"
+            className="inline-flex w-full items-center justify-center gap-2 border border-gold bg-gold px-10 py-4 font-body text-[11px] sm:w-auto sm:min-w-72 font-medium tracking-[0.2em] whitespace-nowrap text-white uppercase transition-[background-color,border-color] duration-500 hover:border-gold2 hover:bg-gold2"
+          >
+            About Us
+            <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
+          </Link>
         </Reveal>
       </div>
     </section>
