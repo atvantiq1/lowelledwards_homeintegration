@@ -23,7 +23,7 @@ model Lead {
   // Two-letter USPS code, e.g. "NJ".
   state         String?  @db.VarChar(2)
   zipCode       String?  @db.VarChar(10)
-  message       String   @db.Text
+  message       String?  @db.Text
   createdAt     DateTime @default(now())
 
   @@index([formType, createdAt])

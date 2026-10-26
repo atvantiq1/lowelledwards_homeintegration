@@ -58,7 +58,15 @@ export const contactLeadSchema = z.object({
     .trim()
     .min(1, { error: "Please select a city." })
     .max(100, { error: "Please select a city." }),
-  message: requiredText("project details", 10, MESSAGE_MAX_LENGTH),
+  // Optional; a blank message is stored as null rather than "".
+  message: z
+    .string()
+    .trim()
+    .max(MESSAGE_MAX_LENGTH, {
+      error: `Must be at most ${MESSAGE_MAX_LENGTH} characters.`,
+    })
+    .optional()
+    .transform((value) => value || undefined),
 });
 
 export type ContactLeadInput = z.infer<typeof contactLeadSchema>;
