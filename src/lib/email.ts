@@ -8,9 +8,10 @@ interface SendMailOptions {
   replyTo?: string;
 }
 
-// Sends through Resend's HTTP API. Defaults to the site inbox (CONTACT_EMAIL).
+// Sends through Resend's HTTP API. Defaults to the admin inbox (ADMIN_EMAIL,
+// falling back to CONTACT_EMAIL).
 export async function sendMail({
-  to = CONTACT_EMAIL,
+  to = process.env.ADMIN_EMAIL?.trim() || CONTACT_EMAIL,
   subject,
   text,
   html,
