@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useMemo, useRef, useState, type FormEvent } from "react";
 import type ReCAPTCHA from "react-google-recaptcha";
 import { CalendarDays } from "lucide-react";
 import PhoneInput, { type CountryData } from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Reveal from "@/components/ui/Reveal";
 import CaptchaField from "@/components/ui/CaptchaField";
+import SelectField, { type SelectOption } from "@/components/ui/SelectField";
 import AlternativeContact from "@/components/contact/AlternativeContact";
 import {
   contactLeadSchema,
@@ -89,7 +90,10 @@ const fieldLabelClass =
 const inputClass =
   "mt-2 w-full rounded-md border border-bg4 bg-bg px-4 py-3 font-body text-base text-cream placeholder:text-cream/35 transition-colors duration-300 focus:border-gold focus:outline-none aria-invalid:border-red";
 
-const selectClass = `${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%231a1a2e%22 stroke-opacity=%220.4%22 stroke-width=%221.6%22><path d=%22M6 9l6 6 6-6%22/></svg>')] bg-size-[16px] bg-position-[right_1rem_center] bg-no-repeat pr-10 disabled:cursor-not-allowed disabled:opacity-60`;
+const projectTypeOptions: SelectOption[] = PROJECT_TYPES.map((type) => ({
+  value: type,
+  label: type,
+}));
 
 interface ConsultationFormProps {
   // Passed down from the server so the ~8MB city dataset stays out of the bundle.
@@ -112,6 +116,14 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
     "idle",
   );
   const citiesRequest = useRef<AbortController | null>(null);
+  const stateOptions = useMemo(
+    () => states.map((state) => ({ value: state.code, label: state.name })),
+    [states],
+  );
+  const cityOptions = useMemo(
+    () => cities.map((city) => ({ value: city, label: city })),
+    [cities],
+  );
   const zipLookup = useRef<{ zip: string; controller: AbortController | null }>({
     zip: "",
     controller: null,
@@ -134,7 +146,7 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
   function handleChange(
     field: keyof FormValues,
   ): (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void {
     return (e) => updateField(field, e.target.value);
   }
@@ -179,8 +191,7 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
   }
 
   // Picking a state clears the city, since it may not exist in the new state.
-  function handleStateChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const state = e.target.value;
+  function handleStateChange(state: string) {
     const next = { ...values, state, city: "" };
     setValues(next);
     if (errors.state || errors.city) {
@@ -417,29 +428,16 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
                     Project Type
                     <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
-                  <select
+                  <SelectField
                     id="projectType"
-                    name="projectType"
-                    required
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.projectType)}
-                    aria-describedby={
-                      errors.projectType ? "projectType-error" : undefined
-                    }
+                    placeholder="Select one"
+                    options={projectTypeOptions}
+                    invalid={Boolean(errors.projectType)}
+                    describedBy={errors.projectType ? "projectType-error" : undefined}
                     value={values.projectType}
-                    onChange={handleChange("projectType")}
+                    onChange={(value) => updateField("projectType", value)}
                     onBlur={handleBlur("projectType")}
-                    className={selectClass}
-                  >
-                    <option value="" disabled>
-                      Select one
-                    </option>
-                    {PROJECT_TYPES.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
+                  />
                   {errors.projectType && (
                     <p
                       id="projectType-error"
@@ -512,28 +510,17 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
                     State
                     <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
-                  <select
+                  <SelectField
                     id="state"
-                    name="state"
-                    required
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.state)}
-                    aria-describedby={errors.state ? "state-error" : undefined}
+                    placeholder="Select state"
+                    options={stateOptions}
+                    searchable
+                    invalid={Boolean(errors.state)}
+                    describedBy={errors.state ? "state-error" : undefined}
                     value={values.state}
-                    autoComplete="address-level1"
                     onChange={handleStateChange}
                     onBlur={handleBlur("state")}
-                    className={selectClass}
-                  >
-                    <option value="" disabled>
-                      Select state
-                    </option>
-                    {states.map((state) => (
-                      <option key={state.code} value={state.code}>
-                        {state.name}
-                      </option>
-                    ))}
-                  </select>
+                  />
                   {errors.state && (
                     <p id="state-error" className="mt-2 font-body text-xs text-red">
                       {errors.state}
@@ -546,35 +533,26 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
                     City
                     <span aria-hidden className="ml-1 text-gold-light">*</span>
                   </label>
-                  <select
+                  <SelectField
                     id="city"
-                    name="city"
-                    required
-                    aria-required="true"
-                    aria-invalid={Boolean(errors.city)}
-                    aria-describedby={errors.city ? "city-error" : undefined}
-                    value={values.city}
-                    autoComplete="address-level2"
-                    disabled={!values.state || citiesStatus !== "idle"}
-                    onChange={handleChange("city")}
-                    onBlur={handleBlur("city")}
-                    className={selectClass}
-                  >
-                    <option value="" disabled>
-                      {!values.state
+                    placeholder={
+                      !values.state
                         ? "Select state first"
                         : citiesStatus === "loading"
                           ? "Loading cities…"
                           : citiesStatus === "error"
                             ? "Couldn't load cities. Re-select the state."
-                            : "Select city"}
-                    </option>
-                    {cities.map((city) => (
-                      <option key={city} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                  </select>
+                            : "Select city"
+                    }
+                    options={cityOptions}
+                    searchable
+                    invalid={Boolean(errors.city)}
+                    describedBy={errors.city ? "city-error" : undefined}
+                    value={values.city}
+                    disabled={!values.state || citiesStatus !== "idle"}
+                    onChange={(value) => updateField("city", value)}
+                    onBlur={handleBlur("city")}
+                  />
                   {errors.city && (
                     <p id="city-error" className="mt-2 font-body text-xs text-red">
                       {errors.city}
@@ -586,15 +564,15 @@ export default function ConsultationForm({ states }: ConsultationFormProps) {
               <div>
                 <label htmlFor="message" className={fieldLabelClass}>
                   Tell Us About Your Project
-                  <span aria-hidden className="ml-1 text-gold-light">*</span>
+                  <span className="ml-2 normal-case tracking-normal text-cream/40">
+                    (optional)
+                  </span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={4}
                   placeholder="Tell us about your project"
-                  required
-                  aria-required="true"
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "message-error" : undefined}
                   value={values.message}

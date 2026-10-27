@@ -153,7 +153,7 @@ export interface ConsultationEmailInput {
   // Full state name, e.g. "New Jersey", not the two-letter code.
   state: string;
   zipCode: string;
-  message: string;
+  message?: string;
 }
 
 function formatAddress(lead: ConsultationEmailInput): [string, string] {
@@ -174,7 +174,7 @@ export function renderConsultationAdminEmail(lead: ConsultationEmailInput): Rend
          row("Phone", `<a href="tel:${escapeHtml(lead.phone.replace(/[^\d+]/g, ""))}" style="color:${BRAND.maroon};">${safe(lead.phone)}</a>`) +
          row("Project Type", safe(lead.projectType)) +
          row("Address", formatAddress(lead).map(safe).join("<br>")) +
-         row("Project Description", safe(lead.message)),
+         (lead.message ? row("Project Description", safe(lead.message)) : ""),
      )}
      <p style="margin:0 0 24px;">Please review the request and contact the customer to discuss their project requirements and schedule a complimentary in-home consultation.</p>
      ${sectionHeading("Contact Information")}
@@ -194,7 +194,7 @@ export function renderConsultationAdminEmail(lead: ConsultationEmailInput): Rend
     `Phone: ${lead.phone}`,
     `Project Type: ${lead.projectType}`,
     `Address: ${formatAddress(lead).join(", ")}`,
-    `Project Description: ${lead.message}`,
+    ...(lead.message ? [`Project Description: ${lead.message}`] : []),
     "",
     "Please review the request and contact the customer to discuss their project requirements and schedule a complimentary in-home consultation.",
     "",
