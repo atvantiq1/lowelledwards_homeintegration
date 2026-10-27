@@ -13,6 +13,8 @@ export function getCaptchaToken(body: unknown): string | null {
     return null;
   }
 
+  
+
   const token = (body as { captchaToken?: unknown }).captchaToken;
   return typeof token === "string" && token.trim() ? token.trim() : null;
 }
