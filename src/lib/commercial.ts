@@ -1,3 +1,4 @@
+import type { StaticImageData } from "next/image";
 import { commercialImages } from "@/lib/images";
 
 /**
@@ -7,7 +8,8 @@ import { commercialImages } from "@/lib/images";
  */
 
 interface CommercialImage {
-  src: string;
+  /** Remote URL, or a static import (local file). */
+  src: string | StaticImageData;
   alt: string;
   /** CSS object-position, when the subject isn't centered. */
   position?: string;
