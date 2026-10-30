@@ -69,6 +69,7 @@ export default function SmartHomeLifestyle() {
                 src={SCENES[0].image.src}
                 alt={SCENES[0].image.alt}
                 sizes="(min-width: 1024px) 58vw, 100vw"
+                objectPosition={SCENES[0].image.position}
               />
             </motion.div>
 

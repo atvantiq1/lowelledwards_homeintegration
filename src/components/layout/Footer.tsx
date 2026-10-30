@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { commercialServices } from "@/lib/commercial";
 
 const SITE_LINKS = [
   { label: "Home", href: "/" },
@@ -16,6 +17,11 @@ const SERVICES = [
   { label: "Security", href: "/residential/security" },
   { label: "Home Theater", href: "/residential/home-theatre" },
 ];
+
+const COMMERCIAL = commercialServices.map((service) => ({
+  label: service.label,
+  href: `/commercial/${service.slug}`,
+}));
 
 const SOCIAL_LINKS = [
   {
@@ -56,7 +62,7 @@ const SOCIAL_LINKS = [
 export default function Footer() {
   return (
     <footer className="border-t border-bg4 bg-bg">
-      <div className="section-pad grid grid-cols-2 gap-x-8 gap-y-12 py-14 sm:py-16 md:grid-cols-[1.3fr_0.8fr_0.8fr_1fr] md:gap-10">
+      <div className="section-pad grid grid-cols-2 gap-x-8 gap-y-12 py-14 sm:py-16 md:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr_1fr] md:gap-10">
         <div className="col-span-2 md:col-span-1">
           <div className="relative h-16 w-60">
             <Image
@@ -94,9 +100,25 @@ export default function Footer() {
         </div>
 
         <div>
-          <p className="eyebrow text-cream/40">Services</p>
+          <p className="eyebrow text-cream/40">Residential</p>
           <ul className="mt-6 space-y-3">
             {SERVICES.map((service) => (
+              <li key={service.label}>
+                <Link
+                  href={service.href}
+                  className="font-body text-sm text-cream/70 transition-colors duration-300 hover:text-gold"
+                >
+                  {service.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="eyebrow text-cream/40">Commercial</p>
+          <ul className="mt-6 space-y-3">
+            {COMMERCIAL.map((service) => (
               <li key={service.label}>
                 <Link
                   href={service.href}

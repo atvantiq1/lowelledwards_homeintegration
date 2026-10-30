@@ -16,7 +16,7 @@ const STEPS = [
   },
   {
     number: "02",
-    label: "Design",
+    label: "Design & Installation",
     description:
       "We design a tailored system around your lifestyle and architecture, then our certified technicians install it with precision and care.",
     icon: PenTool,

@@ -18,12 +18,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
       },
-      {
-        // ecobee's Contentful-hosted CDN, used for the real ecobee
-        // thermostat product shot on the Smart Home page.
-        protocol: "https",
-        hostname: "images.ctfassets.net",
-      },
     ],
   },
 };
