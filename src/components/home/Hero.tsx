@@ -21,10 +21,10 @@ export default function Hero() {
           quality={90}
           className="[&_img]:object-[40%_50%] lg:[&_img]:object-[50%_50%]"
         />
-        <div className="absolute inset-0 bg-black/35" />
-        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/15 to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-r from-black/50 via-black/15 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/70 via-black/20 to-transparent sm:h-44" />
+        {/* Localized, light-touch shading only: the photo stays bright. */}
+        <div className="absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-t from-black/65 via-black/25 to-transparent" />
+        <div className="absolute inset-y-0 left-0 w-full bg-linear-to-r from-black/30 via-transparent to-transparent lg:w-2/3" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/50 via-black/10 to-transparent sm:h-44" />
       </div>
 
       <div className="section-pad relative z-10 w-full pb-16 pt-32 sm:pb-50">

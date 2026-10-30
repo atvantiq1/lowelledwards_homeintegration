@@ -30,10 +30,6 @@ const unsplash = (id: string, w = 2400) =>
 const control4 = (path: string) =>
   `https://cdn.prod.website-files.com/629926620ba03720384bebb3/${path}`;
 
-// ecobee's Contentful-hosted CDN with genuine ecobee product photography.
-const ecobee = (path: string, w = 1080) =>
-  `https://images.ctfassets.net/a3qyhfznts9y/${path}?w=${w}&h=${w}&q=80&fm=webp`;
-
 export const homeImages = {
   hero: {
     // Client-supplied, 1536x1024. The house sits left of center with a smart
@@ -125,8 +121,8 @@ export const smartHomeImages = {
   },
   systems: {
     audioVideo: {
-      src: pexels("19966811"),
-      alt: "Wall-mounted flat-screen television with a soundbar above a live-edge wood console",
+      src: pexels("39828921"),
+      alt: "Living room with a custom media wall: a large flush-mounted TV on a curved cream panel framed by oak millwork, built-in shelving and a linear fireplace",
     },
     lighting: {
       src: pexels("1668860"),
@@ -137,10 +133,8 @@ export const smartHomeImages = {
       alt: "Close-up of motorized metal blinds filtering warm sunlight into linear patterns across a room",
     },
     thermostat: {
-      src: ecobee(
-        "2X1B1YoVnr0jj6qBWg3UeN/083196c076d2c2e65421da89103ac2c4/Transforming_the_thermostat.jpg"
-      ),
-      alt: "Ecobee smart thermostat mounted on a wall, showing its indoor air quality dashboard",
+      src: unsplash("1636569608385-58efc32690ea"),
+      alt: "Ecobee smart thermostat on a round white wall plate, its screen showing the room at 69 degrees and 68% humidity",
     },
     automation: {
       src: control4(
@@ -161,8 +155,10 @@ export const smartHomeImages = {
   },
   lifestyle: {
     entertain: {
-      src: pexels("7166926"),
-      alt: "Living room with a wall-mounted television on a taupe media panel, warm cove lighting and recessed ceiling lights, and a tufted sofa",
+      src: pexels("3423817"),
+      alt: "Custom media wall with walnut slat panels framing a marble surround, a wall-mounted TV over a floating AV console, and warm downlights",
+      // Keeps the TV centered on the tall desktop crop.
+      position: "53% 50%",
     },
     relax: {
       src: pexels("19096629"),
@@ -525,5 +521,95 @@ export const audioVideoImages = {
   cta: {
     src: avCta,
     alt: "Covered outdoor living space overlooking a pool at dusk",
+  },
+} as const;
+
+/**
+ * Commercial service page photography (see src/lib/commercial.ts), sourced
+ * from Pexels (free to use, no attribution required) and unique to these
+ * pages. Each page's hero also appears as its thumbnail in the Commercial
+ * navigation menu. Swap any `src` for photos of the client's own commercial
+ * installations when they become available; no other code needs to change.
+ */
+export const commercialImages = {
+  buildingIntercoms: {
+    hero: {
+      src: pexels("6758532"),
+      alt: "Bright marble apartment lobby with a gold-framed portal, a tufted white bench and a glass vestibule entrance beyond",
+      position: "50% 60%",
+    },
+    intro: {
+      src: pexels("37538043"),
+      alt: "Wall-mounted entry keypad with a display and fingerprint reader beside a glass door",
+      position: "38% 50%",
+    },
+    feature: {
+      src: pexels("35215413"),
+      alt: "Curving residential lobby lounge with a timber-panelled ceiling, soft grey armchairs and floor-to-ceiling windows",
+    },
+    cta: {
+      src: pexels("27307397"),
+      alt: "Contemporary apartment buildings with balconies around a landscaped courtyard in warm late-afternoon light",
+      position: "65% 50%",
+    },
+  },
+  accessControl: {
+    hero: {
+      src: pexels("32674962"),
+      alt: "Modern office lobby with wood-clad columns, a polished stone floor and a full-height glass entry wall",
+    },
+    intro: {
+      src: pexels("13657444"),
+      alt: "Hand presenting an access card to a wall-mounted reader on a smooth concrete wall",
+      position: "40% 50%",
+    },
+    feature: {
+      src: pexels("7534179"),
+      alt: "Bright office corridor with frameless glass doors, oak-look flooring and a secured door at the far end",
+    },
+    cta: {
+      src: pexels("68631"),
+      alt: "Cream stone office building with ribbon windows rising against a bright blue sky",
+      position: "50% 70%",
+    },
+  },
+  videoSecurity: {
+    hero: {
+      src: pexels("1500459"),
+      alt: "Two-storey brick office building with glowing windows beside a parking lot under a sunset sky",
+    },
+    intro: {
+      src: pexels("7508684"),
+      alt: "White dome security camera and sensor mounted on a speckled ceiling tile",
+    },
+    feature: {
+      src: pexels("3205735"),
+      alt: "Bullet security camera bracketed to a cream travertine column on a modern building",
+      position: "50% 40%",
+    },
+    cta: {
+      src: pexels("31730305"),
+      alt: "Limestone office building with a tall arched glass entrance and ribbon windows reflecting a blue sky",
+    },
+  },
+  safetySystems: {
+    hero: {
+      src: pexels("18856050"),
+      alt: "Bright white atrium with curved balconies beneath a vaulted glass roof",
+      position: "50% 30%",
+    },
+    intro: {
+      src: pexels("39183052"),
+      alt: "Ceiling-mounted fire alarm horn strobe on a clean white ceiling",
+    },
+    feature: {
+      src: pexels("13060860"),
+      alt: "Red break-glass fire alarm call point on a textured cream wall",
+    },
+    cta: {
+      src: pexels("87223"),
+      alt: "Modern residential tower with cantilevered white balconies against a deep blue sky",
+      position: "40% 50%",
+    },
   },
 } as const;

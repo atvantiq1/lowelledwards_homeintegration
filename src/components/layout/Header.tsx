@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import Photo from "@/components/ui/Photo";
 import { smartHomeImages, homeTheatreImages } from "@/lib/images";
+import { commercialServices } from "@/lib/commercial";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -55,13 +56,41 @@ const RESIDENTIAL_CATEGORIES = [
   },
 ] as const;
 
+const COMMERCIAL_CATEGORIES = commercialServices.map((service) => ({
+  label: service.label,
+  description: service.navDescription,
+  href: `/commercial/${service.slug}`,
+  image: service.images.hero,
+}));
+
+const COMMERCIAL_SITE_URL = "https://lowelledwards-intercom.com/";
+
+const MENUS = [
+  {
+    label: "Residential",
+    heading: ["Smarter Living", "Starts Here."],
+    blurb: "Integrated technology for modern homes.",
+    categories: RESIDENTIAL_CATEGORIES,
+  },
+  {
+    label: "Commercial",
+    heading: ["Secure Buildings,", "Simple Entry."],
+    blurb: "Intercom, access, video and safety for properties.",
+    categories: COMMERCIAL_CATEGORIES,
+    // The label itself links to the dedicated intercom & access site.
+    href: COMMERCIAL_SITE_URL,
+  },
+] as const;
+
+type MenuLabel = (typeof MENUS)[number]["label"];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [mobileResidentialOpen, setMobileResidentialOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<MenuLabel | null>(null);
+  const [openMenu, setOpenMenu] = useState<MenuLabel | null>(null);
 
-  const residentialRef = useRef<HTMLDivElement>(null);
+  const menusRef = useRef<HTMLDivElement>(null);
 
   // The navbar reads as transparent only at the very top of the hero; any
   // scroll, and the opened mobile drawer, so the hamburger/X stays legible
@@ -83,19 +112,19 @@ export default function Header() {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (!megaOpen) return;
+    if (!openMenu) return;
     const onClickOutside = (e: MouseEvent) => {
-      if (!residentialRef.current?.contains(e.target as Node)) {
-        setMegaOpen(false);
+      if (!menusRef.current?.contains(e.target as Node)) {
+        setOpenMenu(null);
       }
     };
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
-  }, [megaOpen]);
+  }, [openMenu]);
 
   const closeMenu = () => {
     setMenuOpen(false);
-    setMobileResidentialOpen(false);
+    setMobileOpenMenu(null);
   };
 
   return (
@@ -127,100 +156,127 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center justify-self-center lg:flex">
-          <div
-            ref={residentialRef}
-            className="relative"
-            onMouseEnter={() => setMegaOpen(true)}
-            onMouseLeave={() => setMegaOpen(false)}
-          >
-            <button
-              type="button"
-              aria-haspopup="true"
-              aria-expanded={megaOpen}
-              onClick={() => setMegaOpen((v) => !v)}
-              className={`relative flex items-center gap-2 px-3 py-2 font-body text-[13px] font-medium tracking-[0.16em] whitespace-nowrap uppercase transition-colors duration-500 xl:px-6 xl:text-sm xl:tracking-[0.2em] ${
+          <div ref={menusRef} className="flex items-center">
+            {MENUS.map((menu) => {
+              const megaOpen = openMenu === menu.label;
+              const triggerClassName = `relative flex items-center gap-2 px-3 py-2 font-body text-[13px] font-medium tracking-[0.16em] whitespace-nowrap uppercase transition-colors duration-500 xl:px-6 xl:text-sm xl:tracking-[0.2em] ${
                 solid
                   ? `text-cream/65 hover:text-gold ${megaOpen ? "text-gold" : ""}`
                   : `text-white/90 hover:text-white ${megaOpen ? "text-white" : ""}`
-              }`}
-            >
-              Residential
-              <ChevronDown
-                aria-hidden
-                className={`h-3 w-3 transition-transform duration-300 ${
-                  megaOpen ? "rotate-180" : ""
-                } ${solid ? "text-gold/70" : "text-white/70"}`}
-                strokeWidth={1.5}
-              />
-              <span
-                className={`absolute bottom-1.5 left-1/2 h-px -translate-x-1/2 bg-current transition-all duration-300 ease-out ${
-                  megaOpen ? "w-6" : "w-0"
-                }`}
-              />
-            </button>
-
-            <AnimatePresence>
-              {megaOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25, ease: EASE }}
-                  className="fixed inset-x-0 top-[calc(3px+var(--header-h))]"
+              }`;
+              const triggerContent = (
+                <>
+                  {menu.label}
+                  <ChevronDown
+                    aria-hidden
+                    className={`h-3 w-3 transition-transform duration-300 ${
+                      megaOpen ? "rotate-180" : ""
+                    } ${solid ? "text-gold/70" : "text-white/70"}`}
+                    strokeWidth={1.5}
+                  />
+                  <span
+                    className={`absolute bottom-1.5 left-1/2 h-px -translate-x-1/2 bg-current transition-all duration-300 ease-out ${
+                      megaOpen ? "w-6" : "w-0"
+                    }`}
+                  />
+                </>
+              );
+              return (
+                <div
+                  key={menu.label}
+                  className="relative"
+                  onMouseEnter={() => setOpenMenu(menu.label)}
+                  onMouseLeave={() => setOpenMenu(null)}
                 >
-                  <div className="section-pad flex flex-col gap-6 border-t border-bg4 bg-ivory py-7 shadow-[0_32px_64px_-20px_rgba(26,26,46,0.22)] lg:flex-row lg:items-start lg:gap-8">
-                    <div className="shrink-0 lg:w-48">
-                      <p className="eyebrow text-gold">Residential</p>
-                      <h3 className="mt-2 font-display text-xl leading-[1.1] text-cream">
-                        Smarter Living
-                        <br />
-                        Starts Here.
-                      </h3>
-                      <p className="mt-2 max-w-48 font-body text-xs leading-relaxed text-cream/55">
-                        Integrated technology for modern homes.
-                      </p>
-                    </div>
+                  {"href" in menu ? (
+                    <a
+                      href={menu.href}
+                      aria-haspopup="true"
+                      aria-expanded={megaOpen}
+                      onFocus={() => setOpenMenu(menu.label)}
+                      className={triggerClassName}
+                    >
+                      {triggerContent}
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={megaOpen}
+                      onClick={() => setOpenMenu(megaOpen ? null : menu.label)}
+                      className={triggerClassName}
+                    >
+                      {triggerContent}
+                    </button>
+                  )}
 
-                    <ul className="grid flex-1 grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-6">
-                      {RESIDENTIAL_CATEGORIES.map((category) => (
-                        <li key={category.label}>
-                          <Link
-                            href={category.href}
-                            onClick={() => setMegaOpen(false)}
-                            className="group/card block"
-                          >
-                            <div className="relative aspect-square overflow-hidden">
-                              <div className="h-full w-full transition-transform duration-500 ease-out group-hover/card:scale-105">
-                                <Photo
-                                  src={category.image.src}
-                                  alt={category.image.alt}
-                                  sizes="120px"
-                                />
-                              </div>
-                            </div>
-                            <div className="mt-2 flex items-start justify-between gap-1">
-                              <div>
-                                <p className="font-display text-[13px] leading-tight text-cream transition-colors duration-300 group-hover/card:text-gold">
-                                  {category.label}
-                                </p>
-                                <p className="mt-0.5 font-body text-[10px] leading-snug text-cream/50">
-                                  {category.description}
-                                </p>
-                              </div>
-                              <ArrowRight
-                                aria-hidden
-                                className="mt-0.5 h-3 w-3 shrink-0 text-cream/30 transition-all duration-300 group-hover/card:translate-x-1 group-hover/card:text-gold"
-                                strokeWidth={1.5}
-                              />
-                            </div>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <AnimatePresence>
+                    {megaOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25, ease: EASE }}
+                        className="fixed inset-x-0 top-[calc(3px+var(--header-h))]"
+                      >
+                        <div className="section-pad flex flex-col gap-6 border-t border-bg4 bg-ivory py-7 shadow-[0_32px_64px_-20px_rgba(26,26,46,0.22)] lg:flex-row lg:items-start lg:gap-8">
+                          <div className="shrink-0 lg:w-48">
+                            <p className="eyebrow text-gold">{menu.label}</p>
+                            <h3 className="mt-2 font-display text-xl leading-[1.1] text-cream">
+                              {menu.heading[0]}
+                              <br />
+                              {menu.heading[1]}
+                            </h3>
+                            <p className="mt-2 max-w-48 font-body text-xs leading-relaxed text-cream/55">
+                              {menu.blurb}
+                            </p>
+                          </div>
+
+                          {/* Always six columns, so Commercial's four cards match Residential's thumbnail size. */}
+                          <ul className="grid flex-1 grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-6">
+                            {menu.categories.map((category) => (
+                              <li key={category.label}>
+                                <Link
+                                  href={category.href}
+                                  onClick={() => setOpenMenu(null)}
+                                  className="group/card block"
+                                >
+                                  <div className="relative aspect-square overflow-hidden">
+                                    <div className="h-full w-full transition-transform duration-500 ease-out group-hover/card:scale-105">
+                                      <Photo
+                                        src={category.image.src}
+                                        alt={category.image.alt}
+                                        // Cards are 1/6 of the menu row; the menu only renders at lg+.
+                                        sizes="12vw"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div className="mt-2 flex items-start justify-between gap-1">
+                                    <div>
+                                      <p className="font-display text-[13px] leading-tight text-cream transition-colors duration-300 group-hover/card:text-gold">
+                                        {category.label}
+                                      </p>
+                                      <p className="mt-0.5 font-body text-[10px] leading-snug text-cream/50">
+                                        {category.description}
+                                      </p>
+                                    </div>
+                                    <ArrowRight
+                                      aria-hidden
+                                      className="mt-0.5 h-3 w-3 shrink-0 text-cream/30 transition-all duration-300 group-hover/card:translate-x-1 group-hover/card:text-gold"
+                                      strokeWidth={1.5}
+                                    />
+                                  </div>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
 
           {NAV_LINKS.map((link) => (
@@ -277,66 +333,85 @@ export default function Header() {
             transition={{ duration: 0.35, ease: EASE }}
             className="section-pad flex max-h-[calc(100svh-5rem)] flex-col overflow-y-auto border-t border-bg4 bg-ivory py-6 lg:hidden"
           >
-            <div className="border-b border-bg4">
-              <button
-                type="button"
-                onClick={() => setMobileResidentialOpen((v) => !v)}
-                aria-expanded={mobileResidentialOpen}
-                className="group flex w-full items-center justify-between py-5 text-left"
-              >
-                <span className="flex items-baseline gap-4">
-                  <span className="font-body text-xs tracking-[0.2em] text-gold">01</span>
-                  <span className="font-display text-2xl text-cream transition-colors duration-300 group-hover:text-gold">
-                    Residential
-                  </span>
-                </span>
-                <ChevronDown
-                  aria-hidden
-                  className={`h-5 w-5 shrink-0 text-gold transition-transform duration-300 ${
-                    mobileResidentialOpen ? "rotate-180" : ""
-                  }`}
-                  strokeWidth={1.5}
-                />
-              </button>
-
-              <AnimatePresence>
-                {mobileResidentialOpen && (
-                  <motion.ul
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: EASE }}
-                    className="overflow-hidden"
+            {MENUS.map((menu, menuIndex) => {
+              const mobileMenuOpen = mobileOpenMenu === menu.label;
+              return (
+                <div key={menu.label} className="border-b border-bg4">
+                  <button
+                    type="button"
+                    onClick={() => setMobileOpenMenu(mobileMenuOpen ? null : menu.label)}
+                    aria-expanded={mobileMenuOpen}
+                    className="group flex w-full items-center justify-between py-5 text-left"
                   >
-                    {RESIDENTIAL_CATEGORIES.map((category) => (
-                      <li key={category.label}>
-                        <Link
-                          href={category.href}
-                          onClick={closeMenu}
-                          className="flex items-center gap-4 border-t border-bg4 py-3 pl-11 first:border-t-0"
-                        >
-                          <div className="relative h-14 w-14 shrink-0 overflow-hidden">
-                            <Photo
-                              src={category.image.src}
-                              alt={category.image.alt}
-                              sizes="56px"
-                            />
-                          </div>
-                          <span className="block">
-                            <span className="block font-body text-base text-cream transition-colors duration-300 hover:text-gold">
-                              {category.label}
-                            </span>
-                            <span className="mt-0.5 block font-body text-xs text-cream/50">
-                              {category.description}
-                            </span>
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </div>
+                    <span className="flex items-baseline gap-4">
+                      <span className="font-body text-xs tracking-[0.2em] text-gold">
+                        {String(menuIndex + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-display text-2xl text-cream transition-colors duration-300 group-hover:text-gold">
+                        {menu.label}
+                      </span>
+                    </span>
+                    <ChevronDown
+                      aria-hidden
+                      className={`h-5 w-5 shrink-0 text-gold transition-transform duration-300 ${
+                        mobileMenuOpen ? "rotate-180" : ""
+                      }`}
+                      strokeWidth={1.5}
+                    />
+                  </button>
+
+                  <AnimatePresence>
+                    {mobileMenuOpen && (
+                      <motion.ul
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: EASE }}
+                        className="overflow-hidden"
+                      >
+                        {menu.categories.map((category) => (
+                          <li key={category.label}>
+                            <Link
+                              href={category.href}
+                              onClick={closeMenu}
+                              className="flex items-center gap-4 border-t border-bg4 py-3 pl-11 first:border-t-0"
+                            >
+                              <div className="relative h-14 w-14 shrink-0 overflow-hidden">
+                                <Photo
+                                  src={category.image.src}
+                                  alt={category.image.alt}
+                                  sizes="56px"
+                                />
+                              </div>
+                              <span className="block">
+                                <span className="block font-body text-base text-cream transition-colors duration-300 hover:text-gold">
+                                  {category.label}
+                                </span>
+                                <span className="mt-0.5 block font-body text-xs text-cream/50">
+                                  {category.description}
+                                </span>
+                              </span>
+                            </Link>
+                          </li>
+                        ))}
+                        {"href" in menu && (
+                          <li>
+                            <a
+                              href={menu.href}
+                              onClick={closeMenu}
+                              className="flex items-center gap-2 border-t border-bg4 py-4 pl-11 font-body text-[12px] font-medium tracking-[0.2em] text-gold uppercase transition-colors duration-300 hover:text-gold2"
+                            >
+                              Visit Lowell Edwards Intercom
+                              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden />
+                            </a>
+                          </li>
+                        )}
+                      </motion.ul>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
 
             {NAV_LINKS.map((link, i) => (
               <Link
@@ -346,7 +421,7 @@ export default function Header() {
                 className="group flex items-baseline gap-4 border-b border-bg4 py-5"
               >
                 <span className="font-body text-xs tracking-[0.2em] text-gold">
-                  {String(i + 2).padStart(2, "0")}
+                  {String(i + MENUS.length + 1).padStart(2, "0")}
                 </span>
                 <span className="font-display text-2xl text-cream transition-colors duration-300 group-hover:text-gold">
                   {link.label}
