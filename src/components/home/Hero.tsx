@@ -23,7 +23,7 @@ export default function Hero() {
         />
         {/* Localized, light-touch shading only: the photo stays bright. */}
         <div className="absolute inset-x-0 bottom-0 h-3/4 bg-linear-to-t from-black/65 via-black/25 to-transparent" />
-        <div className="absolute inset-y-0 left-0 w-full bg-linear-to-r from-black/30 via-transparent to-transparent lg:w-2/3" />
+        <div className="absolute inset-y-0 left-0 w-full bg-linear-to-r from-black/55 via-black/20 to-transparent lg:w-2/3" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-black/50 via-black/10 to-transparent sm:h-44" />
       </div>
 
@@ -41,7 +41,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.25, ease: EASE }}
-          className="mt-6 max-w-xl font-body text-base leading-relaxed text-white/85 sm:text-lg"
+          className="mt-6 max-w-xl font-body text-base leading-relaxed text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)] sm:text-lg"
         >
           Create a home that feels effortless. Lowell Edwards Home
           Integration brings audio, video, lighting, shades, automation,

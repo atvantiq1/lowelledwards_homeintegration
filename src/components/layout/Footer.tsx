@@ -69,6 +69,10 @@ export default function Footer() {
               src="/images/logo.png"
               alt="Lowell Edwards Home Integration"
               fill
+              // Same file as the header logo (the LCP on most pages). Next's
+              // LCP check tracks images by URL, so a lazy copy here triggers a
+              // false "add loading=eager" warning for the header one.
+              loading="eager"
               sizes="192px"
               className="object-contain object-left"
             />

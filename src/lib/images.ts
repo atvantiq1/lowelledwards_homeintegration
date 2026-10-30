@@ -7,6 +7,20 @@ import avOutdoor from "@/assets/images/audio-video/outdoor.jpg";
 import avListening from "@/assets/images/audio-video/listening.jpg";
 import avDiscreet from "@/assets/images/audio-video/discreet.jpg";
 import avCta from "@/assets/images/audio-video/cta.jpg";
+import intercomsHero from "@/assets/images/commercial/intercoms-hero.webp";
+import intercomsButterflyMX from "@/assets/images/commercial/intercoms-butterflymx.webp";
+import intercomsDoorBird from "@/assets/images/commercial/intercoms-doorbird.webp";
+import intercomsCta from "@/assets/images/commercial/intercoms-cta.webp";
+import accessHero from "@/assets/images/commercial/access-hero.webp";
+import accessAkuvoxReader from "@/assets/images/commercial/access-akuvox-reader.webp";
+import accessAkuvoxLobby from "@/assets/images/commercial/access-akuvox-lobby.webp";
+import accessCta from "@/assets/images/commercial/access-cta.webp";
+import videoHero from "@/assets/images/commercial/video-hero.webp";
+import videoCamera from "@/assets/images/commercial/video-camera.webp";
+import videoEntrance from "@/assets/images/commercial/video-entrance.webp";
+import videoCta from "@/assets/images/commercial/video-cta.webp";
+import safetyHero from "@/assets/images/commercial/safety-hero.webp";
+import safetyCta from "@/assets/images/commercial/safety-cta.webp";
 
 /**
  * Homepage photography, sourced from Pexels (free to use, no attribution
@@ -525,91 +539,103 @@ export const audioVideoImages = {
 } as const;
 
 /**
- * Commercial service page photography (see src/lib/commercial.ts), sourced
- * from Pexels (free to use, no attribution required) and unique to these
- * pages. Each page's hero also appears as its thumbnail in the Commercial
- * navigation menu. Swap any `src` for photos of the client's own commercial
- * installations when they become available; no other code needs to change.
+ * Commercial service page photography (see src/lib/commercial.ts). Each
+ * page's hero also appears as its thumbnail in the Commercial navigation menu.
+ *
+ * Everything except Safety Systems' intro and feature comes from the client's
+ * own intercom site (lowelledwards-intercom.com): New York and New Jersey
+ * multifamily buildings and the Akuvox, ButterflyMX and DoorBird products
+ * Lowell Edwards installs. They are local copies in
+ * src/assets/images/commercial, so they get a blur placeholder and don't
+ * depend on that site staying up. Safety Systems' device shots are Control4
+ * dealer imagery from control4.com/solutions/safety-security and
+ * /solutions/products/locks (see the note on `control4` above).
  */
 export const commercialImages = {
   buildingIntercoms: {
     hero: {
-      src: pexels("6758532"),
-      alt: "Bright marble apartment lobby with a gold-framed portal, a tufted white bench and a glass vestibule entrance beyond",
-      position: "50% 60%",
+      src: intercomsHero,
+      alt: "Warmly lit apartment building lobby entrance with black-framed glass doors and an Akuvox video intercom panel on the wall beside them",
+      position: "60% 50%",
     },
     intro: {
-      src: pexels("37538043"),
-      alt: "Wall-mounted entry keypad with a display and fingerprint reader beside a glass door",
-      position: "38% 50%",
+      src: intercomsButterflyMX,
+      alt: "ButterflyMX video intercom mounted on a red brick wall beside a leafy shrub, with city towers behind",
+      position: "82% 50%",
     },
     feature: {
-      src: pexels("35215413"),
-      alt: "Curving residential lobby lounge with a timber-panelled ceiling, soft grey armchairs and floor-to-ceiling windows",
+      src: intercomsDoorBird,
+      alt: "Stainless-steel DoorBird video door station mounted beside the glass doors of a modern apartment building",
+      position: "60% 50%",
     },
     cta: {
-      src: pexels("27307397"),
-      alt: "Contemporary apartment buildings with balconies around a landscaped courtyard in warm late-afternoon light",
-      position: "65% 50%",
+      src: intercomsCta,
+      alt: "Brick and stone mid-rise apartment building with a landscaped entrance on a tree-lined street",
     },
   },
   accessControl: {
     hero: {
-      src: pexels("32674962"),
-      alt: "Modern office lobby with wood-clad columns, a polished stone floor and a full-height glass entry wall",
+      src: accessHero,
+      alt: "Two residents entering a modern apartment building through glass doors beside a video intercom and access reader",
+      position: "65% 50%",
     },
     intro: {
-      src: pexels("13657444"),
-      alt: "Hand presenting an access card to a wall-mounted reader on a smooth concrete wall",
-      position: "40% 50%",
+      src: accessAkuvoxReader,
+      alt: "Hand presenting a key card to an Akuvox access reader beside a face recognition intercom on a brick wall",
+      position: "70% 50%",
     },
     feature: {
-      src: pexels("7534179"),
-      alt: "Bright office corridor with frameless glass doors, oak-look flooring and a secured door at the far end",
+      src: accessAkuvoxLobby,
+      alt: "Resident tapping an ID card on an Akuvox access reader in a bright building lobby",
+      position: "60% 50%",
     },
     cta: {
-      src: pexels("68631"),
-      alt: "Cream stone office building with ribbon windows rising against a bright blue sky",
-      position: "50% 70%",
+      src: accessCta,
+      alt: "Contemporary brick and glass apartment building entrance with an intercom panel on a quiet, tree-lined street",
     },
   },
   videoSecurity: {
     hero: {
-      src: pexels("1500459"),
-      alt: "Two-storey brick office building with glowing windows beside a parking lot under a sunset sky",
+      src: videoHero,
+      alt: "Security camera mounted outside a brick apartment building entrance lit warmly at dusk",
+      position: "60% 50%",
     },
     intro: {
-      src: pexels("7508684"),
-      alt: "White dome security camera and sensor mounted on a speckled ceiling tile",
+      src: videoCamera,
+      alt: "Bullet security camera on a bracket outside a modern building, with palms in the evening light",
+      position: "55% 50%",
     },
     feature: {
-      src: pexels("3205735"),
-      alt: "Bullet security camera bracketed to a cream travertine column on a modern building",
-      position: "50% 40%",
+      src: videoEntrance,
+      alt: "Security camera mounted above an apartment building entrance with a video intercom by the gate",
+      position: "55% 50%",
     },
     cta: {
-      src: pexels("31730305"),
-      alt: "Limestone office building with a tall arched glass entrance and ribbon windows reflecting a blue sky",
+      src: videoCta,
+      alt: "Modern apartment building entrance on a busy city street lined with towers",
     },
   },
   safetySystems: {
     hero: {
-      src: pexels("18856050"),
-      alt: "Bright white atrium with curved balconies beneath a vaulted glass roof",
-      position: "50% 30%",
+      src: safetyHero,
+      alt: "Waterfront apartment building entrance with glass doors, a video intercom and planted terrace beds",
+      position: "50% 40%",
     },
     intro: {
-      src: pexels("39183052"),
-      alt: "Ceiling-mounted fire alarm horn strobe on a clean white ceiling",
+      src: control4(
+        "681a1e619a37c66482374f67_087_25_Control4.com_SurveillanceandSecurity_Sensor1.webp"
+      ),
+      alt: "White wall-mounted motion sensor",
     },
     feature: {
-      src: pexels("13060860"),
-      alt: "Red break-glass fire alarm call point on a textured cream wall",
+      src: control4(
+        "67f82d20fecf47ade32a6c95_087_25_Control4.com_SafetyandSecurity_Doorstation.webp"
+      ),
+      alt: "Control4 door station on a stone wall beside a phone showing a live video call from the door",
     },
     cta: {
-      src: pexels("87223"),
-      alt: "Modern residential tower with cantilevered white balconies against a deep blue sky",
-      position: "40% 50%",
+      src: safetyCta,
+      alt: "Apartment building with a glass lobby entrance and intercom panel on a city street",
     },
   },
 } as const;
