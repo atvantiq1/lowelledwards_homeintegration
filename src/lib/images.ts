@@ -547,9 +547,9 @@ export const audioVideoImages = {
  * multifamily buildings and the Akuvox, ButterflyMX and DoorBird products
  * Lowell Edwards installs. They are local copies in
  * src/assets/images/commercial, so they get a blur placeholder and don't
- * depend on that site staying up. Safety Systems' device shots are Control4
- * dealer imagery from control4.com/solutions/safety-security and
- * /solutions/products/locks (see the note on `control4` above).
+ * depend on that site staying up. Safety Systems' intro and feature are
+ * Pexels photos of fire alarm and emergency hardware, matching that page's
+ * detection and alerting copy.
  */
 export const commercialImages = {
   buildingIntercoms: {
@@ -622,16 +622,13 @@ export const commercialImages = {
       position: "50% 40%",
     },
     intro: {
-      src: control4(
-        "681a1e619a37c66482374f67_087_25_Control4.com_SurveillanceandSecurity_Sensor1.webp"
-      ),
-      alt: "White wall-mounted motion sensor",
+      src: pexels("39183052"),
+      alt: "Ceiling-mounted fire alarm horn and strobe in a building",
     },
     feature: {
-      src: control4(
-        "67f82d20fecf47ade32a6c95_087_25_Control4.com_SafetyandSecurity_Doorstation.webp"
-      ),
-      alt: "Control4 door station on a stone wall beside a phone showing a live video call from the door",
+      src: pexels("29398063"),
+      alt: "Illuminated emergency exit signs and a red alarm sounder in a building hallway",
+      position: "50% 30%",
     },
     cta: {
       src: safetyCta,
